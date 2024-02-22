@@ -4,6 +4,7 @@ import { HomeComponent } from './home/home.component';
 import { JhsEnrollmentComponent } from './jhs-enrollment/jhs-enrollment.component';
 import { ShsEnrollmentComponent } from './shs-enrollment/shs-enrollment.component';
 import { TransfereeEnrollmentComponent } from './transferee-enrollment/transferee-enrollment.component';
+import { TransfereeShsEnrollmentComponent } from './transferee-shs-enrollment/transferee-shs-enrollment.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/', pathMatch: 'full' },
@@ -11,6 +12,10 @@ const routes: Routes = [
   { path: 'JHS/enrollment', component: JhsEnrollmentComponent },
   { path: 'SHS/enrollment', component: ShsEnrollmentComponent },
   { path: 'transferee/enrollment', component: TransfereeEnrollmentComponent },
+  {
+    path: 'transferee/shs/enrollment',
+    component: TransfereeShsEnrollmentComponent,
+  },
 ];
 
 @NgModule({
