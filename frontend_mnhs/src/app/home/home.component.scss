@@ -1,0 +1,43 @@
+.container-holder {
+  height: 100vh;
+  overflow: hidden;
+}
+
+.background {
+  background-image: url("../../../src/assets/images/239653396_108487398220398_4498152433778202849_n 1.jpg");
+  background-size: cover;
+  background-position: center center;
+  background-attachment: fixed;
+  position: fixed;
+  width: 100%;
+  height: 100vh;
+  z-index: -1;
+}
+
+.navbar {
+  background-color: #293334;
+  a {
+    color: white;
+    text-decoration: none;
+  }
+}
+
+.banner-side {
+  background-color: rgba(191, 166, 92, 79%);
+  height: 100vh;
+}
+
+.enroll-links {
+  a {
+    text-decoration: none;
+    background-color: #293334;
+    border-radius: 10px;
+    padding: 6px;
+    padding-inline: 10px;
+    border: 1px solid white;
+  }
+  .t-link {
+    padding: 10px;
+    padding-inline: 15px;
+  }
+}
