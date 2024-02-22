@@ -444,6 +444,20 @@
               <label for="mother_occupation" class="form-label"
                 >Your Signature</label
               >
+              <canvas
+                #canvas
+                (touchstart)="startDrawing($event)"
+                (touchmove)="moved($event)"
+                width="500"
+                height="200"
+              ></canvas>
+              <p class="error-message" *ngIf="signatureNeeded">
+                Signature is required
+              </p>
+
+              <div class="my-3">
+                <button (click)="clearPad()" class="btn btn-info">Clear</button>
+              </div>
             </div>
           </div>
         </div>

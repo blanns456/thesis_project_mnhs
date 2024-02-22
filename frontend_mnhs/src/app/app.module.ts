@@ -16,13 +16,10 @@ import { TransfereeShsEnrollmentComponent } from './transferee-shs-enrollment/tr
     JhsEnrollmentComponent,
     ShsEnrollmentComponent,
     TransfereeEnrollmentComponent,
-    TransfereeShsEnrollmentComponent
+    TransfereeShsEnrollmentComponent,
   ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule
-  ],
+  imports: [BrowserModule, AppRoutingModule],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}
