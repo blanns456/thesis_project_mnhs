@@ -5,12 +5,14 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
 import { JhsEnrollmentComponent } from './jhs-enrollment/jhs-enrollment.component';
+import { ShsEnrollmentComponent } from './shs-enrollment/shs-enrollment.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
-    JhsEnrollmentComponent
+    JhsEnrollmentComponent,
+    ShsEnrollmentComponent
   ],
   imports: [
     BrowserModule,
