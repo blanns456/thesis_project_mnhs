@@ -5,6 +5,7 @@ import { JhsEnrollmentComponent } from './jhs-enrollment/jhs-enrollment.componen
 import { ShsEnrollmentComponent } from './shs-enrollment/shs-enrollment.component';
 import { TransfereeEnrollmentComponent } from './transferee-enrollment/transferee-enrollment.component';
 import { TransfereeShsEnrollmentComponent } from './transferee-shs-enrollment/transferee-shs-enrollment.component';
+import { LoginComponent } from './login/login.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/', pathMatch: 'full' },
@@ -15,6 +16,10 @@ const routes: Routes = [
   {
     path: 'transferee/shs/enrollment',
     component: TransfereeShsEnrollmentComponent,
+  },
+  {
+    path: 'login',
+    component: LoginComponent,
   },
 ];
 

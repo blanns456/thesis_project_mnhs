@@ -8,6 +8,7 @@ import { JhsEnrollmentComponent } from './jhs-enrollment/jhs-enrollment.componen
 import { ShsEnrollmentComponent } from './shs-enrollment/shs-enrollment.component';
 import { TransfereeEnrollmentComponent } from './transferee-enrollment/transferee-enrollment.component';
 import { TransfereeShsEnrollmentComponent } from './transferee-shs-enrollment/transferee-shs-enrollment.component';
+import { LoginComponent } from './login/login.component';
 
 @NgModule({
   declarations: [
@@ -16,7 +17,8 @@ import { TransfereeShsEnrollmentComponent } from './transferee-shs-enrollment/tr
     JhsEnrollmentComponent,
     ShsEnrollmentComponent,
     TransfereeEnrollmentComponent,
-    TransfereeShsEnrollmentComponent
+    TransfereeShsEnrollmentComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
