@@ -9,6 +9,8 @@ import { ShsEnrollmentComponent } from './shs-enrollment/shs-enrollment.componen
 import { TransfereeEnrollmentComponent } from './transferee-enrollment/transferee-enrollment.component';
 import { TransfereeShsEnrollmentComponent } from './transferee-shs-enrollment/transferee-shs-enrollment.component';
 import { LoginComponent } from './login/login.component';
+import { HomeStudentComponent } from './dashboard-student/home-student/home-student.component';
+import { SidebarComponent } from './dashboard-student/sidebar/sidebar.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +20,9 @@ import { LoginComponent } from './login/login.component';
     ShsEnrollmentComponent,
     TransfereeEnrollmentComponent,
     TransfereeShsEnrollmentComponent,
-    LoginComponent
+    LoginComponent,
+    HomeStudentComponent,
+    SidebarComponent
   ],
   imports: [
     BrowserModule,

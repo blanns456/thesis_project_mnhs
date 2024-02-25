@@ -6,6 +6,7 @@ import { ShsEnrollmentComponent } from './shs-enrollment/shs-enrollment.componen
 import { TransfereeEnrollmentComponent } from './transferee-enrollment/transferee-enrollment.component';
 import { TransfereeShsEnrollmentComponent } from './transferee-shs-enrollment/transferee-shs-enrollment.component';
 import { LoginComponent } from './login/login.component';
+import { HomeStudentComponent } from './dashboard-student/home-student/home-student.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/', pathMatch: 'full' },
@@ -20,6 +21,11 @@ const routes: Routes = [
   {
     path: 'login',
     component: LoginComponent,
+  },
+  // student dashboard
+  {
+    path: 'student/home',
+    component: HomeStudentComponent,
   },
 ];
 
