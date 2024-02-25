@@ -18,7 +18,7 @@
     <div class="container-fluid form-container py-2">
       <h2 class="text-center mt-5 pt-4">Junior HighSchool Enrollment</h2>
       <hr />
-      <form action="">
+      <form action="" [formGroup]="enrollForm">
         <h2>Personal Information</h2>
         <div class="row">
           <div class="col-4">
@@ -26,10 +26,12 @@
               <label for="first_name" class="form-label">First Name</label>
               <input
                 type="text"
+                [class.is-invalid]="enrollForm.controls['firstname'].invalid"
                 class="form-control"
                 name="first_name"
                 id="first_name"
                 aria-describedby="helpId"
+                formControlName="firstname"
                 placeholder="ex. John"
                 autofocus
                 required
@@ -43,6 +45,8 @@
                 type="text"
                 class="form-control"
                 name="last_name"
+                [class.is-invalid]="enrollForm.controls['lastname'].invalid"
+                formControlName="lastname"
                 id="last_name"
                 aria-describedby="helpId"
                 placeholder="ex. Doe"
@@ -59,6 +63,7 @@
                 type="text"
                 class="form-control"
                 name="middle_name"
+                formControlName="middlename"
                 id="middle_name"
                 aria-describedby="helpId"
                 required
@@ -79,6 +84,7 @@
                     class="form-control"
                     name="suffix"
                     id="suffix"
+                    formControlName="suffix"
                     aria-describedby="helpId"
                     required
                   />
@@ -91,6 +97,8 @@
                     name="gender"
                     id="gender"
                     class="form-select"
+                    [class.is-invalid]="enrollForm.controls['gender'].invalid"
+                    formControlName="gender"
                     required
                   >
                     <option value="">Please Select Gender</option>
@@ -107,7 +115,9 @@
               <select
                 name="civil_status"
                 id="civil_status"
+                [class.is-invalid]="enrollForm.controls['civil_status'].invalid"
                 class="form-select"
+                formControlName="civil_status"
                 required
               >
                 <option value="">Please Select Status</option>
@@ -125,7 +135,9 @@
                 class="form-control"
                 name="b_date"
                 id="b_date"
+                [class.is-invalid]="enrollForm.controls['birthdate'].invalid"
                 aria-describedby="helpId"
+                formControlName="birthdate"
                 required
               />
             </div>
@@ -140,6 +152,8 @@
                 class="form-control"
                 name="b_place"
                 id="b_place"
+                [class.is-invalid]="enrollForm.controls['birth_place'].invalid"
+                formControlName="birth_place"
                 aria-describedby="helpId"
                 required
               />
@@ -152,8 +166,10 @@
                 type="email"
                 class="form-control"
                 name="email"
+                formControlName="email"
                 id="email"
                 aria-describedby="helpId"
+                [class.is-invalid]="enrollForm.controls['email'].invalid"
                 placeholder="ex. johndoe@gmail.com"
                 required
               />
@@ -165,8 +181,12 @@
               <input
                 type="text"
                 class="form-control"
+                formControlName="mobile_number"
                 name="number"
                 id="number"
+                [class.is-invalid]="
+                  enrollForm.controls['mobile_number'].invalid
+                "
                 aria-describedby="helpId"
                 placeholder="ex. 09123456789"
                 required
@@ -182,7 +202,9 @@
                 type="text"
                 class="form-control"
                 name="citizenship"
+                [class.is-invalid]="enrollForm.controls['citizenship'].invalid"
                 id="citizenship"
+                formControlName="citizenship"
                 aria-describedby="helpId"
                 required
               />
@@ -194,7 +216,9 @@
               <input
                 type="text"
                 class="form-control"
+                formControlName="religion"
                 name="religion"
+                [class.is-invalid]="enrollForm.controls['religion'].invalid"
                 id="religion"
                 aria-describedby="helpId"
                 required
@@ -209,7 +233,9 @@
               <textarea
                 name="home_address"
                 id="home_address"
+                formControlName="home_address"
                 class="form-control"
+                [class.is-invalid]="enrollForm.controls['home_address'].invalid"
                 cols="50"
                 rows="2"
                 required
@@ -224,6 +250,10 @@
               <textarea
                 name="present_address"
                 id="present_address"
+                formControlName="present_address"
+                [class.is-invalid]="
+                  enrollForm.controls['present_address'].invalid
+                "
                 class="form-control"
                 cols="50"
                 rows="2"
@@ -242,6 +272,8 @@
                 name="enrolling_for"
                 id="enrolling_for"
                 class="form-select"
+                formControlName="gradelevel"
+                [class.is-invalid]="enrollForm.controls['gradelevel'].invalid"
                 required
               >
                 <option value="" disabled selected>
@@ -259,7 +291,14 @@
               <label for="major" class="form-label"
                 >JHS Special Program Offered:</label
               >
-              <select name="major" id="major" class="form-select" required>
+              <select
+                name="major"
+                formControlName="program"
+                [class.is-invalid]="enrollForm.controls['program'].invalid"
+                id="major"
+                class="form-select"
+                required
+              >
                 <option value="" disabled selected>Please Select Major</option>
                 <optgroup label="Journalism Major In:">
                   <option value="Basic Journalism">Basic Journalism</option>
@@ -291,8 +330,10 @@
               <input
                 type="text"
                 class="form-control"
+                [class.is-invalid]="enrollForm.controls['school_elem'].invalid"
                 name="elementary"
                 id="elementary"
+                formControlName="school_elem"
                 aria-describedby="helpId"
                 required
               />
@@ -307,6 +348,10 @@
                 type="text"
                 class="form-control"
                 name="elementary_yr"
+                formControlName="school_schoolyr"
+                [class.is-invalid]="
+                  enrollForm.controls['school_schoolyr'].invalid
+                "
                 id="elementary_yr"
                 aria-describedby="helpId"
                 required
@@ -324,6 +369,8 @@
                 type="text"
                 class="form-control"
                 name="father_name"
+                [class.is-invalid]="enrollForm.controls['father_name'].invalid"
+                formControlName="father_name"
                 id="father_name"
                 aria-describedby="helpId"
                 required
@@ -339,7 +386,11 @@
                 type="text"
                 class="form-control"
                 name="father_occupation"
+                [class.is-invalid]="
+                  enrollForm.controls['father_occupation'].invalid
+                "
                 id="father_occupation"
+                formControlName="father_occupation"
                 aria-describedby="helpId"
                 required
               />
@@ -354,6 +405,10 @@
                 type="text"
                 class="form-control"
                 name="father_number"
+                formControlName="father_contactnumber"
+                [class.is-invalid]="
+                  enrollForm.controls['father_contactnumber'].invalid
+                "
                 id="father_number"
                 aria-describedby="helpId"
                 required
@@ -369,6 +424,8 @@
                 type="text"
                 class="form-control"
                 name="mother_name"
+                formControlName="mother_name"
+                [class.is-invalid]="enrollForm.controls['mother_name'].invalid"
                 id="mother_name"
                 aria-describedby="helpId"
                 required
@@ -384,7 +441,11 @@
                 type="text"
                 class="form-control"
                 name="mother_occupation"
+                formControlName="mother_occupation"
                 id="mother_occupation"
+                [class.is-invalid]="
+                  enrollForm.controls['mother_occupation'].invalid
+                "
                 aria-describedby="helpId"
                 required
               />
@@ -399,6 +460,10 @@
                 type="text"
                 class="form-control"
                 name="mother_number"
+                formControlName="mother_contactnumber"
+                [class.is-invalid]="
+                  enrollForm.controls['mother_contactnumber'].invalid
+                "
                 id="mother_number"
                 aria-describedby="helpId"
                 required
@@ -415,6 +480,7 @@
                 type="file"
                 accept="image/*"
                 class="form-control mb-3"
+                [class.is-invalid]="enrollForm.controls['profile'].invalid"
                 name="profile"
                 id="profile"
                 (change)="showPreview($event)"
@@ -431,7 +497,7 @@
                 <img
                   *ngIf="imageURL && imageURL !== ''"
                   [src]="imageURL"
-                  [alt]="uploadForm.value.name"
+                  [alt]="enrollForm.value.name"
                   class="img-thumbnail"
                   width="300"
                 />
@@ -444,11 +510,27 @@
               <label for="mother_occupation" class="form-label"
                 >Your Signature</label
               >
+              <canvas
+                #canvas
+                (touchstart)="startDrawing($event)"
+                (touchmove)="moved($event)"
+                width="500"
+                height="200"
+              ></canvas>
+              <p class="error-message text-danger" *ngIf="signatureNeeded">
+                Signature is required
+              </p>
+
+              <div class="my-3">
+                <button (click)="clearPad()" class="btn btn-info">Clear</button>
+              </div>
             </div>
           </div>
         </div>
         <div class="text-center">
-          <button type="submit" class="btn btn-success">Enroll Now!</button>
+          <button (click)="savestudent()" class="btn btn-success">
+            Enroll Now!
+          </button>
         </div>
       </form>
     </div>

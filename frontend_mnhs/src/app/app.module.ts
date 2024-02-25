@@ -8,6 +8,8 @@ import { JhsEnrollmentComponent } from './jhs-enrollment/jhs-enrollment.componen
 import { ShsEnrollmentComponent } from './shs-enrollment/shs-enrollment.component';
 import { TransfereeEnrollmentComponent } from './transferee-enrollment/transferee-enrollment.component';
 import { TransfereeShsEnrollmentComponent } from './transferee-shs-enrollment/transferee-shs-enrollment.component';
+import { HttpClientModule } from '@angular/common/http';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { LoginComponent } from './login/login.component';
 import { HomeStudentComponent } from './dashboard-student/home-student/home-student.component';
 import { SidebarComponent } from './dashboard-student/sidebar/sidebar.component';
@@ -22,13 +24,16 @@ import { SidebarComponent } from './dashboard-student/sidebar/sidebar.component'
     TransfereeShsEnrollmentComponent,
     LoginComponent,
     HomeStudentComponent,
-    SidebarComponent
+    SidebarComponent,
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    HttpClientModule,
+    ReactiveFormsModule,
+    FormsModule,
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}
