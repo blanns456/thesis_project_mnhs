@@ -10,6 +10,9 @@ import { TransfereeEnrollmentComponent } from './transferee-enrollment/transfere
 import { TransfereeShsEnrollmentComponent } from './transferee-shs-enrollment/transferee-shs-enrollment.component';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { LoginComponent } from './login/login.component';
+import { HomeStudentComponent } from './dashboard-student/home-student/home-student.component';
+import { SidebarComponent } from './dashboard-student/sidebar/sidebar.component';
 
 @NgModule({
   declarations: [
@@ -19,6 +22,9 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     ShsEnrollmentComponent,
     TransfereeEnrollmentComponent,
     TransfereeShsEnrollmentComponent,
+    LoginComponent,
+    HomeStudentComponent,
+    SidebarComponent,
   ],
   imports: [
     BrowserModule,
