@@ -8,6 +8,8 @@ import { JhsEnrollmentComponent } from './jhs-enrollment/jhs-enrollment.componen
 import { ShsEnrollmentComponent } from './shs-enrollment/shs-enrollment.component';
 import { TransfereeEnrollmentComponent } from './transferee-enrollment/transferee-enrollment.component';
 import { TransfereeShsEnrollmentComponent } from './transferee-shs-enrollment/transferee-shs-enrollment.component';
+import { HttpClientModule } from '@angular/common/http';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -18,7 +20,13 @@ import { TransfereeShsEnrollmentComponent } from './transferee-shs-enrollment/tr
     TransfereeEnrollmentComponent,
     TransfereeShsEnrollmentComponent,
   ],
-  imports: [BrowserModule, AppRoutingModule],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    HttpClientModule,
+    ReactiveFormsModule,
+    FormsModule,
+  ],
   providers: [],
   bootstrap: [AppComponent],
 })
