@@ -199,8 +199,8 @@ export class JhsEnrollmentComponent implements OnInit {
           title: 'Success',
           type: 'success',
           confirmButtonText: 'Okay',
-        }).then(function () {
-          console.log('success');
+        }).then(() => {
+          this.router.navigate(['login']);
         });
 
         console.log(e);
