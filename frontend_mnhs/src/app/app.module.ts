@@ -13,6 +13,9 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { LoginComponent } from './login/login.component';
 import { HomeStudentComponent } from './dashboard-student/home-student/home-student.component';
 import { SidebarComponent } from './dashboard-student/sidebar/sidebar.component';
+import { NavbarComponent } from './dashboard-student/navbar/navbar.component';
+import { StudentInfoComponent } from './dashboard-student/student-info/student-info.component';
+import { AccountSettingsComponent } from './dashboard-student/account-settings/account-settings.component';
 
 @NgModule({
   declarations: [
@@ -25,6 +28,9 @@ import { SidebarComponent } from './dashboard-student/sidebar/sidebar.component'
     LoginComponent,
     HomeStudentComponent,
     SidebarComponent,
+    NavbarComponent,
+    StudentInfoComponent,
+    AccountSettingsComponent,
   ],
   imports: [
     BrowserModule,
