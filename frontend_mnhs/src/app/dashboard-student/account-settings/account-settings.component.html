@@ -1,0 +1,55 @@
+<div class="container-dashboard">
+  <app-sidebar></app-sidebar>
+  <div class="main-content">
+    <div class="background"></div>
+    <app-navbar></app-navbar>
+    <div
+      class="container-fluid vh-100 d-flex justify-content-center align-items-center flex-column q-link"
+    >
+      <div class="d-flex justify-content-evenly mb-5 info">
+        <form action="" class="w-100">
+          <h2 class="my-2 mx-3">Reset Password</h2>
+          <br />
+          <div class="mb-3 w-75 mx-auto">
+            <label for="username" class="form-label text-start">Username</label>
+            <input
+              type="text"
+              class="form-control"
+              name="username"
+              id="username"
+              aria-describedby="helpId"
+              autofocus
+              required
+            />
+          </div>
+          <div class="mb-3 w-75 mx-auto">
+            <label for="old_pass" class="form-label">Old Password</label>
+            <input
+              type="text"
+              class="form-control"
+              name="old_pass"
+              id="old_pass"
+              aria-describedby="helpId"
+              required
+            />
+          </div>
+          <div class="mb-3 w-75 mx-auto">
+            <label for="New Password" class="form-label">New Password</label>
+            <input
+              type="text"
+              class="form-control"
+              name="New Password"
+              id="New Password"
+              aria-describedby="helpId"
+              required
+            />
+          </div>
+          <div class="text-center my-5">
+            <button type="submit" class="btn btn-success">Save Changes</button>
+          </div>
+        </form>
+      </div>
+      <div class="opacity-0 my-2">spacer</div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,52 @@
+<div class="sidebar position-fixed">
+  <div class="logout position-relative">
+    <div class="text-end"></div>
+    <div class="text-start">
+      <img
+        src="../../../assets/images/default_Profile.png"
+        alt="avatar"
+        id="profile"
+        width="60"
+        height="60"
+        class="img-thumbnail mt-4 mx-3"
+      />
+      <h2 class="h6 fw-bold text-white mx-3 my-2">Doe, John</h2>
+      <p class="text-light fs-6 mx-3 fw-light">Grade 7</p>
+    </div>
+  </div>
+  <div>
+    <div id="listPros" class="list-group">
+      <a
+        class="py-3 mb-1 list-group-item list-group-item-action home"
+        routerLink="/student/home"
+        routerLinkActive="active"
+      >
+        <i class="mx-2 fa-solid fa-house"></i>
+        Home
+      </a>
+      <a
+        class="my-2 py-3 list-group-item list-group-item-action"
+        routerLink="/student/information"
+        routerLinkActive="active"
+      >
+        <i class="mx-2 fa-solid fa-book-open-reader"></i>
+        Student Information
+      </a>
+      <a
+        class="my-2 py-3 list-group-item list-group-item-action"
+        routerLink="/student/settings"
+        routerLinkActive="active"
+      >
+        <i class="mx-2 fa-solid fa-gear"></i>
+        Account Settings
+      </a>
+      <a
+        class="my-2 py-3 list-group-item list-group-item-action"
+        routerLink="/"
+      >
+        <i class="fa-solid fa-right-from-bracket mx-2"></i>
+        Logout
+      </a>
+    </div>
+  </div>
+</div>

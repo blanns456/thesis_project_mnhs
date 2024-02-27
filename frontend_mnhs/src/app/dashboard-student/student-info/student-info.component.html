@@ -1,0 +1,463 @@
+<div class="container-dashboard">
+  <app-sidebar></app-sidebar>
+  <div class="main-content">
+    <div class="background"></div>
+    <app-navbar></app-navbar>
+    <div
+      class="container-fluid vh-100 d-flex justify-content-center align-items-center flex-column q-link"
+    >
+      <div class="text-start w-75 mt-5">
+        <h2 class="text-white">Quick Links</h2>
+      </div>
+      <div class="divider mb-3"></div>
+
+      <div class="d-flex justify-content-evenly text-center mb-5 info">
+        <form action="">
+          <h2 class="my-3">Personal Information</h2>
+          <div class="row">
+            <div class="col-4">
+              <div class="mb-3">
+                <label for="first_name" class="form-label">First Name</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  name="first_name"
+                  id="first_name"
+                  aria-describedby="helpId"
+                  placeholder="ex. John"
+                  autofocus
+                  required
+                />
+              </div>
+            </div>
+            <div class="col-4">
+              <div class="mb-3">
+                <label for="last_name" class="form-label">Last Name</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  name="last_name"
+                  id="last_name"
+                  aria-describedby="helpId"
+                  placeholder="ex. Doe"
+                  required
+                />
+              </div>
+            </div>
+            <div class="col-4">
+              <div class="mb-3">
+                <label for="middle_name" class="form-label"
+                  >Middle Name (Optional)</label
+                >
+                <input
+                  type="text"
+                  class="form-control"
+                  name="middle_name"
+                  id="middle_name"
+                  aria-describedby="helpId"
+                  required
+                />
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-4 container">
+              <div class="row">
+                <div class="col-6">
+                  <div class="mb-3">
+                    <label for="suffix" class="form-label"
+                      >Suffix (Optional)</label
+                    >
+                    <input
+                      type="text"
+                      class="form-control"
+                      name="suffix"
+                      id="suffix"
+                      aria-describedby="helpId"
+                      required
+                    />
+                  </div>
+                </div>
+                <div class="col-6">
+                  <div class="mb-3">
+                    <label for="gender" class="form-label">Gender</label>
+                    <select
+                      name="gender"
+                      id="gender"
+                      class="form-select"
+                      required
+                    >
+                      <option value="">Please Select Gender</option>
+                      <option value="male">Male</option>
+                      <option value="female">Female</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-4">
+              <div class="mb-3">
+                <label for="civil_status" class="form-label"
+                  >Civil Status</label
+                >
+                <select
+                  name="civil_status"
+                  id="civil_status"
+                  class="form-select"
+                  required
+                >
+                  <option value="">Please Select Status</option>
+                  <option value="Single">Single</option>
+                  <option value="Married">Married</option>
+                  <option value="Widowed">Widowed</option>
+                </select>
+              </div>
+            </div>
+            <div class="col-4">
+              <div class="mb-3">
+                <label for="b_date" class="form-label">Birth Date</label>
+                <input
+                  type="date"
+                  class="form-control"
+                  name="b_date"
+                  id="b_date"
+                  aria-describedby="helpId"
+                  required
+                />
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-4">
+              <div class="mb-3">
+                <label for="b_place" class="form-label">Birth Place</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  name="b_place"
+                  id="b_place"
+                  aria-describedby="helpId"
+                  required
+                />
+              </div>
+            </div>
+            <div class="col-4">
+              <div class="mb-3">
+                <label for="email" class="form-label">Email</label>
+                <input
+                  type="email"
+                  class="form-control"
+                  name="email"
+                  id="email"
+                  aria-describedby="helpId"
+                  placeholder="ex. johndoe@gmail.com"
+                  required
+                />
+              </div>
+            </div>
+            <div class="col-4">
+              <div class="mb-3">
+                <label for="number" class="form-label">Mobile Number</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  name="number"
+                  id="number"
+                  aria-describedby="helpId"
+                  placeholder="ex. 09123456789"
+                  required
+                />
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-4">
+              <div class="mb-3">
+                <label for="citizenship" class="form-label">Citizenship</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  name="citizenship"
+                  id="citizenship"
+                  aria-describedby="helpId"
+                  required
+                />
+              </div>
+            </div>
+            <div class="col-4">
+              <div class="mb-3">
+                <label for="religion" class="form-label">Religion</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  name="religion"
+                  id="religion"
+                  aria-describedby="helpId"
+                  required
+                />
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-6">
+              <div class="mb-3">
+                <label for="home_address" class="form-label"
+                  >Home Address</label
+                >
+                <textarea
+                  name="home_address"
+                  id="home_address"
+                  class="form-control"
+                  cols="50"
+                  rows="2"
+                  required
+                ></textarea>
+              </div>
+            </div>
+            <div class="col-6">
+              <div class="mb-3">
+                <label for="present_address" class="form-label"
+                  >Present Address</label
+                >
+                <textarea
+                  name="present_address"
+                  id="present_address"
+                  class="form-control"
+                  cols="50"
+                  rows="2"
+                  required
+                ></textarea>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-4">
+              <div class="mb-3">
+                <label for="enrolling_for" class="form-label"
+                  >Enrolling For</label
+                >
+                <select
+                  name="enrolling_for"
+                  id="enrolling_for"
+                  class="form-select"
+                  required
+                >
+                  <option value="" disabled selected>
+                    Please Select Year Level
+                  </option>
+                  <option value="11">Grade 11</option>
+                  <option value="12">Grade 12</option>
+                </select>
+              </div>
+            </div>
+            <div class="col-4">
+              <div class="mb-3">
+                <label for="major" class="form-label"
+                  >SHS Course Offered:</label
+                >
+                <select name="major" id="major" class="form-select" required>
+                  <option value="" disabled selected>
+                    Please Select Course
+                  </option>
+                  <optgroup label="General Academic Strand (GAS)">
+                    <option value="Technical Vocational">
+                      Technical Vocational
+                    </option>
+                    <option value="Livelihood Skills">Livelihood Skills</option>
+                  </optgroup>
+                  <option value="Shielded Metal Arc Welding">
+                    Shielded Metal Arc Welding (SMAW)
+                  </option>
+                  <option value="Illustration / Animation">
+                    Illustration / Animation
+                  </option>
+                  <option value="Dressmaking / Tailoring">
+                    Dressmaking / Tailoring
+                  </option>
+                </select>
+              </div>
+            </div>
+          </div>
+          <hr />
+          <div class="row">
+            <h2>Educational Record</h2>
+            <div class="col-6">
+              <div class="mb-3">
+                <label for="elementary" class="form-label"
+                  >Elementary School Name</label
+                >
+                <input
+                  type="text"
+                  class="form-control"
+                  name="elementary"
+                  id="elementary"
+                  aria-describedby="helpId"
+                  required
+                />
+              </div>
+            </div>
+            <div class="col-6">
+              <div class="mb-3">
+                <label for="elementary_yr" class="form-label"
+                  >Elementary School Year</label
+                >
+                <input
+                  type="text"
+                  class="form-control"
+                  name="elementary_yr"
+                  id="elementary_yr"
+                  aria-describedby="helpId"
+                  required
+                />
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-6">
+              <div class="mb-3">
+                <label for="jhs" class="form-label"
+                  >Junior High School Name</label
+                >
+                <input
+                  type="text"
+                  class="form-control"
+                  name="jhs"
+                  id="jhs"
+                  aria-describedby="helpId"
+                  required
+                />
+              </div>
+            </div>
+            <div class="col-6">
+              <div class="mb-3">
+                <label for="jhs_yr" class="form-label"
+                  >Juinor High School Year</label
+                >
+                <input
+                  type="text"
+                  class="form-control"
+                  name="jhs_yr"
+                  id="jhs_yr"
+                  aria-describedby="helpId"
+                  required
+                />
+              </div>
+            </div>
+          </div>
+          <hr />
+          <h2>Parents Information</h2>
+          <div class="row">
+            <div class="col-4">
+              <div class="mb-3">
+                <label for="father_name" class="form-label"
+                  >Father's Name</label
+                >
+                <input
+                  type="text"
+                  class="form-control"
+                  name="father_name"
+                  id="father_name"
+                  aria-describedby="helpId"
+                  required
+                />
+              </div>
+            </div>
+            <div class="col-4">
+              <div class="mb-3">
+                <label for="father_occupation" class="form-label"
+                  >Father's Occupation</label
+                >
+                <input
+                  type="text"
+                  class="form-control"
+                  name="father_occupation"
+                  id="father_occupation"
+                  aria-describedby="helpId"
+                  required
+                />
+              </div>
+            </div>
+            <div class="col-4">
+              <div class="mb-3">
+                <label for="father_number" class="form-label"
+                  >Father's Contact Number</label
+                >
+                <input
+                  type="text"
+                  class="form-control"
+                  name="father_number"
+                  id="father_number"
+                  aria-describedby="helpId"
+                  required
+                />
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-4">
+              <div class="mb-3">
+                <label for="mother_name" class="form-label"
+                  >Mother's Name</label
+                >
+                <input
+                  type="text"
+                  class="form-control"
+                  name="mother_name"
+                  id="mother_name"
+                  aria-describedby="helpId"
+                  required
+                />
+              </div>
+            </div>
+            <div class="col-4">
+              <div class="mb-3">
+                <label for="mother_occupation" class="form-label"
+                  >Mother's Occupation</label
+                >
+                <input
+                  type="text"
+                  class="form-control"
+                  name="mother_occupation"
+                  id="mother_occupation"
+                  aria-describedby="helpId"
+                  required
+                />
+              </div>
+            </div>
+            <div class="col-4">
+              <div class="mb-3">
+                <label for="mother_number" class="form-label"
+                  >Mother's Contact Number</label
+                >
+                <input
+                  type="text"
+                  class="form-control"
+                  name="mother_number"
+                  id="mother_number"
+                  aria-describedby="helpId"
+                  required
+                />
+              </div>
+            </div>
+          </div>
+          <hr />
+          <div class="row">
+            <div class="col-6"></div>
+
+            <div class="col-4">
+              <div class="mb-3">
+                <label for="mother_occupation" class="form-label"
+                  >Your Signature</label
+                >
+              </div>
+            </div>
+          </div>
+          <div class="text-center my-5">
+            <button type="submit" class="btn btn-success">Save Changes</button>
+          </div>
+        </form>
+      </div>
+      <div class="opacity-0 my-2">spacer</div>
+    </div>
+  </div>
+</div>

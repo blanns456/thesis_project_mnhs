@@ -10,6 +10,8 @@ import { HomeStudentComponent } from './dashboard-student/home-student/home-stud
 import { HomeAdminComponent } from './dashboard-admin/home-admin/home-admin.component';
 import { EnrolledStudentsComponent } from './dashboard-admin/enrolled-students/enrolled-students.component';
 import { SettingsComponent } from './dashboard-admin/settings/settings.component';
+import { StudentInfoComponent } from './dashboard-student/student-info/student-info.component';
+import { AccountSettingsComponent } from './dashboard-student/account-settings/account-settings.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/', pathMatch: 'full' },
@@ -41,6 +43,14 @@ const routes: Routes = [
   {
     path: 'admin/settings',
     component: SettingsComponent,
+  },
+  {
+    path: 'student/information',
+    component: StudentInfoComponent,
+  },
+  {
+    path: 'student/settings',
+    component: AccountSettingsComponent,
   },
 ];
 

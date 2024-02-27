@@ -18,6 +18,9 @@ import { SidebarAdminComponent } from './dashboard-admin/sidebar-admin/sidebar-a
 import { NavbarAdminComponent } from './dashboard-admin/navbar-admin/navbar-admin.component';
 import { EnrolledStudentsComponent } from './dashboard-admin/enrolled-students/enrolled-students.component';
 import { SettingsComponent } from './dashboard-admin/settings/settings.component';
+import { NavbarComponent } from './dashboard-student/navbar/navbar.component';
+import { StudentInfoComponent } from './dashboard-student/student-info/student-info.component';
+import { AccountSettingsComponent } from './dashboard-student/account-settings/account-settings.component';
 
 @NgModule({
   declarations: [
@@ -35,6 +38,9 @@ import { SettingsComponent } from './dashboard-admin/settings/settings.component
     NavbarAdminComponent,
     EnrolledStudentsComponent,
     SettingsComponent,
+    NavbarComponent,
+    StudentInfoComponent,
+    AccountSettingsComponent,
   ],
   imports: [
     BrowserModule,
