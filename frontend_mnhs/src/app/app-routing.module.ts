@@ -8,6 +8,7 @@ import { TransfereeShsEnrollmentComponent } from './transferee-shs-enrollment/tr
 import { LoginComponent } from './login/login.component';
 import { HomeStudentComponent } from './dashboard-student/home-student/home-student.component';
 import { StudentInfoComponent } from './dashboard-student/student-info/student-info.component';
+import { AccountSettingsComponent } from './dashboard-student/account-settings/account-settings.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/', pathMatch: 'full' },
@@ -31,6 +32,10 @@ const routes: Routes = [
   {
     path: 'student/information',
     component: StudentInfoComponent,
+  },
+  {
+    path: 'student/settings',
+    component: AccountSettingsComponent,
   },
 ];
 
