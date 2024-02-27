@@ -7,6 +7,9 @@ import { TransfereeEnrollmentComponent } from './transferee-enrollment/transfere
 import { TransfereeShsEnrollmentComponent } from './transferee-shs-enrollment/transferee-shs-enrollment.component';
 import { LoginComponent } from './login/login.component';
 import { HomeStudentComponent } from './dashboard-student/home-student/home-student.component';
+import { HomeAdminComponent } from './dashboard-admin/home-admin/home-admin.component';
+import { EnrolledStudentsComponent } from './dashboard-admin/enrolled-students/enrolled-students.component';
+import { SettingsComponent } from './dashboard-admin/settings/settings.component';
 import { StudentInfoComponent } from './dashboard-student/student-info/student-info.component';
 import { AccountSettingsComponent } from './dashboard-student/account-settings/account-settings.component';
 
@@ -28,6 +31,18 @@ const routes: Routes = [
   {
     path: 'student/home',
     component: HomeStudentComponent,
+  },
+  {
+    path: 'admin/home',
+    component: HomeAdminComponent,
+  },
+  {
+    path: 'admin/enrolled-students',
+    component: EnrolledStudentsComponent,
+  },
+  {
+    path: 'admin/settings',
+    component: SettingsComponent,
   },
   {
     path: 'student/information',

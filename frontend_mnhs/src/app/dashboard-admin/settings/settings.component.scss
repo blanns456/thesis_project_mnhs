@@ -1,0 +1,34 @@
+.bgcontent {
+  background: rgba(0, 0, 0, 0.6)
+    url("../../../assets/images/239653396_108487398220398_4498152433778202849_n 1.jpg");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  height: 100vh;
+}
+
+.container-dashboard {
+  width: 100%;
+  min-height: 100%;
+}
+
+.main-content {
+  min-width: 80%;
+  height: 100vh;
+  margin-left: 20%;
+  z-index: 1;
+
+  .chart-container {
+    width: 100%;
+    height: 350px;
+  }
+
+  .chartbg {
+    background-color: rgba(255, 255, 255, 0.76);
+    height: 100vh;
+  }
+
+  .text-content {
+    margin-top: 2rem;
+  }
+}

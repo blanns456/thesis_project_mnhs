@@ -1,0 +1,33 @@
+.bgnavbar {
+  width: 100%;
+  background-color: #141212;
+  z-index: 1;
+
+  .nav-student {
+    width: 80%;
+    line-height: 40px;
+  }
+
+  .noti-icon .noti-dot {
+    position: absolute;
+    display: inline-block;
+    height: 6px;
+    width: 6px;
+    background-color: #f32f53;
+    border-radius: 50%;
+    top: 10px;
+    right: 14px;
+  }
+
+  .noti-list {
+    position: absolute;
+    inset: 0px 8px auto auto;
+    margin: 0px;
+    transform: translate(0px, 51px);
+    border-radius: 0%;
+  }
+
+  .noti-icon {
+    border: none;
+  }
+}
