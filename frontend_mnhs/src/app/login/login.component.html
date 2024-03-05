@@ -28,31 +28,19 @@
       </div>
       <div class="col-6 align-items-center pt-5">
         <h3 class="fst-italic text-center">We Educate We Train</h3>
-        <form action="/student/home" class="mt-4">
-          <div class="mb-3">
-            <label for="username" class="form-label">Username</label>
-            <input
-              type="text"
-              class="form-control w-100"
-              name="username"
-              id="username"
-            />
-          </div>
-          <div class="mb-3">
-            <label for="password" class="form-label">Password</label>
-            <input
-              type="text"
-              class="form-control w-100"
-              name="password"
-              id="password"
-            />
-          </div>
-          <div class="text-center">
-            <button type="submit" class="btn btn-success w-75 mx-auto">
-              Signin
-            </button>
-          </div>
-        </form>
+      <form (ngSubmit)="login()" class="mt-4">
+        <div class="mb-3">
+          <label for="username" class="form-label">Username</label>
+          <input type="text" class="form-control w-100" name="username" id="username" [(ngModel)]="username" />
+        </div>
+        <div class="mb-3">
+          <label for="password" class="form-label">Password</label>
+          <input type="password" class="form-control w-100" name="password" id="password" [(ngModel)]="password" />
+        </div>
+        <div class="text-center">
+          <button type="submit" class="btn btn-success w-75 mx-auto">Signin</button>
+        </div>
+      </form>
         <div class="row">
           <div class="col-6">
             <p class="text-start mt-3 mx-5">
