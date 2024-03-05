@@ -257,18 +257,18 @@ export class TransfereeEnrollmentComponent implements OnInit {
       (e) => {
         this.studata = e;
         if (this.studata['user'] == 'success') {
+          this.router.navigate(['login']);
           Swal.fire({
             title: 'Success',
             text: 'Please Check Your Email',
             icon: 'success',
-          }).then(function () {
-            console.log('success');
           });
-
-          console.log(e);
-        } else {
-          console.log(this.enrollForm.value);
-          console.log(this.studata['message']);
+        }else if (this.studata['message']) {
+              Swal.fire(
+                'ERROR',
+                'Email Already Taken',
+                'error'
+              );
         }
       }
     );
