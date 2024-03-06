@@ -8,6 +8,10 @@
   height: 100vh;
   z-index: -1;
 }
+canvas {
+  background: white;
+  width: 155%;
+}
 
 .q-link {
   margin-left: 20%;
@@ -15,8 +19,9 @@
 }
 
 .info {
-  width: 90%;
-  margin-top: 80%;
+  width: 93%;
+  padding: 1rem;
+  margin-top: 150%;
   border-radius: 10px;
   background-color: whitesmoke;
 }
