@@ -13,6 +13,52 @@
 
       <div class="d-flex justify-content-evenly text-center mb-5 info">
         <form action="">
+          <div class="row p-3">
+            <div class="col-4">
+              <label for="semester" class="form-label"
+                >Semester:<small class="text-danger">*</small></label
+              >
+              <input
+                type="text"
+                class="form-control"
+                name="semester"
+                id="semester"
+                [value]="loggedInUserData.data[0].semester"
+              />
+            </div>
+            <div class="col-4">
+              <div class="mb-3">
+                <label for="track" class="form-label"
+                  >Track<small class="text-danger">*</small></label
+                >
+                <input
+                  type="text"
+                  class="form-control"
+                  name="track"
+                  id="track"
+                  [value]="loggedInUserData.data[0].track"
+                  aria-describedby="helpId"
+                  required
+                />
+              </div>
+            </div>
+            <div class="col-4">
+              <div class="mb-3">
+                <label for="strand" class="form-label"
+                  >Strand<small class="text-danger">*</small></label
+                >
+                <input
+                  type="text"
+                  class="form-control"
+                  name="strand"
+                  id="strand"
+                  [value]="loggedInUserData.data[0].strand"
+                  aria-describedby="helpId"
+                  required
+                />
+              </div>
+            </div>
+          </div>
           <h2 class="my-3">Personal Information</h2>
           <div class="row">
             <div class="col-4">
@@ -24,8 +70,7 @@
                   name="first_name"
                   id="first_name"
                   aria-describedby="helpId"
-                  placeholder="ex. John"
-                  autofocus
+                  [value]="loggedInUserData.data[0].firstname"
                   required
                 />
               </div>
@@ -39,7 +84,7 @@
                   name="last_name"
                   id="last_name"
                   aria-describedby="helpId"
-                  placeholder="ex. Doe"
+                  [value]="loggedInUserData.data[0].lastname"
                   required
                 />
               </div>
@@ -54,6 +99,7 @@
                   class="form-control"
                   name="middle_name"
                   id="middle_name"
+                  [value]="loggedInUserData.data[0].middlename"
                   aria-describedby="helpId"
                   required
                 />
@@ -74,6 +120,7 @@
                       name="suffix"
                       id="suffix"
                       aria-describedby="helpId"
+                      [value]="loggedInUserData.data[0].suffix"
                       required
                     />
                   </div>
@@ -85,6 +132,7 @@
                       name="gender"
                       id="gender"
                       class="form-select"
+                      [value]="loggedInUserData.data[0].gender"
                       required
                     >
                       <option value="">Please Select Gender</option>
@@ -104,6 +152,7 @@
                   name="civil_status"
                   id="civil_status"
                   class="form-select"
+                  [value]="loggedInUserData.data[0].civil_status"
                   required
                 >
                   <option value="">Please Select Status</option>
@@ -122,6 +171,7 @@
                   name="b_date"
                   id="b_date"
                   aria-describedby="helpId"
+                  [value]="loggedInUserData.data[0].birthdate"
                   required
                 />
               </div>
@@ -136,6 +186,7 @@
                   class="form-control"
                   name="b_place"
                   id="b_place"
+                  [value]="loggedInUserData.data[0].birth_place"
                   aria-describedby="helpId"
                   required
                 />
@@ -150,7 +201,7 @@
                   name="email"
                   id="email"
                   aria-describedby="helpId"
-                  placeholder="ex. johndoe@gmail.com"
+                  [value]="loggedInUserData.data[0].email"
                   required
                 />
               </div>
@@ -164,7 +215,7 @@
                   name="number"
                   id="number"
                   aria-describedby="helpId"
-                  placeholder="ex. 09123456789"
+                  [value]="loggedInUserData.data[0].mobile_number"
                   required
                 />
               </div>
@@ -180,6 +231,7 @@
                   name="citizenship"
                   id="citizenship"
                   aria-describedby="helpId"
+                  [value]="loggedInUserData.data[0].citizenship"
                   required
                 />
               </div>
@@ -193,6 +245,7 @@
                   name="religion"
                   id="religion"
                   aria-describedby="helpId"
+                  [value]="loggedInUserData.data[0].religion"
                   required
                 />
               </div>
@@ -208,6 +261,7 @@
                   name="home_address"
                   id="home_address"
                   class="form-control"
+                  [value]="loggedInUserData.data[0].home_address"
                   cols="50"
                   rows="2"
                   required
@@ -223,6 +277,7 @@
                   name="present_address"
                   id="present_address"
                   class="form-control"
+                  [value]="loggedInUserData.data[0].present_address"
                   cols="50"
                   rows="2"
                   required
@@ -240,6 +295,7 @@
                   name="enrolling_for"
                   id="enrolling_for"
                   class="form-select"
+                  [value]="loggedInUserData.data[0].grade_level"
                   required
                 >
                   <option value="" disabled selected>
@@ -250,12 +306,18 @@
                 </select>
               </div>
             </div>
-            <div class="col-4">
+            <div class="col-5">
               <div class="mb-3">
                 <label for="major" class="form-label"
                   >SHS Course Offered:</label
                 >
-                <select name="major" id="major" class="form-select" required>
+                <select
+                  name="major"
+                  id="major"
+                  class="form-select"
+                  required
+                  [value]="loggedInUserData.data[0].special_program"
+                >
                   <option value="" disabled selected>
                     Please Select Course
                   </option>
@@ -292,6 +354,7 @@
                   name="elementary"
                   id="elementary"
                   aria-describedby="helpId"
+                  [value]="loggedInUserData.data[0].school_elem"
                   required
                 />
               </div>
@@ -307,6 +370,7 @@
                   name="elementary_yr"
                   id="elementary_yr"
                   aria-describedby="helpId"
+                  [value]="loggedInUserData.data[0].elem_schoolyr"
                   required
                 />
               </div>
@@ -324,6 +388,7 @@
                   name="jhs"
                   id="jhs"
                   aria-describedby="helpId"
+                  [value]="loggedInUserData.data[0].school_jhs"
                   required
                 />
               </div>
@@ -339,6 +404,7 @@
                   name="jhs_yr"
                   id="jhs_yr"
                   aria-describedby="helpId"
+                  [value]="loggedInUserData.data[0].jhs_schoolyr"
                   required
                 />
               </div>
@@ -347,108 +413,246 @@
           <hr />
           <h2>Parents Information</h2>
           <div class="row">
-            <div class="col-4">
+            <caption class="fw-bold">
+              Father's Name
+            </caption>
+            <div class="col-3">
               <div class="mb-3">
-                <label for="father_name" class="form-label"
-                  >Father's Name</label
+                <label for="father_lastName" class="form-label"
+                  >Last Name</label
                 >
                 <input
                   type="text"
-                  class="form-control"
-                  name="father_name"
-                  id="father_name"
-                  aria-describedby="helpId"
-                  required
+                  class="form-control text-uppercase"
+                  name="father_lastName"
+                  [value]="loggedInUserData.data[0].father_lastName"
+                  id="father_lastName"
                 />
               </div>
             </div>
-            <div class="col-4">
+            <div class="col-3">
               <div class="mb-3">
-                <label for="father_occupation" class="form-label"
-                  >Father's Occupation</label
+                <label for="father_firstName" class="form-label"
+                  >First Name</label
                 >
                 <input
                   type="text"
-                  class="form-control"
-                  name="father_occupation"
-                  id="father_occupation"
-                  aria-describedby="helpId"
-                  required
+                  class="form-control text-uppercase"
+                  name="father_firstName"
+                  [value]="loggedInUserData.data[0].father_firstName"
+                  id="father_firstName"
                 />
               </div>
             </div>
-            <div class="col-4">
+            <div class="col-3">
+              <div class="mb-3">
+                <label for="father_middleName" class="form-label"
+                  >Middle Name</label
+                >
+                <input
+                  type="text"
+                  class="form-control text-uppercase"
+                  name="father_middleName"
+                  id="father_middleName"
+                  [value]="loggedInUserData.data[0].father_middleName"
+                />
+              </div>
+            </div>
+            <div class="col-3">
               <div class="mb-3">
                 <label for="father_number" class="form-label"
-                  >Father's Contact Number</label
+                  >Contact Number</label
                 >
                 <input
                   type="text"
-                  class="form-control"
+                  class="form-control text-uppercase"
                   name="father_number"
                   id="father_number"
-                  aria-describedby="helpId"
-                  required
+                  [value]="loggedInUserData.data[0].father_number"
                 />
               </div>
             </div>
+            <hr />
           </div>
           <div class="row">
-            <div class="col-4">
+            <caption class="fw-bold">
+              Mother's Name
+            </caption>
+            <div class="col-3">
               <div class="mb-3">
-                <label for="mother_name" class="form-label"
-                  >Mother's Name</label
+                <label for="mother_lastName" class="form-label"
+                  >Last Name</label
                 >
                 <input
                   type="text"
-                  class="form-control"
-                  name="mother_name"
-                  id="mother_name"
-                  aria-describedby="helpId"
-                  required
+                  class="form-control text-uppercase"
+                  name="mother_lastName"
+                  id="mother_lastName"
+                  [value]="loggedInUserData.data[0].mother_lastName"
                 />
               </div>
             </div>
-            <div class="col-4">
+            <div class="col-3">
               <div class="mb-3">
-                <label for="mother_occupation" class="form-label"
-                  >Mother's Occupation</label
+                <label for="mother_firstName" class="form-label"
+                  >First Name</label
                 >
                 <input
                   type="text"
-                  class="form-control"
-                  name="mother_occupation"
-                  id="mother_occupation"
-                  aria-describedby="helpId"
-                  required
+                  class="form-control text-uppercase"
+                  name="mother_firstName"
+                  id="mother_firstName"
+                  [value]="loggedInUserData.data[0].mother_firstName"
                 />
               </div>
             </div>
-            <div class="col-4">
+            <div class="col-3">
+              <div class="mb-3">
+                <label for="mother_middleName" class="form-label"
+                  >Middle Name</label
+                >
+                <input
+                  type="text"
+                  class="form-control text-uppercase"
+                  name="mother_middleName"
+                  id="mother_middleName"
+                  [value]="loggedInUserData.data[0].mother_middleName"
+                />
+              </div>
+            </div>
+            <div class="col-3">
               <div class="mb-3">
                 <label for="mother_number" class="form-label"
-                  >Mother's Contact Number</label
+                  >Contact Number</label
                 >
                 <input
                   type="text"
-                  class="form-control"
+                  class="form-control text-uppercase"
                   name="mother_number"
                   id="mother_number"
-                  aria-describedby="helpId"
-                  required
+                  [value]="loggedInUserData.data[0].mother_number"
+                />
+              </div>
+            </div>
+            <hr />
+          </div>
+          <div class="row">
+            <caption class="fw-bold">
+              Guardian's Name
+            </caption>
+            <div class="col-3">
+              <div class="mb-3">
+                <label for="guardian_lastName" class="form-label"
+                  >Last Name</label
+                >
+                <input
+                  type="text"
+                  class="form-control text-uppercase"
+                  name="guardian_lastName"
+                  id="guardian_lastName"
+                  [value]="loggedInUserData.data[0].guardian_lastName"
+                />
+              </div>
+            </div>
+            <div class="col-3">
+              <div class="mb-3">
+                <label for="guardian_firstName" class="form-label"
+                  >First Name</label
+                >
+                <input
+                  type="text"
+                  class="form-control text-uppercase"
+                  name="guardian_firstName"
+                  id="guardian_firstName"
+                  [value]="loggedInUserData.data[0].guardian_firstName"
+                />
+              </div>
+            </div>
+            <div class="col-3">
+              <div class="mb-3">
+                <label for="guardian_middleName" class="form-label"
+                  >Middle Name</label
+                >
+                <input
+                  type="text"
+                  class="form-control text-uppercase"
+                  name="guardian_middleName"
+                  id="guardian_middleName"
+                  [value]="loggedInUserData.data[0].guardian_middleName"
+                />
+              </div>
+            </div>
+            <div class="col-3">
+              <div class="mb-3">
+                <label for="guardian_number" class="form-label"
+                  >Contact Number</label
+                >
+                <input
+                  type="text"
+                  class="form-control text-uppercase"
+                  name="guardian_number"
+                  id="guardian_number"
+                  [value]="loggedInUserData.data[0].guardian_number"
                 />
               </div>
             </div>
           </div>
           <hr />
           <div class="row">
-            <div class="col-6"></div>
+            <div class="col-6">
+              <div class="mb-3">
+                <label for="profile" class="form-label"
+                  >Profile Image <small class="text-danger">*</small></label
+                >
+                <input
+                  type="file"
+                  accept="image/*"
+                  class="form-control mb-3"
+                  name="profile"
+                  id="profile"
+                  (change)="showPreview($event)"
+                />
+                <div class="imagePreview text-center">
+                  <img
+                    *ngIf="!loggedInUserData.data[0].profile_image"
+                    src="../../assets/images/default_Profile.png"
+                    alt="Default Image"
+                    class="img-thumbnail"
+                    width="300"
+                  />
+                  <!-- [value]="loggedInUserData.data[0].profile_image" -->
+                  <img
+                    *ngIf="loggedInUserData.data[0].profile_image"
+                    [src]="loggedInUserData.data[0].profile_image"
+                    [alt]="loggedInUserData.data[0].profile_image"
+                    class="img-thumbnail"
+                    width="300"
+                  />
+                </div>
+              </div>
+            </div>
 
             <div class="col-4">
               <div class="mb-3">
                 <label for="mother_occupation" class="form-label"
-                  >Your Signature</label
+                  >Your Signature <small class="text-danger">*</small></label
                 >
+                <canvas
+                  #canvas
+                  (touchstart)="startDrawing($event)"
+                  (touchmove)="moved($event)"
+                  width="500"
+                  height="200"
+                ></canvas>
+                <p class="error-message text-danger" *ngIf="signatureNeeded">
+                  Signature is required
+                </p>
+
+                <div class="my-3">
+                  <button (click)="clearPad()" class="btn btn-info">
+                    Clear
+                  </button>
+                </div>
               </div>
             </div>
           </div>
