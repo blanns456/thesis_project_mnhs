@@ -610,7 +610,6 @@
                   class="form-control mb-3"
                   name="profile"
                   id="profile"
-                  (change)="showPreview($event)"
                 />
                 <div class="imagePreview text-center">
                   <img
@@ -620,13 +619,15 @@
                     class="img-thumbnail"
                     width="300"
                   />
-                  <!-- [value]="loggedInUserData.data[0].profile_image" -->
                   <img
                     *ngIf="loggedInUserData.data[0].profile_image"
-                    [src]="loggedInUserData.data[0].profile_image"
+                    [src]="
+                      'http://127.0.0.1:8000/uploads/userimages/' +
+                      loggedInUserData.data[0].profile_image
+                    "
                     [alt]="loggedInUserData.data[0].profile_image"
                     class="img-thumbnail"
-                    width="300"
+                    width="200"
                   />
                 </div>
               </div>
@@ -637,13 +638,11 @@
                 <label for="mother_occupation" class="form-label"
                   >Your Signature <small class="text-danger">*</small></label
                 >
-                <canvas
-                  #canvas
-                  (touchstart)="startDrawing($event)"
-                  (touchmove)="moved($event)"
+                <img
+                  [src]="loggedInUserData.data[0].signature"
                   width="500"
                   height="200"
-                ></canvas>
+                />
                 <p class="error-message text-danger" *ngIf="signatureNeeded">
                   Signature is required
                 </p>

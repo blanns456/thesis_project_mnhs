@@ -1,8 +1,10 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { EnrollmentSHSControllers } from 'src/app/controllers/shsenrollmentController.component';
 import SignaturePad from 'signature_pad';
 import { Observable } from 'rxjs';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-student-info',
@@ -15,55 +17,16 @@ export class StudentInfoComponent implements OnInit {
   imageURL: string | undefined;
   uploadForm!: FormGroup;
 
-  constructor(private http: HttpClient, private formBuilder: FormBuilder) {}
+  constructor(
+    private http: HttpClient,
+    private EnrollmentSHSControllers: EnrollmentSHSControllers,
+    private formBuilder: FormBuilder
+  ) {}
 
   signatureNeeded!: boolean;
   signaturePad!: SignaturePad;
   @ViewChild('canvas') canvasEl!: ElementRef;
   signatureImg!: string;
-  enrollForm: FormGroup = this.formBuilder.group({
-    semester: ['', [Validators.required]],
-    track: ['', [Validators.required]],
-    strand: ['', [Validators.required]],
-
-    gradelevel: ['', [Validators.required]],
-    major: ['', [Validators.required]],
-    lrn: ['', [Validators.required]],
-    firstname: ['', [Validators.required]],
-    lastname: ['', [Validators.required]],
-    middle_name: [''],
-    suffix: [''],
-    civil_status: [''],
-    gender: ['', [Validators.required]],
-    birthdate: ['', [Validators.required]],
-    age: [''],
-    birth_place: ['', [Validators.required]],
-    home_address: ['', [Validators.required]],
-    present_address: ['', [Validators.required]],
-    m_tounge: [''],
-    email: ['', [Validators.required]],
-    mobile_number: ['', [Validators.required]],
-    ip: ['', Validators.required],
-    pantawid: ['', [Validators.required]],
-    elementary: ['', [Validators.required]],
-    elementary_yr: ['', [Validators.required]],
-    jhs: ['', [Validators.required]],
-    jhs_yr: ['', [Validators.required]],
-    father_lastName: [''],
-    father_firstName: [''],
-    father_middleName: [''],
-    father_number: [''],
-    mother_lastName: [''],
-    mother_firstName: [''],
-    mother_middleName: [''],
-    mother_number: [''],
-    guardian_lastName: [''],
-    guardian_firstName: [''],
-    guardian_middleName: [''],
-    guardian_number: [''],
-    profile: ['', [Validators.required]],
-    signature: ['', [Validators.required]],
-  });
 
   ngOnInit(): void {
     this.uploadForm = this.formBuilder.group({
@@ -110,69 +73,80 @@ export class StudentInfoComponent implements OnInit {
     this.signaturePad.clear();
   }
 
-  // onEdit() {
-  //   var studentdetails = {
-  //     id: this.studentdata[0].id,
-  //     firstname: $('#first_name').val(),
-  //     middle_name: $('#middle_name').val(),
-  //     last_name: $('#last_name').val(),
-  //     suffix: $('#suffix').val() === '' ? '' : $('#suffix').val(),
-  //     gender: $('#gender').val(),
-  //     civil_status: $('#civil_status').val(),
-  //     birth_date: $('#birth_date').val(),
-  //     birth_place: $('#birth_place').val(),
-  //     religion: $('#religion').val(),
-  //     contact_number: $('#contact_number').val(),
-  //     citizenship: $('#citizenship').val(),
-  //     email: $('#email').val(),
-  //     home_address: $('#home_address').val(),
-  //     permanent_address: $('#permanent_address').val(),
-  //     elem_school: $('#elem_school').val(),
-  //     elem_yrgrad: $('#elem_yrgrad').val(),
-  //     jhs_school: $('#jhs_school').val(),
-  //     jhs_yrgrad: $('#jhs_yrgrad').val(),
-  //     shs_school: $('#shs_school').val(),
-  //     shs_yrgrad: $('#shs_yrgrad').val(),
-  //     lastschoolattended: $('#lastschoolattended').val(),
-  //     lastschool_yrattend: $('#lastschool_yrattend').val(),
-  //     parent_name: $('#parent_name').val(),
-  //     employed_where: $('#employed_where').val(),
-  //     parent_occupation: $('#parent_occupation').val(),
-  //     parent_contact: $('#parent_contact').val(),
-  //     parent_home_address: $('#parent_home_address').val(),
-  //     parent_permanent_address: $('#parent_permanent_address').val(),
-  //   };
-  //   this.collegeController
-  //     .updatestudent(JSON.stringify(studentdetails))
-  //     .subscribe((res) => {
-  //       console.log(res);
-  //       this.logincontroller.reloadstudentdatainfo().subscribe((res) => {
-  //         var data = res;
+  onEdit() {
+    var studentdetails = {
+      id: this.studentdata[0].id,
+      semester: $('#semester').val(),
+      track: $('#track').val(),
+      strand: $('#strand').val(),
+      firstname: $('#first_name').val(),
+      middle_name: $('#middle_name').val(),
+      last_name: $('#last_name').val(),
+      suffix: $('#suffix').val() === '' ? '' : $('#suffix').val(),
+      gender: $('#gender').val(),
+      civil_status: $('#civil_status').val(),
+      birth_date: $('#b_date').val(),
+      birth_place: $('#b_place').val(),
+      religion: $('#religion').val(),
+      contact_number: $('#number').val(),
+      citizenship: $('#citizenship').val(),
+      email: $('#email').val(),
+      home_address: $('#home_address').val(),
+      permanent_address: $('#present_address').val(),
+      enrolling_for: $('#enrolling_for').val(),
+      major: $('#major').val(),
+      elem_school: $('#elementary').val(),
+      elem_yr: $('#elementary_yr').val(),
+      jhs_school: $('#jhs').val(),
+      jhs_yr: $('#jhs_yr').val(),
+      father_lastName: $('#father_lastName').val(),
+      father_firstName: $('#father_firstName').val(),
+      father_middleName: $('#father_middleName').val(),
+      father_number: $('#father_number').val(),
+      mother_lastName: $('#mother_lastName').val(),
+      mother_firstName: $('#mother_firstName').val(),
+      mother_middleName: $('#mother_middleName').val(),
+      mother_number: $('#mother_number').val(),
+      guardian_lastName: $('#guardian_lastName').val(),
+      guardian_firstName: $('#guardian_firstName').val(),
+      guardian_middleName: $('#guardian_middleName').val(),
+      guardian_number: $('#guardian_number').val(),
+    };
+    this.EnrollmentSHSControllers.updatestudent(
+      JSON.stringify(studentdetails)
+    ).subscribe((data) => {
+      console.log(data);
+    });
+    // this.EnrollmentSHSControllers.updatestudent(
+    //   JSON.stringify(studentdetails)
+    // ).subscribe((res) => {
+    //   console.log(res);
+    //   this.getLoggedInUser.subscribe((res) => {
+    //     var data = res;
 
-  //         this.logincontroller.setdata(data);
-  //         Swal.fire('Success', 'Changes saved!', 'success');
-  //         window.location.reload();
-  //         // this.studentdata = this.logincontroller.getuserdetails();
-  //       });
-  //     });
-  // }
-
-  showPreview(event: Event) {
-    const inputElement = event.target as HTMLInputElement;
-    if (inputElement.files && inputElement.files.length > 0) {
-      const file = inputElement.files[0];
-      this.uploadForm!.patchValue({
-        avatar: file,
-      });
-      this.uploadForm!.get('avatar')!.updateValueAndValidity();
-      const reader = new FileReader();
-      reader.onload = () => {
-        this.imageURL = reader.result as string;
-      };
-      reader.readAsDataURL(file);
-      this.enrollForm.patchValue({
-        profile: file,
-      });
-    }
+    //     this.getLoggedInUser(data);
+    //     Swal.fire('Success', 'Changes saved!', 'success');
+    //     window.location.reload();
+    //   });
+    // });
   }
+
+  // showPreview(event: Event) {
+  //   const inputElement = event.target as HTMLInputElement;
+  //   if (inputElement.files && inputElement.files.length > 0) {
+  //     const file = inputElement.files[0];
+  //     this.uploadForm!.patchValue({
+  //       avatar: file,
+  //     });
+  //     this.uploadForm!.get('avatar')!.updateValueAndValidity();
+  //     const reader = new FileReader();
+  //     reader.onload = () => {
+  //       this.imageURL = reader.result as string;
+  //     };
+  //     reader.readAsDataURL(file);
+  //     this.patchValue({
+  //       profile: file,
+  //     });
+  //   }
+  // }
 }
