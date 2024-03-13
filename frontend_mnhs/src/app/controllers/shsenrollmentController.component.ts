@@ -23,4 +23,8 @@ export class EnrollmentSHSControllers {
       this.httpOptions
     );
   }
+
+  public updatestudent(student: string) {
+    return this.http.post(this.Root_URL + 'editstudents', JSON.parse(student));
+  }
 }
