@@ -3,15 +3,15 @@
     <div class="text-end"></div>
     <div class="text-start">
       <img
-        src="../../../assets/images/default_Profile.png"
+        [src]=" this.profile"
         alt="avatar"
         id="profile"
         width="60"
         height="60"
-        class="img-thumbnail mt-4 mx-3"
+        class="img-responsive mt-4 mx-3"
       />
-      <h2 class="h6 fw-bold text-white mx-3 my-2">Doe, John</h2>
-      <p class="text-light fs-6 mx-3 fw-light">Grade 7</p>
+      <h2 class="h6 fw-bold text-white mx-3 mt-2">{{ this.studname }}</h2>
+      <p class="text-light fs-6 mx-3 fw-light">Grade{{ this.grade_level }} - {{this.status}}</p>
     </div>
   </div>
   <div>
@@ -42,11 +42,12 @@
       </a>
       <a
         class="my-2 py-3 list-group-item list-group-item-action"
-        routerLink="/"
+        (click)="logout()"
       >
         <i class="fa-solid fa-right-from-bracket mx-2"></i>
         Logout
       </a>
+
     </div>
   </div>
 </div>

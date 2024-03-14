@@ -90,18 +90,19 @@ export class JhsEnrollmentComponent implements OnInit {
   }
 
   startDrawing(event: Event) {
-    // works in device not in browser
   }
 
   moved(event: Event) {
-    // works in device not in browser
   }
 
   clearPad() {
     this.signaturePad.clear();
   }
 
+  loading = false;
+
   savestudent() {
+    this.loading = true;
     const base64Data = this.signaturePad.toDataURL();
     this.signatureImg = base64Data;
     this.signatureNeeded = this.signaturePad.isEmpty();
@@ -231,9 +232,15 @@ export class JhsEnrollmentComponent implements OnInit {
       this.enrollForm.controls['school_schoolyr'].invalid ||
       this.enrollForm.controls['signature'].invalid
     ) {
-      // console.log(this.enrollForm.value);
+      this.loading = false;
+      Swal.fire({
+        text: 'Please input all required fields',
+        icon: 'error',
+      });
+
       return;
     }
+
     this.apiController.createstudent(submitdata).subscribe((e) => {
       this.studata = e;
       if (this.studata['user'] == 'success') {
@@ -243,14 +250,15 @@ export class JhsEnrollmentComponent implements OnInit {
           text: 'Please Check Your Email',
           icon: 'success',
         });
-      }else if (this.studata['message']) {
-          Swal.fire(
+      } else if (this.studata['message']) {
+        console.log(this.studata['message']);
+        this.loading = false;
+        Swal.fire(
             'ERROR',
-            'Email Already Taken',
+            'Email, LRN, or Mobile Number  Already Taken',
             'error'
         );
-      }
-      
+      } 
     });
   }
 

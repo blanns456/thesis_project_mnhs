@@ -14,6 +14,7 @@ import { DeclineStudentsComponent } from './dashboard-admin/decline-students/dec
 import { SettingsComponent } from './dashboard-admin/settings/settings.component';
 import { StudentInfoComponent } from './dashboard-student/student-info/student-info.component';
 import { AccountSettingsComponent } from './dashboard-student/account-settings/account-settings.component';
+import { AuthGuard } from './auth.guard';
 
 const routes: Routes = [
   { path: '', redirectTo: '/', pathMatch: 'full' },
@@ -32,14 +33,14 @@ const routes: Routes = [
   // student dashboard
   {
     path: 'student/home',
-    component: HomeStudentComponent,
+    component: HomeStudentComponent , canActivate: [AuthGuard],
   },
   {
     path: 'admin/home',
-    component: HomeAdminComponent,
+    component: HomeAdminComponent , canActivate: [AuthGuard],
   },
   {
-    path: 'admin/enrolled-students',
+    path: 'admin/enrolled-students' , canActivate: [AuthGuard],
     component: EnrolledStudentsComponent,
   },
   {
@@ -55,11 +56,11 @@ const routes: Routes = [
     component: SettingsComponent,
   },
   {
-    path: 'student/information',
+    path: 'student/information' , canActivate: [AuthGuard],
     component: StudentInfoComponent,
   },
   {
-    path: 'student/settings',
+    path: 'student/settings' , canActivate: [AuthGuard],
     component: AccountSettingsComponent,
   },
 ];
