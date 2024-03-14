@@ -222,36 +222,6 @@
             </div>
           </div>
           <div class="row">
-            <div class="col-4">
-              <div class="mb-3">
-                <label for="citizenship" class="form-label">Citizenship</label>
-                <input
-                  type="text"
-                  class="form-control"
-                  name="citizenship"
-                  id="citizenship"
-                  aria-describedby="helpId"
-                  [value]="loggedInUserData.data[0].citizenship"
-                  required
-                />
-              </div>
-            </div>
-            <div class="col-4">
-              <div class="mb-3">
-                <label for="religion" class="form-label">Religion</label>
-                <input
-                  type="text"
-                  class="form-control"
-                  name="religion"
-                  id="religion"
-                  aria-describedby="helpId"
-                  [value]="loggedInUserData.data[0].religion"
-                  required
-                />
-              </div>
-            </div>
-          </div>
-          <div class="row">
             <div class="col-6">
               <div class="mb-3">
                 <label for="home_address" class="form-label"
@@ -647,11 +617,6 @@
                   Signature is required
                 </p>
 
-                <div class="my-3">
-                  <button (click)="clearPad()" class="btn btn-info">
-                    Clear
-                  </button>
-                </div>
               </div>
             </div>
           </div>

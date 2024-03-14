@@ -114,7 +114,10 @@ export class TransfereeShsEnrollmentComponent implements OnInit {
     this.signaturePad.clear();
   }
 
+  loading = true;
+
   savestudent() {
+    this.loading = false;
     const base64Data = this.signaturePad.toDataURL();
     this.signatureImg = base64Data;
     this.signatureNeeded = this.signaturePad.isEmpty();
@@ -280,7 +283,11 @@ export class TransfereeShsEnrollmentComponent implements OnInit {
       this.enrollForm.controls['jhs_yr'].invalid ||
       this.enrollForm.controls['signature'].invalid
     ) {
-      console.log(this.enrollForm.value);
+      this.loading = false;
+      Swal.fire({
+        text: 'Please input all required fields',
+        icon: 'error',
+      });
       return;
     }
     this.TransfereeSHSControllers.createtransfereeSHS(submitdata).subscribe(
@@ -293,15 +300,16 @@ export class TransfereeShsEnrollmentComponent implements OnInit {
             text: 'Please Check Your Email',
             icon: 'success',
           });
-        }else if (this.studata['message']) {
-              Swal.fire(
-                'ERROR',
-                'Email Already Taken',
-                'error'
-              );
-        }
-      }
-    );
+        } else if (this.studata['message']) {
+        console.log(this.studata['message']);
+        this.loading = false;
+        Swal.fire(
+            'ERROR',
+            'Email, LRN, or Mobile Number  Already Taken',
+            'error'
+        );
+      } 
+    });
   }
 
   showPreview(event: Event) {
