@@ -21,6 +21,8 @@ import { SettingsComponent } from './dashboard-admin/settings/settings.component
 import { NavbarComponent } from './dashboard-student/navbar/navbar.component';
 import { StudentInfoComponent } from './dashboard-student/student-info/student-info.component';
 import { AccountSettingsComponent } from './dashboard-student/account-settings/account-settings.component';
+import { PendingStudentsComponent } from './dashboard-admin/pending-students/pending-students.component';
+import { DeclineStudentsComponent } from './dashboard-admin/decline-students/decline-students.component';
 
 @NgModule({
   declarations: [
@@ -41,6 +43,8 @@ import { AccountSettingsComponent } from './dashboard-student/account-settings/a
     NavbarComponent,
     StudentInfoComponent,
     AccountSettingsComponent,
+    PendingStudentsComponent,
+    DeclineStudentsComponent,
   ],
   imports: [
     BrowserModule,

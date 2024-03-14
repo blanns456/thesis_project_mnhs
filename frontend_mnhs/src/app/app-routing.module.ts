@@ -9,6 +9,8 @@ import { LoginComponent } from './login/login.component';
 import { HomeStudentComponent } from './dashboard-student/home-student/home-student.component';
 import { HomeAdminComponent } from './dashboard-admin/home-admin/home-admin.component';
 import { EnrolledStudentsComponent } from './dashboard-admin/enrolled-students/enrolled-students.component';
+import { PendingStudentsComponent } from './dashboard-admin/pending-students/pending-students.component';
+import { DeclineStudentsComponent } from './dashboard-admin/decline-students/decline-students.component';
 import { SettingsComponent } from './dashboard-admin/settings/settings.component';
 import { StudentInfoComponent } from './dashboard-student/student-info/student-info.component';
 import { AccountSettingsComponent } from './dashboard-student/account-settings/account-settings.component';
@@ -42,7 +44,15 @@ const routes: Routes = [
     component: EnrolledStudentsComponent,
   },
   {
-    path: 'admin/settings' , canActivate: [AuthGuard],
+    path: 'admin/pending-students',
+    component: PendingStudentsComponent,
+  },
+  {
+    path: 'admin/declined-students',
+    component: DeclineStudentsComponent,
+  },
+  {
+    path: 'admin/settings',
     component: SettingsComponent,
   },
   {
