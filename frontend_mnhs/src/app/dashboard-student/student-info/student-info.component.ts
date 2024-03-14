@@ -20,7 +20,7 @@ export class StudentInfoComponent implements OnInit {
   constructor(
     private http: HttpClient,
     private EnrollmentSHSControllers: EnrollmentSHSControllers,
-    private formBuilder: FormBuilder
+    private formBuilder:  FormBuilder
   ) {}
 
   signatureNeeded!: boolean;
@@ -47,8 +47,7 @@ export class StudentInfoComponent implements OnInit {
       },
       (error) => {
         console.error('Error:', error);
-      }
-    );
+      });
   }
 
   getLoggedInUser(auth_token: string): Observable<any> {
@@ -59,18 +58,6 @@ export class StudentInfoComponent implements OnInit {
 
     const apiUrl = 'http://127.0.0.1:8000/api/user';
     return this.http.get(apiUrl, { headers: headers });
-  }
-
-  startDrawing(event: Event) {
-    // works in device not in browser
-  }
-
-  moved(event: Event) {
-    // works in device not in browser
-  }
-
-  clearPad() {
-    this.signaturePad.clear();
   }
 
   onEdit() {
@@ -87,9 +74,7 @@ export class StudentInfoComponent implements OnInit {
       civil_status: $('#civil_status').val(),
       birth_date: $('#b_date').val(),
       birth_place: $('#b_place').val(),
-      religion: $('#religion').val(),
       contact_number: $('#number').val(),
-      citizenship: $('#citizenship').val(),
       email: $('#email').val(),
       home_address: $('#home_address').val(),
       permanent_address: $('#present_address').val(),
@@ -117,36 +102,6 @@ export class StudentInfoComponent implements OnInit {
     ).subscribe((data) => {
       console.log(data);
     });
-    // this.EnrollmentSHSControllers.updatestudent(
-    //   JSON.stringify(studentdetails)
-    // ).subscribe((res) => {
-    //   console.log(res);
-    //   this.getLoggedInUser.subscribe((res) => {
-    //     var data = res;
-
-    //     this.getLoggedInUser(data);
-    //     Swal.fire('Success', 'Changes saved!', 'success');
-    //     window.location.reload();
-    //   });
-    // });
   }
 
-  // showPreview(event: Event) {
-  //   const inputElement = event.target as HTMLInputElement;
-  //   if (inputElement.files && inputElement.files.length > 0) {
-  //     const file = inputElement.files[0];
-  //     this.uploadForm!.patchValue({
-  //       avatar: file,
-  //     });
-  //     this.uploadForm!.get('avatar')!.updateValueAndValidity();
-  //     const reader = new FileReader();
-  //     reader.onload = () => {
-  //       this.imageURL = reader.result as string;
-  //     };
-  //     reader.readAsDataURL(file);
-  //     this.patchValue({
-  //       profile: file,
-  //     });
-  //   }
-  // }
 }
