@@ -114,10 +114,10 @@ export class TransfereeShsEnrollmentComponent implements OnInit {
     this.signaturePad.clear();
   }
 
-  loading = true;
+  loading = false;
 
   savestudent() {
-    this.loading = false;
+    this.loading = true;
     const base64Data = this.signaturePad.toDataURL();
     this.signatureImg = base64Data;
     this.signatureNeeded = this.signaturePad.isEmpty();
