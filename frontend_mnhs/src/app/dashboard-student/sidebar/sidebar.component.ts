@@ -54,8 +54,6 @@ export class SidebarComponent implements OnInit, OnDestroy {
           this.grade_level = res.data[0].grade_level;
           this.profile = 'http://127.0.0.1:8000/uploads/userimages/'+res.data[0].profile_image;
           
-        } else {
-          console.error('Response data is not in the expected format or is empty.');
         }
       });
   }

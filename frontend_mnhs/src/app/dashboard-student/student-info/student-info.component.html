@@ -6,624 +6,698 @@
     <div
       class="container-fluid vh-100 d-flex justify-content-center align-items-center flex-column q-link"
     >
-      <div class="text-start w-75 mt-5">
-        <h2 class="text-white">Quick Links</h2>
-      </div>
-      <div class="divider mb-3"></div>
-
-      <div class="d-flex justify-content-evenly text-center mb-5 info">
-        <form action="">
-          <div class="row p-3">
-            <div class="col-4">
-              <label for="semester" class="form-label"
-                >Semester:<small class="text-danger">*</small></label
-              >
-              <input
-                type="text"
-                class="form-control"
-                name="semester"
-                id="semester"
-                [value]="loggedInUserData.data[0].semester"
-              />
+      
+      <div class="d-flex justify-content-evenly my-5 info info-holder">
+        <div class="container-fluid">
+          <form action="" [formGroup]="enrollForm">
+            <div *ngIf="loggedInUserData?.data && loggedInUserData.data.length > 0 && (loggedInUserData.data[0].status === 'jhs_transferee' || loggedInUserData.data[0].status === 'shs_transferee')">
+                <h5>For Returning Learner (Balik-Aral) and Those Who will Transfer/Move In</h5>
+                <div class="row">
+                    <div class="col-4">
+                        <div class="mb-3">
+                            <label for="schoolID" class="form-label">School ID<small class="text-danger">*</small></label>
+                            <input type="text" class="form-control" name="schoolID" id="schoolID" [value]="loggedInUserData.data[0].school_id" required />
+                        </div>
+                    </div>
+                    <div class="col-4">
+                        <div class="mb-3">
+                            <label for="lastgradecompl" class="form-label">Last Grade Level Completed<small class="text-danger">*</small></label>
+                            <input type="text" class="form-control" name="lastgradecompl" id="lastgradecompl" [value]="loggedInUserData.data[0].lastgrade_completed" required />
+                        </div>
+                    </div>
+                </div>
+                <hr>
             </div>
-            <div class="col-4">
-              <div class="mb-3">
-                <label for="track" class="form-label"
-                  >Track<small class="text-danger">*</small></label
-                >
-                <input
-                  type="text"
-                  class="form-control"
-                  name="track"
-                  id="track"
-                  [value]="loggedInUserData.data[0].track"
-                  aria-describedby="helpId"
-                  required
-                />
-              </div>
-            </div>
-            <div class="col-4">
-              <div class="mb-3">
-                <label for="strand" class="form-label"
-                  >Strand<small class="text-danger">*</small></label
-                >
-                <input
-                  type="text"
-                  class="form-control"
-                  name="strand"
-                  id="strand"
-                  [value]="loggedInUserData.data[0].strand"
-                  aria-describedby="helpId"
-                  required
-                />
-              </div>
-            </div>
-          </div>
-          <h2 class="my-3">Personal Information</h2>
-          <div class="row">
-            <div class="col-4">
-              <div class="mb-3">
-                <label for="first_name" class="form-label">First Name</label>
-                <input
-                  type="text"
-                  class="form-control"
-                  name="first_name"
-                  id="first_name"
-                  aria-describedby="helpId"
-                  [value]="loggedInUserData.data[0].firstname"
-                  required
-                />
-              </div>
-            </div>
-            <div class="col-4">
-              <div class="mb-3">
-                <label for="last_name" class="form-label">Last Name</label>
-                <input
-                  type="text"
-                  class="form-control"
-                  name="last_name"
-                  id="last_name"
-                  aria-describedby="helpId"
-                  [value]="loggedInUserData.data[0].lastname"
-                  required
-                />
-              </div>
-            </div>
-            <div class="col-4">
-              <div class="mb-3">
-                <label for="middle_name" class="form-label"
-                  >Middle Name (Optional)</label
-                >
-                <input
-                  type="text"
-                  class="form-control"
-                  name="middle_name"
-                  id="middle_name"
-                  [value]="loggedInUserData.data[0].middlename"
-                  aria-describedby="helpId"
-                  required
-                />
-              </div>
-            </div>
-          </div>
-          <div class="row">
-            <div class="col-4 container">
-              <div class="row">
-                <div class="col-6">
+            <div *ngIf="loggedInUserData?.data && loggedInUserData.data.length > 0 && (loggedInUserData.data[0].status === 'shs' || loggedInUserData.data[0].status === 'shs_transferee')">
+              <h5>For Learners in Senior High School</h5>
+              <div class="row p-3">
+                <div class="col-4">
+                  <label for="semester" class="form-label"
+                    >Semester:<small class="text-danger">*</small></label
+                  >
+                  <input
+                    type="text"
+                    class="form-control"
+                    name="semester"
+                    id="semester"
+                    [value]="loggedInUserData?.data[0]?.semester"
+                    readonly
+                  />
+                </div>
+                <div class="col-4">
                   <div class="mb-3">
-                    <label for="suffix" class="form-label"
-                      >Suffix (Optional)</label
+                    <label for="track" class="form-label"
+                      >Track</label
                     >
                     <input
                       type="text"
                       class="form-control"
-                      name="suffix"
-                      id="suffix"
-                      aria-describedby="helpId"
-                      [value]="loggedInUserData.data[0].suffix"
+                      name="track"
+                      id="track"
+                      [value]="loggedInUserData?.data[0]?.track"
+                      required
+                    />
+                  </div>
+                </div>
+                <div class="col-4">
+                  <div class="mb-3">
+                    <label for="strand" class="form-label"
+                      >Strand<small class="text-danger">*</small></label
+                    >
+                    <input
+                      type="text"
+                      class="form-control"
+                      name="strand"
+                      id="strand"
+                      [value]="loggedInUserData?.data[0]?.strand"
+                      required
+                    />
+                  </div>
+                </div>
+              </div>
+            </div>  
+            <h5 class="my-3">Learner Information</h5>
+            <div class="row">
+              <div class="col-4">
+                <div class="mb-3">
+                  <label for="enrolling_for" class="form-label"
+                    >Grade Level to Enroll</label
+                  >
+                  <input
+                    name="enrolling_for"
+                    id="enrolling_for"
+                    class="form-control"
+                    [value]="loggedInUserData?.data[0]?.grade_level"
+                    readonly
+                  >
+                </div>
+              </div>
+              <div class="col-4">
+                <div class="mb-3">
+                  <label for="major" class="form-label"
+                    >JHS Special Program Offered</label
+                  >
+                  <input
+                    name="major"
+                    id="major"
+                    class="form-control"
+                    [value]="loggedInUserData?.data[0]?.special_program"
+                    readonly
+                  >
+                </div>
+              </div>
+              <div class="col-4">
+                <div class="mb-3">
+                  <label for="lrn" class="form-label">
+                    LRN Number
+                  </label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    name="lrn"
+                    id="lrn"
+                    [value]="loggedInUserData?.data[0]?.LRN"
+                    readonly
+                  />
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-4">
+                <div class="mb-3">
+                  <label for="first_name" class="form-label">First Name</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    name="first_name"
+                    id="first_name"
+                    [value]="loggedInUserData?.data[0]?.firstname"
+                    required
+                  />
+                </div>
+              </div>
+              <div class="col-4">
+                <div class="mb-3">
+                  <label for="last_name" class="form-label">Last Name</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    name="last_name"
+                    id="last_name"
+                    [value]="loggedInUserData?.data[0]?.lastname"
+                    required
+                  />
+                </div>
+              </div>
+              <div class="col-4">
+                <div class="mb-3">
+                  <label for="middle_name" class="form-label"
+                    >Middle Name (Optional)</label
+                  >
+                  <input
+                    type="text"
+                    class="form-control"
+                    name="middle_name"
+                    id="middle_name"
+                    [value]="loggedInUserData?.data[0]?.middlename"
+                    required
+                  />
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-4 container">
+                <div class="row">
+                  <div class="col-6">
+                    <div class="mb-3">
+                      <label for="suffix" class="form-label"
+                        >Suffix (Optional)</label
+                      >
+                      <input
+                        type="text"
+                        class="form-control"
+                        name="suffix"
+                        id="suffix"
+                        [value]="loggedInUserData?.data[0]?.suffix"
+                        required
+                      />
+                    </div>
+                  </div>
+                  <div class="col-6">
+                    <div class="mb-3">
+                      <label for="gender" class="form-label">Gender</label>
+                      <select
+                        name="gender"
+                        id="gender"
+                        class="form-select"
+                        [value]="loggedInUserData?.data[0]?.gender"
+                        required
+                      >
+                        <option value="">Please Select Gender</option>
+                        <option value="male">Male</option>
+                        <option value="female">Female</option>
+                      </select>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-4">
+                <div class="mb-3">
+                  <label for="b_place" class="form-label">Place of Birth (Municipality/City)</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    name="b_place"
+                    id="b_place"
+                    [value]="loggedInUserData?.data[0]?.birth_place"
+                    required
+                  />
+                </div>
+              </div>
+              <div class="col-4">
+                <div class="mb-3">
+                  <div class="row">
+                    <div class="col-6">
+                      <label for="age" class="form-label">Birth Date</label>
+                      <input
+                        type="date"
+                        class="form-control"
+                        name="age"
+                        id="age"
+                        [value]="loggedInUserData?.data[0]?.birthdate"
+                        required
+                      />
+                    </div>
+                    <div class="col-6">
+                      <label for="b_date" class="form-label">Age</label>
+                      <input
+                        type="text"
+                        class="form-control"
+                        name="age"
+                        id="age"
+                        [value]="loggedInUserData?.data[0]?.age"
+                        readonly
+                      />
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-4">
+                <div class="mb-3">
+                  <label for="email" class="form-label">Email</label>
+                  <input
+                    type="email"
+                    class="form-control"
+                    name="email"
+                    id="email"
+                    [value]="loggedInUserData?.data[0]?.email"
+                    required
+                  />
+                </div>
+              </div>
+              <div class="col-4">
+                <div class="mb-3">
+                  <label for="number" class="form-label">Mobile Number</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    name="number"
+                    id="number"
+                    [value]="loggedInUserData?.data[0]?.mobile_number"
+                    required
+                  />
+                </div>
+              </div>
+              <div class="col-4">
+                <div class="mb-3">
+                  <label for="m_tounge" class="form-label"
+                    >Mother Tounge (Optional)</label
+                  >
+                  <input
+                    type="text"
+                    class="form-control text-uppercase"
+                    name="m_tounge"
+                    id="m_tounge"
+                    [value]="loggedInUserData?.data[0]?.m_tounge"
+                  />
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-6">
+                <div class="mb-3">
+                  <label for="ip" class="form-label"
+                    >Belonging to any Indigenous People (IP) Community/Indigenous
+                    Cultural Community?</label
+                  >
+                  <br />
+                  <input
+                    type="text"
+                    id="ip"
+                    class="form-control"
+                    [value]="loggedInUserData?.data[0]?.ip"
+                    required
+                    list="ip"
+                  />
+                  <small>If Yes, Please Specify:</small>
+                </div>
+              </div>
+      
+              <div class="col-6">
+                <div class="mb-3">
+                  <label for="major" class="form-label"
+                    >Is your family a beneficiary of 4Ps?</label
+                  >
+                  <br />
+                  <br />
+                  <input
+                    type="text"
+                    id="pantawid"
+                    name="pantawid"
+                    class="form-control"
+                    [value]="loggedInUserData?.data[0]?.pantawid"
+                    required
+                    list="pantawid"
+                  />
+                  <small>If Yes, write the 4Ps Household ID Number Above</small>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-6">
+                <div class="mb-3">
+                  <label for="home_address" class="form-label"
+                    >Permanent Address</label
+                  >
+                  <input
+                    name="home_address"
+                    id="home_address"
+                    class="form-control"
+                    [value]="loggedInUserData?.data[0]?.home_address"
+                    required
+                  />
+                </div>
+              </div>
+              <div class="col-6">
+                <div class="mb-3">
+                  <label for="present_address" class="form-label"
+                    >Current Address</label
+                  >
+                  <input
+                    name="present_address"
+                    id="present_address"
+                    class="form-control"
+                    [value]="loggedInUserData?.data[0]?.present_address"
+                    required
+                  />
+                </div>
+              </div>
+            </div>
+            <hr />
+            <div class="row">
+              <h5>Educational Record</h5>
+              <div class="col-6">
+                <div class="mb-3">
+                  <label for="elementary" class="form-label"
+                    >Elementary School Name</label
+                  >
+                  <input
+                    type="text"
+                    class="form-control"
+                    name="elementary"
+                    id="elementary"
+                    [value]="loggedInUserData?.data[0]?.school_elem"
+                    required
+                  />
+                </div>
+              </div>
+              <div class="col-6">
+                <div class="mb-3">
+                  <label for="elementary_yr" class="form-label"
+                    >Elementary School Year</label
+                  >
+                  <input
+                    type="text"
+                    class="form-control"
+                    name="elementary_yr"
+                    id="elementary_yr"
+                    [value]="loggedInUserData?.data[0]?.elem_schoolyr"
+                    required
+                  />
+                </div>
+              </div>
+            </div>
+            <div *ngIf="loggedInUserData?.data && loggedInUserData.data.length > 0 && (loggedInUserData.data[0].status === 'shs')">
+              <div class="row">
+                <div class="col-6">
+                  <div class="mb-3">
+                    <label for="jhs" class="form-label"
+                      >Junior High School Name</label
+                    >
+                    <input
+                      type="text"
+                      class="form-control"
+                      name="jhs"
+                      id="jhs"
+                      [value]="loggedInUserData?.data[0]?.school_jhs"
                       required
                     />
                   </div>
                 </div>
                 <div class="col-6">
                   <div class="mb-3">
-                    <label for="gender" class="form-label">Gender</label>
-                    <select
-                      name="gender"
-                      id="gender"
-                      class="form-select"
-                      [value]="loggedInUserData.data[0].gender"
-                      required
+                    <label for="jhs_yr" class="form-label"
+                      >Juinor High School Year</label
                     >
-                      <option value="">Please Select Gender</option>
-                      <option value="male">Male</option>
-                      <option value="female">Female</option>
-                    </select>
+                    <input
+                      type="text"
+                      class="form-control"
+                      name="jhs_yr"
+                      id="jhs_yr"
+                      [value]="loggedInUserData?.data[0]?.jhs_schoolyr"
+                      required
+                    />
                   </div>
                 </div>
               </div>
             </div>
-            <div class="col-4">
-              <div class="mb-3">
-                <label for="civil_status" class="form-label"
-                  >Civil Status</label
-                >
-                <select
-                  name="civil_status"
-                  id="civil_status"
-                  class="form-select"
-                  [value]="loggedInUserData.data[0].civil_status"
-                  required
-                >
-                  <option value="">Please Select Status</option>
-                  <option value="Single">Single</option>
-                  <option value="Married">Married</option>
-                  <option value="Widowed">Widowed</option>
-                </select>
-              </div>
-            </div>
-            <div class="col-4">
-              <div class="mb-3">
-                <label for="b_date" class="form-label">Birth Date</label>
-                <input
-                  type="date"
-                  class="form-control"
-                  name="b_date"
-                  id="b_date"
-                  aria-describedby="helpId"
-                  [value]="loggedInUserData.data[0].birthdate"
-                  required
-                />
-              </div>
-            </div>
-          </div>
-          <div class="row">
-            <div class="col-4">
-              <div class="mb-3">
-                <label for="b_place" class="form-label">Birth Place</label>
-                <input
-                  type="text"
-                  class="form-control"
-                  name="b_place"
-                  id="b_place"
-                  [value]="loggedInUserData.data[0].birth_place"
-                  aria-describedby="helpId"
-                  required
-                />
-              </div>
-            </div>
-            <div class="col-4">
-              <div class="mb-3">
-                <label for="email" class="form-label">Email</label>
-                <input
-                  type="email"
-                  class="form-control"
-                  name="email"
-                  id="email"
-                  aria-describedby="helpId"
-                  [value]="loggedInUserData.data[0].email"
-                  required
-                />
-              </div>
-            </div>
-            <div class="col-4">
-              <div class="mb-3">
-                <label for="number" class="form-label">Mobile Number</label>
-                <input
-                  type="text"
-                  class="form-control"
-                  name="number"
-                  id="number"
-                  aria-describedby="helpId"
-                  [value]="loggedInUserData.data[0].mobile_number"
-                  required
-                />
-              </div>
-            </div>
-          </div>
-          <div class="row">
-            <div class="col-6">
-              <div class="mb-3">
-                <label for="home_address" class="form-label"
-                  >Home Address</label
-                >
-                <textarea
-                  name="home_address"
-                  id="home_address"
-                  class="form-control"
-                  [value]="loggedInUserData.data[0].home_address"
-                  cols="50"
-                  rows="2"
-                  required
-                ></textarea>
-              </div>
-            </div>
-            <div class="col-6">
-              <div class="mb-3">
-                <label for="present_address" class="form-label"
-                  >Present Address</label
-                >
-                <textarea
-                  name="present_address"
-                  id="present_address"
-                  class="form-control"
-                  [value]="loggedInUserData.data[0].present_address"
-                  cols="50"
-                  rows="2"
-                  required
-                ></textarea>
-              </div>
-            </div>
-          </div>
-          <div class="row">
-            <div class="col-4">
-              <div class="mb-3">
-                <label for="enrolling_for" class="form-label"
-                  >Enrolling For</label
-                >
-                <select
-                  name="enrolling_for"
-                  id="enrolling_for"
-                  class="form-select"
-                  [value]="loggedInUserData.data[0].grade_level"
-                  required
-                >
-                  <option value="" disabled selected>
-                    Please Select Year Level
-                  </option>
-                  <option value="11">Grade 11</option>
-                  <option value="12">Grade 12</option>
-                </select>
-              </div>
-            </div>
-            <div class="col-5">
-              <div class="mb-3">
-                <label for="major" class="form-label"
-                  >SHS Course Offered:</label
-                >
-                <select
-                  name="major"
-                  id="major"
-                  class="form-select"
-                  required
-                  [value]="loggedInUserData.data[0].special_program"
-                >
-                  <option value="" disabled selected>
-                    Please Select Course
-                  </option>
-                  <optgroup label="General Academic Strand (GAS)">
-                    <option value="Technical Vocational">
-                      Technical Vocational
-                    </option>
-                    <option value="Livelihood Skills">Livelihood Skills</option>
-                  </optgroup>
-                  <option value="Shielded Metal Arc Welding">
-                    Shielded Metal Arc Welding (SMAW)
-                  </option>
-                  <option value="Illustration / Animation">
-                    Illustration / Animation
-                  </option>
-                  <option value="Dressmaking / Tailoring">
-                    Dressmaking / Tailoring
-                  </option>
-                </select>
-              </div>
-            </div>
-          </div>
-          <hr />
-          <div class="row">
-            <h2>Educational Record</h2>
-            <div class="col-6">
-              <div class="mb-3">
-                <label for="elementary" class="form-label"
-                  >Elementary School Name</label
-                >
-                <input
-                  type="text"
-                  class="form-control"
-                  name="elementary"
-                  id="elementary"
-                  aria-describedby="helpId"
-                  [value]="loggedInUserData.data[0].school_elem"
-                  required
-                />
-              </div>
-            </div>
-            <div class="col-6">
-              <div class="mb-3">
-                <label for="elementary_yr" class="form-label"
-                  >Elementary School Year</label
-                >
-                <input
-                  type="text"
-                  class="form-control"
-                  name="elementary_yr"
-                  id="elementary_yr"
-                  aria-describedby="helpId"
-                  [value]="loggedInUserData.data[0].elem_schoolyr"
-                  required
-                />
-              </div>
-            </div>
-          </div>
-          <div class="row">
-            <div class="col-6">
-              <div class="mb-3">
-                <label for="jhs" class="form-label"
-                  >Junior High School Name</label
-                >
-                <input
-                  type="text"
-                  class="form-control"
-                  name="jhs"
-                  id="jhs"
-                  aria-describedby="helpId"
-                  [value]="loggedInUserData.data[0].school_jhs"
-                  required
-                />
-              </div>
-            </div>
-            <div class="col-6">
-              <div class="mb-3">
-                <label for="jhs_yr" class="form-label"
-                  >Juinor High School Year</label
-                >
-                <input
-                  type="text"
-                  class="form-control"
-                  name="jhs_yr"
-                  id="jhs_yr"
-                  aria-describedby="helpId"
-                  [value]="loggedInUserData.data[0].jhs_schoolyr"
-                  required
-                />
-              </div>
-            </div>
-          </div>
-          <hr />
-          <h2>Parents Information</h2>
-          <div class="row">
-            <caption class="fw-bold">
-              Father's Name
-            </caption>
-            <div class="col-3">
-              <div class="mb-3">
-                <label for="father_lastName" class="form-label"
-                  >Last Name</label
-                >
-                <input
-                  type="text"
-                  class="form-control text-uppercase"
-                  name="father_lastName"
-                  [value]="loggedInUserData.data[0].father_lastName"
-                  id="father_lastName"
-                />
-              </div>
-            </div>
-            <div class="col-3">
-              <div class="mb-3">
-                <label for="father_firstName" class="form-label"
-                  >First Name</label
-                >
-                <input
-                  type="text"
-                  class="form-control text-uppercase"
-                  name="father_firstName"
-                  [value]="loggedInUserData.data[0].father_firstName"
-                  id="father_firstName"
-                />
-              </div>
-            </div>
-            <div class="col-3">
-              <div class="mb-3">
-                <label for="father_middleName" class="form-label"
-                  >Middle Name</label
-                >
-                <input
-                  type="text"
-                  class="form-control text-uppercase"
-                  name="father_middleName"
-                  id="father_middleName"
-                  [value]="loggedInUserData.data[0].father_middleName"
-                />
-              </div>
-            </div>
-            <div class="col-3">
-              <div class="mb-3">
-                <label for="father_number" class="form-label"
-                  >Contact Number</label
-                >
-                <input
-                  type="text"
-                  class="form-control text-uppercase"
-                  name="father_number"
-                  id="father_number"
-                  [value]="loggedInUserData.data[0].father_number"
-                />
+            <div *ngIf="loggedInUserData?.data && loggedInUserData.data.length > 0 && (loggedInUserData.data[0].status === 'jhs_transferee' || loggedInUserData.data[0].status === 'shs_transferee')">
+              <div class="row">
+                <div class="col-6">
+                  <div class="mb-3">
+                    <label for="last_school" class="form-label"
+                      >Last School Name</label
+                    >
+                    <input
+                      type="text"
+                      class="form-control"
+                      name="last_school"
+                      id="last_school"
+                      [value]="loggedInUserData?.data[0]?.last_school"
+                      required
+                    />
+                  </div>
+                </div>
+                <div class="col-6">
+                  <div class="mb-3">
+                    <label for="last_schoolyr" class="form-label"
+                      >Last School Year</label
+                    >
+                    <input
+                      type="text"
+                      class="form-control"
+                      name="last_schoolyr"
+                      id="last_schoolyr"
+                      [value]="loggedInUserData?.data[0]?.last_schoolyr"
+                      required
+                    />
+                  </div>
+                </div>
               </div>
             </div>
             <hr />
-          </div>
-          <div class="row">
-            <caption class="fw-bold">
-              Mother's Name
-            </caption>
-            <div class="col-3">
-              <div class="mb-3">
-                <label for="mother_lastName" class="form-label"
-                  >Last Name</label
-                >
-                <input
-                  type="text"
-                  class="form-control text-uppercase"
-                  name="mother_lastName"
-                  id="mother_lastName"
-                  [value]="loggedInUserData.data[0].mother_lastName"
-                />
-              </div>
-            </div>
-            <div class="col-3">
-              <div class="mb-3">
-                <label for="mother_firstName" class="form-label"
-                  >First Name</label
-                >
-                <input
-                  type="text"
-                  class="form-control text-uppercase"
-                  name="mother_firstName"
-                  id="mother_firstName"
-                  [value]="loggedInUserData.data[0].mother_firstName"
-                />
-              </div>
-            </div>
-            <div class="col-3">
-              <div class="mb-3">
-                <label for="mother_middleName" class="form-label"
-                  >Middle Name</label
-                >
-                <input
-                  type="text"
-                  class="form-control text-uppercase"
-                  name="mother_middleName"
-                  id="mother_middleName"
-                  [value]="loggedInUserData.data[0].mother_middleName"
-                />
-              </div>
-            </div>
-            <div class="col-3">
-              <div class="mb-3">
-                <label for="mother_number" class="form-label"
-                  >Contact Number</label
-                >
-                <input
-                  type="text"
-                  class="form-control text-uppercase"
-                  name="mother_number"
-                  id="mother_number"
-                  [value]="loggedInUserData.data[0].mother_number"
-                />
-              </div>
-            </div>
-            <hr />
-          </div>
-          <div class="row">
-            <caption class="fw-bold">
-              Guardian's Name
-            </caption>
-            <div class="col-3">
-              <div class="mb-3">
-                <label for="guardian_lastName" class="form-label"
-                  >Last Name</label
-                >
-                <input
-                  type="text"
-                  class="form-control text-uppercase"
-                  name="guardian_lastName"
-                  id="guardian_lastName"
-                  [value]="loggedInUserData.data[0].guardian_lastName"
-                />
-              </div>
-            </div>
-            <div class="col-3">
-              <div class="mb-3">
-                <label for="guardian_firstName" class="form-label"
-                  >First Name</label
-                >
-                <input
-                  type="text"
-                  class="form-control text-uppercase"
-                  name="guardian_firstName"
-                  id="guardian_firstName"
-                  [value]="loggedInUserData.data[0].guardian_firstName"
-                />
-              </div>
-            </div>
-            <div class="col-3">
-              <div class="mb-3">
-                <label for="guardian_middleName" class="form-label"
-                  >Middle Name</label
-                >
-                <input
-                  type="text"
-                  class="form-control text-uppercase"
-                  name="guardian_middleName"
-                  id="guardian_middleName"
-                  [value]="loggedInUserData.data[0].guardian_middleName"
-                />
-              </div>
-            </div>
-            <div class="col-3">
-              <div class="mb-3">
-                <label for="guardian_number" class="form-label"
-                  >Contact Number</label
-                >
-                <input
-                  type="text"
-                  class="form-control text-uppercase"
-                  name="guardian_number"
-                  id="guardian_number"
-                  [value]="loggedInUserData.data[0].guardian_number"
-                />
-              </div>
-            </div>
-          </div>
-          <hr />
-          <div class="row">
-            <div class="col-6">
-              <div class="mb-3">
-                <label for="profile" class="form-label"
-                  >Profile Image <small class="text-danger">*</small></label
-                >
-                <input
-                  type="file"
-                  accept="image/*"
-                  class="form-control mb-3"
-                  name="profile"
-                  id="profile"
-                />
-                <div class="imagePreview text-center">
-                  <img
-                    *ngIf="!loggedInUserData.data[0].profile_image"
-                    src="../../assets/images/default_Profile.png"
-                    alt="Default Image"
-                    class="img-thumbnail"
-                    width="300"
+            <h5>Parents Information</h5>
+            <div class="row">
+              <caption class="fw-bold">
+                Father's Name
+              </caption>
+              <div class="col-3">
+                <div class="mb-3">
+                  <label for="father_lastName" class="form-label"
+                    >Last Name</label
+                  >
+                  <input
+                    type="text"
+                    class="form-control text-uppercase"
+                    name="father_lastName"
+                    [value]="loggedInUserData?.data[0]?.father_lastName"
+                    id="father_lastName"
                   />
-                  <img
-                    *ngIf="loggedInUserData.data[0].profile_image"
-                    [src]="
-                      'http://127.0.0.1:8000/uploads/userimages/' +
-                      loggedInUserData.data[0].profile_image
-                    "
-                    [alt]="loggedInUserData.data[0].profile_image"
-                    class="img-thumbnail"
-                    width="200"
+                </div>
+              </div>
+              <div class="col-3">
+                <div class="mb-3">
+                  <label for="father_firstName" class="form-label"
+                    >First Name</label
+                  >
+                  <input
+                    type="text"
+                    class="form-control text-uppercase"
+                    name="father_firstName"
+                    [value]="loggedInUserData?.data[0]?.father_firstName"
+                    id="father_firstName"
+                  />
+                </div>
+              </div>
+              <div class="col-3">
+                <div class="mb-3">
+                  <label for="father_middleName" class="form-label"
+                    >Middle Name</label
+                  >
+                  <input
+                    type="text"
+                    class="form-control text-uppercase"
+                    name="father_middleName"
+                    id="father_middleName"
+                    [value]="loggedInUserData?.data[0]?.father_middleName"
+                  />
+                </div>
+              </div>
+              <div class="col-3">
+                <div class="mb-3">
+                  <label for="father_number" class="form-label"
+                    >Contact Number</label
+                  >
+                  <input
+                    type="text"
+                    class="form-control text-uppercase"
+                    name="father_number"
+                    id="father_number"
+                    [value]="loggedInUserData?.data[0]?.father_number"
+                  />
+                </div>
+              </div>
+              <hr />
+            </div>
+            <div class="row">
+              <caption class="fw-bold">
+                Mother's Name
+              </caption>
+              <div class="col-3">
+                <div class="mb-3">
+                  <label for="mother_lastName" class="form-label"
+                    >Last Name</label
+                  >
+                  <input
+                    type="text"
+                    class="form-control text-uppercase"
+                    name="mother_lastName"
+                    id="mother_lastName"
+                    [value]="loggedInUserData?.data[0]?.mother_lastName"
+                  />
+                </div>
+              </div>
+              <div class="col-3">
+                <div class="mb-3">
+                  <label for="mother_firstName" class="form-label"
+                    >First Name</label
+                  >
+                  <input
+                    type="text"
+                    class="form-control text-uppercase"
+                    name="mother_firstName"
+                    id="mother_firstName"
+                    [value]="loggedInUserData?.data[0]?.mother_firstName"
+                  />
+                </div>
+              </div>
+              <div class="col-3">
+                <div class="mb-3">
+                  <label for="mother_middleName" class="form-label"
+                    >Middle Name</label
+                  >
+                  <input
+                    type="text"
+                    class="form-control text-uppercase"
+                    name="mother_middleName"
+                    id="mother_middleName"
+                    [value]="loggedInUserData?.data[0]?.mother_middleName"
+                  />
+                </div>
+              </div>
+              <div class="col-3">
+                <div class="mb-3">
+                  <label for="mother_number" class="form-label"
+                    >Contact Number</label
+                  >
+                  <input
+                    type="text"
+                    class="form-control text-uppercase"
+                    name="mother_number"
+                    id="mother_number"
+                    [value]="loggedInUserData?.data[0]?.mother_number"
+                  />
+                </div>
+              </div>
+              <hr />
+            </div>
+            <div class="row">
+              <caption class="fw-bold">
+                Guardian's Name
+              </caption>
+              <div class="col-3">
+                <div class="mb-3">
+                  <label for="guardian_lastName" class="form-label"
+                    >Last Name</label
+                  >
+                  <input
+                    type="text"
+                    class="form-control text-uppercase"
+                    name="guardian_lastName"
+                    id="guardian_lastName"
+                    [value]="loggedInUserData?.data[0]?.guardian_lastName"
+                  />
+                </div>
+              </div>
+              <div class="col-3">
+                <div class="mb-3">
+                  <label for="guardian_firstName" class="form-label"
+                    >First Name</label
+                  >
+                  <input
+                    type="text"
+                    class="form-control text-uppercase"
+                    name="guardian_firstName"
+                    id="guardian_firstName"
+                    [value]="loggedInUserData?.data[0]?.guardian_firstName"
+                  />
+                </div>
+              </div>
+              <div class="col-3">
+                <div class="mb-3">
+                  <label for="guardian_middleName" class="form-label"
+                    >Middle Name</label
+                  >
+                  <input
+                    type="text"
+                    class="form-control text-uppercase"
+                    name="guardian_middleName"
+                    id="guardian_middleName"
+                    [value]="loggedInUserData?.data[0]?.guardian_middleName"
+                  />
+                </div>
+              </div>
+              <div class="col-3">
+                <div class="mb-3">
+                  <label for="guardian_number" class="form-label"
+                    >Contact Number</label
+                  >
+                  <input
+                    type="text"
+                    class="form-control text-uppercase"
+                    name="guardian_number"
+                    id="guardian_number"
+                    [value]="loggedInUserData?.data[0]?.guardian_number"
                   />
                 </div>
               </div>
             </div>
+            <hr />
+            <div class="row">
+              <div class="col-6">
+                <div class="mb-3">
+                  <label for="profile" class="form-label"
+                    >Profile Image <small class="text-danger">*</small></label
+                  >
+                  <input
+                    type="file"
+                    accept="image/*"
+                    class="form-control mb-3"
+                    name="profile"
+                    id="profile"
+                  />
+                  <div class="imagePreview text-center">
+                    <img
+                      *ngIf="!loggedInUserData?.data[0]?.profile_image"
+                      src="../../assets/images/default_Profile.png"
+                      alt="Default Image"
+                      class="img-thumbnail"
+                      width="300"
+                    />
+                    <img
+                      *ngIf="loggedInUserData?.data[0]?.profile_image"
+                      [src]="
+                        'http://127.0.0.1:8000/uploads/userimages/' +
+                        loggedInUserData?.data[0]?.profile_image
+                      "
+                      [alt]="loggedInUserData?.data[0]?.profile_image"
+                      class="img-thumbnail"
+                      width="200"
+                    />
+                  </div>
+                </div>
+              </div>
 
-            <div class="col-4">
-              <div class="mb-3">
-                <label for="mother_occupation" class="form-label"
-                  >Your Signature <small class="text-danger">*</small></label
-                >
-                <img
-                  [src]="loggedInUserData.data[0].signature"
-                  width="500"
-                  height="200"
-                />
-                <p class="error-message text-danger" *ngIf="signatureNeeded">
-                  Signature is required
-                </p>
-
+              <div class="col-6">
+                <div class="mb-3">
+                  <label for="mother_occupation" class="form-label"
+                    >Your Signature <small class="text-danger">*</small></label
+                  >
+                  <img
+                    [src]="loggedInUserData?.data[0]?.signature"
+                    width="500"
+                    height="200"
+                  />
+                </div>
               </div>
             </div>
-          </div>
-          <div class="text-center my-5">
-            <button type="submit" class="btn btn-success">Save Changes</button>
-          </div>
-        </form>
+            <!-- <div class="text-center my-5">
+              <button type="submit" class="btn btn-success">Save Changes</button>
+            </div> -->
+          </form>
+        </div>
       </div>
       <div class="opacity-0 my-2">spacer</div>
     </div>

@@ -2,7 +2,6 @@ import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { EnrollmentSHSControllers } from 'src/app/controllers/shsenrollmentController.component';
-import SignaturePad from 'signature_pad';
 import { Observable } from 'rxjs';
 import Swal from 'sweetalert2';
 
@@ -16,6 +15,11 @@ export class StudentInfoComponent implements OnInit {
   studentdata: any;
   imageURL: string | undefined;
   uploadForm!: FormGroup;
+  signaturePad: any;
+  signatureImg: any;
+  signatureNeeded: any;
+  studata: any;
+  router: any;
 
   constructor(
     private http: HttpClient,
@@ -23,10 +27,53 @@ export class StudentInfoComponent implements OnInit {
     private formBuilder:  FormBuilder
   ) {}
 
-  signatureNeeded!: boolean;
-  signaturePad!: SignaturePad;
-  @ViewChild('canvas') canvasEl!: ElementRef;
-  signatureImg!: string;
+
+    enrollForm: FormGroup = this.formBuilder.group({
+    gradelevel: [''],
+    program: [''],
+    lrn: [''],
+    firstname: [''],
+    lastname: [''],
+    middlename: [''],
+    suffix: [''],
+    gender: [''],
+    birthdate: [''],
+    age: [''],
+    birth_place: [''],
+    home_address: [''],
+    present_address: [''],
+    m_tounge: [''],
+    email: [''],
+    mobile_number: [''],
+    ip: [''],
+    pantawid: [''],
+    school_elem: [''],
+    school_schoolyr: [''],
+    father_lastName: [''],
+    father_firstName: [''],
+    father_middleName: [''],
+    father_number: [''],
+    mother_lastName: [''],
+    mother_firstName: [''],
+    mother_middleName: [''],
+    mother_number: [''],
+    guardian_lastName: [''],
+    guardian_firstName: [''],
+    guardian_middleName: [''],
+    guardian_number: [''],
+    profile: [''],
+    signature: [''],
+    semester: [''],
+    track: [''],
+    strand: [''],
+    jhs: [''],
+    jhs_yr: [''],
+    schoolID: [''],
+    lastgradecompl: [''],
+    lastschool: [''],
+    lastschool_yr: [''],
+
+  });
 
   ngOnInit(): void {
     this.uploadForm = this.formBuilder.group({
@@ -42,7 +89,6 @@ export class StudentInfoComponent implements OnInit {
 
     this.getLoggedInUser(auth_token).subscribe(
       (data) => {
-        console.log('User Data:', data);
         this.loggedInUserData = data;
       },
       (error) => {
@@ -60,48 +106,72 @@ export class StudentInfoComponent implements OnInit {
     return this.http.get(apiUrl, { headers: headers });
   }
 
-  onEdit() {
-    var studentdetails = {
-      id: this.studentdata[0].id,
-      semester: $('#semester').val(),
-      track: $('#track').val(),
-      strand: $('#strand').val(),
-      firstname: $('#first_name').val(),
-      middle_name: $('#middle_name').val(),
-      last_name: $('#last_name').val(),
-      suffix: $('#suffix').val() === '' ? '' : $('#suffix').val(),
-      gender: $('#gender').val(),
-      civil_status: $('#civil_status').val(),
-      birth_date: $('#b_date').val(),
-      birth_place: $('#b_place').val(),
-      contact_number: $('#number').val(),
-      email: $('#email').val(),
-      home_address: $('#home_address').val(),
-      permanent_address: $('#present_address').val(),
-      enrolling_for: $('#enrolling_for').val(),
-      major: $('#major').val(),
-      elem_school: $('#elementary').val(),
-      elem_yr: $('#elementary_yr').val(),
-      jhs_school: $('#jhs').val(),
-      jhs_yr: $('#jhs_yr').val(),
-      father_lastName: $('#father_lastName').val(),
-      father_firstName: $('#father_firstName').val(),
-      father_middleName: $('#father_middleName').val(),
-      father_number: $('#father_number').val(),
-      mother_lastName: $('#mother_lastName').val(),
-      mother_firstName: $('#mother_firstName').val(),
-      mother_middleName: $('#mother_middleName').val(),
-      mother_number: $('#mother_number').val(),
-      guardian_lastName: $('#guardian_lastName').val(),
-      guardian_firstName: $('#guardian_firstName').val(),
-      guardian_middleName: $('#guardian_middleName').val(),
-      guardian_number: $('#guardian_number').val(),
-    };
-    this.EnrollmentSHSControllers.updatestudent(
-      JSON.stringify(studentdetails)
-    ).subscribe((data) => {
-      console.log(data);
-    });
+
+  loading = false;
+   
+  savestudent() {
+    this.loading = true;
+
+    const submitdata = new FormData();
+
+    submitdata.append('imagefilename', this.enrollForm.controls['profile'].value);
+    submitdata.append('schoolID', this.enrollForm.controls['schoolID'].value);
+    submitdata.append('lastgradecompl', this.enrollForm.controls['lastgradecompl'].value);
+    submitdata.append('lastschool', this.enrollForm.controls['lastschool'].value);
+    submitdata.append('lastschool_yr', this.enrollForm.controls['lastschool_yr'].value);
+    submitdata.append('semester', this.enrollForm.controls['semester'].value);
+    submitdata.append('track', this.enrollForm.controls['track'].value);
+    submitdata.append('strand', this.enrollForm.controls['strand'].value);
+    submitdata.append('gradelevel', this.enrollForm.controls['gradelevel'].value);
+    submitdata.append('major', this.enrollForm.controls['major'].value);
+    submitdata.append('lrn', this.enrollForm.controls['lrn'].value);
+    submitdata.append('firstname', this.enrollForm.controls['firstname'].value);
+    submitdata.append('lastname', this.enrollForm.controls['lastname'].value);
+    submitdata.append('middle_name', this.enrollForm.controls['middle_name'].value);
+    submitdata.append('suffix', this.enrollForm.controls['suffix'].value);
+    submitdata.append('gender', this.enrollForm.controls['gender'].value);
+    submitdata.append('civil_status', this.enrollForm.controls['civil_status'].value);
+    submitdata.append('age', this.enrollForm.controls['age'].value);
+    submitdata.append('birthdate', this.enrollForm.controls['birthdate'].value);
+    submitdata.append('birth_place', this.enrollForm.controls['birth_place'].value);
+    submitdata.append('email', this.enrollForm.controls['email'].value);
+    submitdata.append('mobile_number', this.enrollForm.controls['mobile_number'].value);
+    submitdata.append('m_tounge', this.enrollForm.controls['m_tounge'].value);
+    submitdata.append('ip', this.enrollForm.controls['ip'].value);
+    submitdata.append('pantawid', this.enrollForm.controls['pantawid'].value);
+    submitdata.append('home_address', this.enrollForm.controls['home_address'].value);
+    submitdata.append('present_address', this.enrollForm.controls['present_address'].value);
+    submitdata.append('elementary', this.enrollForm.controls['elementary'].value);
+    submitdata.append('elementary_yr', this.enrollForm.controls['elementary_yr'].value);
+    submitdata.append('jhs', this.enrollForm.controls['jhs'].value);
+    submitdata.append('jhs_yr', this.enrollForm.controls['jhs_yr'].value);
+    submitdata.append('father_lastName', this.enrollForm.controls['father_lastName'].value);
+    submitdata.append('father_firstName', this.enrollForm.controls['father_firstName'].value);
+    submitdata.append('father_middleName', this.enrollForm.controls['father_middleName'].value);
+    submitdata.append('father_number', this.enrollForm.controls['father_number'].value);
+    submitdata.append('mother_lastName', this.enrollForm.controls['mother_lastName'].value);
+    submitdata.append('mother_firstName', this.enrollForm.controls['mother_firstName'].value);
+    submitdata.append('mother_middleName', this.enrollForm.controls['mother_middleName'].value);
+    submitdata.append('mother_number', this.enrollForm.controls['mother_number'].value);
+    submitdata.append('guardian_lastName', this.enrollForm.controls['guardian_lastName'].value);
+    submitdata.append('guardian_firstName', this.enrollForm.controls['guardian_firstName'].value);
+    submitdata.append('guardian_middleName', this.enrollForm.controls['guardian_middleName'].value);
+    submitdata.append('guardian_number', this.enrollForm.controls['guardian_number'].value);
+    submitdata.append('signature', this.enrollForm.controls['signature'].value);
+
+
+    this.EnrollmentSHSControllers.createEnrollmentSHS(submitdata).subscribe(
+      (e) => {
+        this.studata = e;
+        if (this.studata['user'] == 'success') {
+          window.location.reload();
+          Swal.fire({
+            title: 'Success',
+            text: 'Changes Saved',
+            icon: 'success',
+          });
+        }
+      });
   }
 
 }
