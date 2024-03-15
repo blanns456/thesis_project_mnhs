@@ -37,7 +37,6 @@ export class TransfereeShsEnrollmentComponent implements OnInit {
     track: ['', [Validators.required]],
     strand: ['', [Validators.required]],
     gradelevel: ['', [Validators.required]],
-    major: ['', [Validators.required]],
     lrn: ['', [Validators.required]],
     firstname: ['', [Validators.required]],
     lastname: ['', [Validators.required]],
@@ -154,7 +153,6 @@ export class TransfereeShsEnrollmentComponent implements OnInit {
       'gradelevel',
       this.enrollForm.controls['gradelevel'].value
     );
-    submitdata.append('major', this.enrollForm.controls['major'].value);
     submitdata.append('lrn', this.enrollForm.controls['lrn'].value);
     submitdata.append('firstname', this.enrollForm.controls['firstname'].value);
     submitdata.append('lastname', this.enrollForm.controls['lastname'].value);
@@ -272,7 +270,6 @@ export class TransfereeShsEnrollmentComponent implements OnInit {
       this.enrollForm.controls['birth_place'].invalid ||
       this.enrollForm.controls['home_address'].invalid ||
       this.enrollForm.controls['present_address'].invalid ||
-      this.enrollForm.controls['major'].invalid ||
       this.enrollForm.controls['email'].invalid ||
       this.enrollForm.controls['mobile_number'].invalid ||
       this.enrollForm.controls['ip'].invalid ||
@@ -301,15 +298,16 @@ export class TransfereeShsEnrollmentComponent implements OnInit {
             icon: 'success',
           });
         } else if (this.studata['message']) {
-        console.log(this.studata['message']);
-        this.loading = false;
-        Swal.fire(
+          console.log(this.studata['message']);
+          this.loading = false;
+          Swal.fire(
             'ERROR',
             'Email, LRN, or Mobile Number  Already Taken',
             'error'
-        );
-      } 
-    });
+          );
+        }
+      }
+    );
   }
 
   showPreview(event: Event) {
