@@ -1,0 +1,57 @@
+<div class="container-dashboard bgcontent overflow-y-auto">
+  <app-sidebar-admin></app-sidebar-admin>
+
+  <div class="main-content">
+    <app-navbar-admin></app-navbar-admin>
+    <div class="container p-5 chartbg">
+      <div class="text-content">
+        <h3 class="fw-bold text-uppercase py-2">List of Pending Students</h3>
+      </div>
+      <div class="chart-container bg-white h-auto p-3 rounded">
+        <table
+          class="table table-bordered table-striped"
+          #dataTable
+          style="width: 100%"
+        >
+          <thead>
+            <tr>
+              <th>Student Name</th>
+              <th>Year Level</th>
+              <th>Special Program/Major</th>
+              <th>Status</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody *ngIf="students.length">
+            <tr *ngFor="let student of students">
+              <td>{{ student.studname }}</td>
+              <td>Grade {{ student.gradelevel }}</td>
+              <td>{{ student.major }}</td>
+              <td class="fw-bold text-danger text-uppercase">
+                {{ student.status }}
+              </td>
+              <td>
+                <button
+                  class="btn btn-success me-2"
+                  (click)="approveStudent(student.studid)"
+                >
+                  <a class="text-white text-decoration-none"
+                    ><i class="fa-solid fa-check"></i>Approve</a
+                  >
+                </button>
+                <button
+                  class="btn btn-danger"
+                  (click)="declineStudent(student.studid)"
+                >
+                  <a class="text-white text-decoration-none"
+                    ><i class="fa-solid fa-trash"></i>Decline</a
+                  >
+                </button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
