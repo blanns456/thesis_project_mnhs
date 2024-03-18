@@ -102,11 +102,9 @@ export class TransfereeShsEnrollmentComponent implements OnInit {
   }
 
   startDrawing(event: Event) {
-    // works in device not in browser
   }
 
   moved(event: Event) {
-    // works in device not in browser
   }
 
   clearPad() {
@@ -326,6 +324,20 @@ export class TransfereeShsEnrollmentComponent implements OnInit {
       this.enrollForm.patchValue({
         profile: file,
       });
+    }
+  }
+
+  inputMask(event: Event) {
+    var numberValue = (event.target as HTMLSelectElement).value;
+
+    var numericRegex = /^[0-9]+$/;
+
+    if (!numericRegex.test(numberValue)) {
+      var sanitizedValue = numberValue.replace(/[^0-9]/g, '');
+
+      (event.target as HTMLSelectElement).value = sanitizedValue;
+
+      console.log('Invalid input. Please enter only numeric values.');
     }
   }
 }

@@ -49,7 +49,7 @@ export class SidebarComponent implements OnInit, OnDestroy {
       .subscribe((res: any) => {
         console.log('API Response:', res);
         if (Array.isArray(res.data) && res.data.length > 0) {
-          this.studname = res.data[0].lastname + ',' + res.data[0].firstname;
+          this.studname = res.data[0].lastname + ', ' + res.data[0].firstname;
           this.status = res.data[0].account_status;
           this.grade_level = res.data[0].grade_level;
           this.profile = 'http://127.0.0.1:8000/uploads/userimages/'+res.data[0].profile_image;

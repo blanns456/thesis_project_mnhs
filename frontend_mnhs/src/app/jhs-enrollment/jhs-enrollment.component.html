@@ -29,7 +29,7 @@
         <div class="col-4">
           <div class="mb-3">
             <label for="enrolling_for" class="form-label"
-              >Grade Level to Enroll <small class="text-danger fs-5">*</small></label
+              >Grade Level to Enroll <small class="text-danger">*</small></label
             >
             <select
               name="enrolling_for"
@@ -51,7 +51,7 @@
         <div class="col-4">
           <div class="mb-3">
             <label for="major" class="form-label"
-              >JHS Special Program Offered:<small class="text-danger fs-5"
+              >JHS Special Program Offered:<small class="text-danger"
                 >*</small
               ></label
             >
@@ -84,13 +84,15 @@
         <div class="col-4">
           <div class="mb-3">
             <label for="lrn" class="form-label">
-              LRN Number<small class="text-danger fs-5">*</small>
+              LRN Number<small class="text-danger">*</small>
             </label>
             <input
               type="text"
               class="form-control text-uppercase"
               name="lrn"
               id="lrn"
+              maxlength="12"
+              (input)="inputMask($event)"
               formControlName="lrn"
               required
             />
@@ -101,7 +103,7 @@
         <div class="col-4">
           <div class="mb-3">
             <label for="first_name" class="form-label"
-              >First Name<small class="text-danger fs-5">*</small></label
+              >First Name<small class="text-danger">*</small></label
             >
             <input
               type="text"
@@ -116,7 +118,7 @@
         <div class="col-4">
           <div class="mb-3">
             <label for="last_name" class="form-label"
-              >Last Name<small class="text-danger fs-5">*</small></label
+              >Last Name<small class="text-danger">*</small></label
             >
             <input
               type="text"
@@ -161,7 +163,7 @@
             <div class="col-6">
               <div class="mb-3">
                 <label for="gender" class="form-label"
-                  >Sex<small class="text-danger fs-5">*</small></label
+                  >Sex<small class="text-danger">*</small></label
                 >
                 <br />
                 <input
@@ -189,7 +191,7 @@
         <div class="col-3">
           <div class="mb-3">
             <label for="b_date" class="form-label"
-              >Birth Date<small class="text-danger fs-5">*</small></label
+              >Birth Date<small class="text-danger">*</small></label
             >
             <input
               type="date"
@@ -203,7 +205,7 @@
         <div class="col-1">
           <div class="mb-3">
             <label for="age" class="form-label"
-              >Age<small class="text-danger fs-5">*</small></label
+              >Age<small class="text-danger">*</small></label
             >
             <input
               type="text"
@@ -236,7 +238,7 @@
         <div class="col-6">
           <div class="mb-3">
             <label for="present_address" class="form-label"
-              >Current Address<small class="text-danger fs-5">*</small></label
+              >Current Address<small class="text-danger">*</small></label
             >
             <textarea
               name="present_address"
@@ -253,7 +255,7 @@
         <div class="col-6">
           <div class="mb-3">
             <label for="home_address" class="form-label"
-              >Permanent Address<small class="text-danger fs-5">*</small></label
+              >Permanent Address<small class="text-danger">*</small></label
             >
             <textarea
               name="home_address"
@@ -286,7 +288,7 @@
         <div class="col-4">
           <div class="mb-3">
             <label for="email" class="form-label"
-              >Email<small class="text-danger fs-5">*</small></label
+              >Email<small class="text-danger">*</small></label
             >
             <input
               type="email"
@@ -301,14 +303,15 @@
         <div class="col-4">
           <div class="mb-3">
             <label for="mobile_number" class="form-label"
-              >Mobile Number<small class="text-danger fs-5">*</small></label
-            >
+              >Mobile Number<small class="text-danger">*</small></label>
             <input
               type="mobile_number"
               class="form-control"
               formControlName="mobile_number"
               name="mobile_number"
               id="mobile_number"
+              maxlength="11"
+              (input)="inputMask($event)"
               placeholder="ex. 09123456789"
               required
             />
@@ -321,7 +324,7 @@
           <div class="mb-3">
             <label for="ip" class="form-label"
               >Belonging to any Indigenous People (IP) Community/Indigenous
-              Cultural Community? <small class="text-danger fs-5">*</small></label
+              Cultural Community? <small class="text-danger">*</small></label
             >
             <br />
             <input
@@ -372,7 +375,7 @@
           <div class="mb-3">
             <label for="elementary" class="form-label"
               >Elementary School Name
-              <small class="text-danger fs-5">*</small></label
+              <small class="text-danger">*</small></label
             >
             <input
               type="text"
@@ -388,7 +391,7 @@
           <div class="mb-3">
             <label for="elementary_yr" class="form-label"
               >Elementary School Year
-              <small class="text-danger fs-5">*</small></label
+              <small class="text-danger">*</small></label
             >
             <input
               type="text"
@@ -579,7 +582,7 @@
         <div class="col-6">
           <div class="mb-3">
             <label for="profile" class="form-label"
-              >Profile Image <small class="text-danger fs-5">*</small></label
+              >Profile Image <small class="text-danger">*</small></label
             >
             <input
               type="file"
@@ -612,7 +615,7 @@
         <div class="col-4">
           <div class="mb-3">
             <label for="mother_occupation" class="form-label"
-              >Your Signature <small class="text-danger fs-5">*</small></label
+              >Your Signature <small class="text-danger">*</small></label
             >
             <canvas
               #canvas

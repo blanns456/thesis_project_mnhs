@@ -5,9 +5,9 @@
     <app-navbar-admin></app-navbar-admin>
     <div class="container p-5 chartbg">
       <div class="text-content">
-        <h3 class="fw-bold text-uppercase py-2">List of Enrolled Students</h3>
+        <h3 class="fw-bold text-uppercase py-2 text-white">List of Enrolled Students</h3>
       </div>
-      <div class="chart-container bg-white h-auto p-3 rounded">
+      <div class="chart-container bg-white h-auto p-3 rounded card border shadow-lg">
         <table
           class="table table-bordered table-striped"
           #dataTable
@@ -17,7 +17,7 @@
             <tr>
               <th>Student Name</th>
               <th>Year Level</th>
-              <th>Special Program/Major</th>
+              <th>LRN No.</th>
               <th>Status</th>
               <th>Action</th>
             </tr>
@@ -26,7 +26,7 @@
             <tr *ngFor="let student of students">
               <td>{{ student.firstname }} {{ student.lastname }}</td>
               <td>Grade {{ student.grade_level }}</td>
-              <td>{{ student.special_program }}</td>
+              <td>{{ student.LRN }}</td>
               <td class="fw-bold text-success text-uppercase">
                 {{ student.account_status }}
               </td>

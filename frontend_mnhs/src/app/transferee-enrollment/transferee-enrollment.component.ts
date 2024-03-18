@@ -298,4 +298,18 @@ export class TransfereeEnrollmentComponent implements OnInit {
       });
     }
   }
+
+    inputMask(event: Event) {
+    var numberValue = (event.target as HTMLSelectElement).value;
+
+    var numericRegex = /^[0-9]+$/;
+
+    if (!numericRegex.test(numberValue)) {
+      var sanitizedValue = numberValue.replace(/[^0-9]/g, '');
+
+      (event.target as HTMLSelectElement).value = sanitizedValue;
+
+      console.log('Invalid input. Please enter only numeric values.');
+    }
+  }
 }
