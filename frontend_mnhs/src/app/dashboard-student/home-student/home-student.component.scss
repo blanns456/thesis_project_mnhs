@@ -1,0 +1,15 @@
+.background {
+  background-image: url("../../../../src/assets/images/student-d.png");
+  background-size: cover;
+  background-position: center center;
+  background-attachment: fixed;
+  position: fixed;
+  width: 100%;
+  height: 100vh;
+  z-index: -1;
+}
+
+.q-link {
+  margin-left: 20%;
+  width: 80%;
+}

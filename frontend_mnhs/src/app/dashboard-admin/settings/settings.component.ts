@@ -1,0 +1,75 @@
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { Component } from '@angular/core';
+
+@Component({
+  selector: 'app-settings',
+  templateUrl: './settings.component.html',
+  styleUrls: ['./settings.component.scss']
+})
+export class SettingsComponent {
+  username: any;
+  oldPassword: any;
+  newPassword: any;
+  newPasswordConfirmation: any;
+  errorMessages: { [key: string]: string } = {};
+
+  constructor(private http: HttpClient) { }
+
+  ngOnInit() {
+    const authToken = localStorage.getItem('token');
+    if (!authToken) {
+      console.error('Authentication token not found.');
+      return;
+    }
+    this.getLoggedInUser(authToken);
+  }
+
+  private getLoggedInUser(authToken: string): void {
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${authToken}`
+    });
+
+    this.http.get('http://127.0.0.1:8000/api/user', { headers })
+      .subscribe(
+        (response: any) => {
+          this.username = response.username; // Assuming the response contains the username
+        },
+        error => {
+          console.error('Error fetching logged-in user:', error);
+        }
+      );
+  }
+
+  resetPassword() {
+    this.errorMessages = {}; // Initialize errorMessages here
+
+    const authToken = localStorage.getItem('token');
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${authToken}`);
+    const data = {
+      username: this.username,
+      old_password: this.oldPassword,
+      new_password: this.newPassword,
+      new_password_confirmation: this.newPasswordConfirmation
+    };
+
+    this.http.post('http://127.0.0.1:8000/api/reset/password', data, { headers })
+      .subscribe(
+        response => {
+          console.log('Password reset successful!');
+          this.errorMessages = {}; // Clear the error messages
+          // Handle success response
+        },
+        error => {
+          console.error('Error Yawdasd');
+        }
+      );
+  }
+
+  private handleErrors(errors: { [key: string]: string[] }) {
+    this.errorMessages = {};
+    for (const [key, value] of Object.entries(errors)) {
+      this.errorMessages[key] = value.join(', ');
+    }
+  }
+}
