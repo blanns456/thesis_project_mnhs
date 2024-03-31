@@ -41,7 +41,6 @@
               name="schoolID"
               formControlName="schoolID"
               id="schoolID"
-              aria-describedby="helpId"
               required
             />
           </div>
@@ -59,7 +58,6 @@
               name="lastgradecompl"
               formControlName="lastgradecompl"
               id="lastgradecompl"
-              aria-describedby="helpId"
               required
             />
           </div>
@@ -75,7 +73,6 @@
               name="lastschool"
               formControlName="lastschool"
               id="lastschool"
-              aria-describedby="helpId"
               required
             />
           </div>
@@ -93,7 +90,6 @@
               formControlName="lastschool_yr"
               name="lastschool_yr"
               id="lastschool_yr"
-              aria-describedby="helpId"
               required
             />
           </div>
@@ -167,6 +163,8 @@
               class="form-control text-uppercase"
               name="lrn"
               id="lrn"
+              maxlength="12"
+              (input)="inputMask($event)"
               formControlName="lrn"
               required
             />
@@ -385,6 +383,8 @@
               formControlName="mobile_number"
               name="mobile_number"
               id="mobile_number"
+              maxlength="11"
+              (input)="inputMask($event)"
               placeholder="ex. 09123456789"
               required
             />

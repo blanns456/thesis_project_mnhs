@@ -73,7 +73,6 @@
                 name="track"
                 formControlName="track"
                 id="track"
-                aria-describedby="helpId"
                 required
               />
             </div>
@@ -89,7 +88,6 @@
                 formControlName="strand"
                 name="strand"
                 id="strand"
-                aria-describedby="helpId"
                 required
               />
             </div>
@@ -111,7 +109,6 @@
                 name="schoolID"
                 formControlName="schoolID"
                 id="schoolID"
-                aria-describedby="helpId"
                 required
               />
             </div>
@@ -129,7 +126,6 @@
                 name="lastgradecompl"
                 formControlName="lastgradecompl"
                 id="lastgradecompl"
-                aria-describedby="helpId"
                 required
               />
             </div>
@@ -145,7 +141,6 @@
                 name="lastschool"
                 formControlName="lastschool"
                 id="lastschool"
-                aria-describedby="helpId"
                 required
               />
             </div>
@@ -163,7 +158,6 @@
                 formControlName="lastschool_yr"
                 name="lastschool_yr"
                 id="lastschool_yr"
-                aria-describedby="helpId"
                 required
               />
             </div>
@@ -204,7 +198,23 @@
                 name="lrn"
                 id="lrn"
                 formControlName="lrn"
+                maxlength="12"
+                (input)="inputMask($event)"
                 required
+              />
+            </div>
+          </div>
+            <div class="col-4">
+            <div class="mb-3">
+              <label for="m_tounge" class="form-label"
+                >Mother Tounge (Optional)</label
+              >
+              <input
+                type="text"
+                class="form-control text-uppercase"
+                name="m_tounge"
+                formControlName="m_tounge"
+                id="m_tounge"
               />
             </div>
           </div>
@@ -221,7 +231,6 @@
                 name="firstname"
                 id="firstname"
                 formControlName="firstname"
-                aria-describedby="helpId"
                 placeholder="ex. John"
                 required
               />
@@ -238,7 +247,6 @@
                 name="lastname"
                 id="lastname"
                 formControlName="lastname"
-                aria-describedby="helpId"
                 placeholder="ex. Doe"
                 required
               />
@@ -255,7 +263,6 @@
                 name="middle_name"
                 id="middle_name"
                 formControlName="middle_name"
-                aria-describedby="helpId"
                 required
               />
             </div>
@@ -275,7 +282,6 @@
                     name="suffix"
                     id="suffix"
                     formControlName="suffix"
-                    aria-describedby="helpId"
                     required
                   />
                 </div>
@@ -322,7 +328,6 @@
                 id="b_date"
                 (blur)="calculateAge()"
                 formControlName="birthdate"
-                aria-describedby="helpId"
                 required
               />
             </div>
@@ -374,7 +379,6 @@
                 name="birth_place"
                 id="birth_place"
                 formControlName="birth_place"
-                aria-describedby="helpId"
                 required
               />
             </div>
@@ -390,7 +394,6 @@
                 name="email"
                 id="email"
                 formControlName="email"
-                aria-describedby="helpId"
                 placeholder="ex. johndoe@gmail.com"
                 required
               />
@@ -407,23 +410,10 @@
                 name="mobile_number"
                 id="mobile_number"
                 formControlName="mobile_number"
-                aria-describedby="helpId"
+                maxlength="11"
+                (input)="inputMask($event)"
                 placeholder="ex. 09123456789"
                 required
-              />
-            </div>
-          </div>
-          <div class="col-4">
-            <div class="mb-3">
-              <label for="m_tounge" class="form-label"
-                >Mother Tounge (Optional)</label
-              >
-              <input
-                type="text"
-                class="form-control text-uppercase"
-                name="m_tounge"
-                formControlName="m_tounge"
-                id="m_tounge"
               />
             </div>
           </div>
@@ -529,7 +519,6 @@
                 name="elementary"
                 id="elementary"
                 formControlName="elementary"
-                aria-describedby="helpId"
                 required
               />
             </div>
@@ -547,7 +536,6 @@
                 formControlName="elementary_yr"
                 name="elementary_yr"
                 id="elementary_yr"
-                aria-describedby="helpId"
                 required
               />
             </div>
@@ -567,7 +555,6 @@
                 name="jhs"
                 id="jhs"
                 formControlName="jhs"
-                aria-describedby="helpId"
                 required
               />
             </div>
@@ -585,7 +572,6 @@
                 formControlName="jhs_yr"
                 name="jhs_yr"
                 id="jhs_yr"
-                aria-describedby="helpId"
                 required
               />
             </div>

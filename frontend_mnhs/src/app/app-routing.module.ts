@@ -18,17 +18,19 @@ import { AuthGuard } from './auth.guard';
 
 const routes: Routes = [
   { path: '', redirectTo: '/', pathMatch: 'full' },
-  { path: '', component: HomeComponent },
-  { path: 'JHS/enrollment', component: JhsEnrollmentComponent },
-  { path: 'SHS/enrollment', component: ShsEnrollmentComponent },
-  { path: 'transferee/enrollment', component: TransfereeEnrollmentComponent },
+  { path: '', component: HomeComponent, title: 'Home' },
+  { path: 'JHS/enrollment', component: JhsEnrollmentComponent, title: 'JHS Enrollment' },
+  { path: 'SHS/enrollment', component: ShsEnrollmentComponent, title: 'SHS Enrollment' },
+  { path: 'transferee/enrollment', component: TransfereeEnrollmentComponent, title: 'Transferee JHS' },
   {
     path: 'transferee/shs/enrollment',
     component: TransfereeShsEnrollmentComponent,
+    title: 'Transferee SHS'
   },
   {
     path: 'login',
     component: LoginComponent,
+    title: 'Login '
   },
   // student dashboard
   {
