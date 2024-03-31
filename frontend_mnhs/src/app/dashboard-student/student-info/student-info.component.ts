@@ -27,7 +27,6 @@ export class StudentInfoComponent implements OnInit {
     private formBuilder:  FormBuilder
   ) {}
 
-
     enrollForm: FormGroup = this.formBuilder.group({
     gradelevel: [''],
     program: [''],
@@ -106,11 +105,15 @@ export class StudentInfoComponent implements OnInit {
     return this.http.get(apiUrl, { headers: headers });
   }
 
-
   loading = false;
    
   savestudent() {
     this.loading = true;
+
+    if (!this.enrollForm) {
+      console.error('Form group not initialized.');
+      return;
+    }
 
     const submitdata = new FormData();
 
