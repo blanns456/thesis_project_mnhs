@@ -23,4 +23,18 @@ export class ApiControllers {
       this.httpOptions
     );
   }
+
+  sendotp(email: string) {
+    const payload = { email: email };
+    return this.http.post(this.Root_URL + 'sendotp', payload);
+  }
+
+  verifcode(otpcode: string) {
+    const payload = { otpcode: otpcode };
+    return this.http.post(this.Root_URL + 'verifcode', payload);
+  }
+
+  resetpass(data: { checkcode: number; password: number }) {
+    return this.http.post(this.Root_URL + 'reset-password', data);
+  }
 }
