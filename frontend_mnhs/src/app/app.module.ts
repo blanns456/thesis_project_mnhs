@@ -33,6 +33,7 @@ import { MessagesModule } from 'primeng/messages';
 import { MessageService } from 'primeng/api';
 import { PasswordModule } from 'primeng/password';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
+import { DialogModule } from 'primeng/dialog';
 
 @NgModule({
   declarations: [
@@ -70,6 +71,7 @@ import { ConfirmDialogModule } from 'primeng/confirmdialog';
     MessagesModule,
     PasswordModule,
     ConfirmDialogModule,
+    DialogModule,
   ],
   providers: [MessageService],
   bootstrap: [AppComponent],

@@ -1,9 +1,16 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import {
+  HttpClient,
+  HttpErrorResponse,
+  HttpHeaders,
+} from '@angular/common/http';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { EnrollmentSHSControllers } from 'src/app/controllers/shsenrollmentController.component';
 import { Observable } from 'rxjs';
 import Swal from 'sweetalert2';
+import { MessageService } from 'primeng/api';
+import { error } from 'jquery';
+import SignaturePad from 'signature_pad';
 
 @Component({
   selector: 'app-student-info',
@@ -13,26 +20,32 @@ import Swal from 'sweetalert2';
 export class StudentInfoComponent implements OnInit {
   loggedInUserData: any;
   studentdata: any;
-  imageURL: string | undefined;
+  imageURL: any;
   uploadForm!: FormGroup;
-  signaturePad: any;
   signatureImg: any;
-  signatureNeeded: any;
   studata: any;
   router: any;
-
+  showupdateDIalog: boolean = false;
+  studid: any;
+  // enrollForm: FormGroup;
+  signatureNeeded!: boolean;
+  signaturePad!: SignaturePad;
+  @ViewChild('canvas') canvasEl!: ElementRef;
   constructor(
     private http: HttpClient,
+    private messageService: MessageService,
     private EnrollmentSHSControllers: EnrollmentSHSControllers,
     private formBuilder: FormBuilder
   ) {}
 
   enrollForm: FormGroup = this.formBuilder.group({
+    studid: [''],
     gradelevel: [''],
     program: [''],
     lrn: [''],
-    firstname: [''],
-    lastname: [''],
+    enrolling_for: [''],
+    first_name: [''],
+    last_name: [''],
     middle_name: [''],
     suffix: [''],
     gender: [''],
@@ -72,9 +85,37 @@ export class StudentInfoComponent implements OnInit {
     lastgradecompl: [''],
     elementary: [''],
     elementary_yr: [''],
-    lastschool: [''],
+    last_school: [''],
     lastschool_yr: [''],
   });
+
+  showPreview(event: Event) {
+    const inputElement = event.target as HTMLInputElement;
+    if (inputElement.files && inputElement.files.length > 0) {
+      const file = inputElement.files[0];
+
+      const reader = new FileReader();
+      reader.onload = () => {
+        this.imageURL = reader.result as string;
+      };
+      reader.readAsDataURL(file);
+      this.enrollForm.patchValue({
+        profile: file,
+      });
+    }
+  }
+
+  ngAfterViewInit() {
+    this.signaturePad = new SignaturePad(this.canvasEl.nativeElement);
+  }
+
+  startDrawing(event: Event) {}
+
+  moved(event: Event) {}
+
+  clearPad() {
+    this.signaturePad.clear();
+  }
 
   ngOnInit(): void {
     this.uploadForm = this.formBuilder.group({
@@ -88,15 +129,17 @@ export class StudentInfoComponent implements OnInit {
       return;
     }
 
-    this.getLoggedInUser(auth_token).subscribe(
-      (data) => {
+    this.getLoggedInUser(auth_token).subscribe({
+      next: (data) => {
         this.loggedInUserData = data;
-        console.log(this.loggedInUserData);
+        // console.log(this.loggedInUserData);
+        // console.log(this.loggedInUserData.data[0]?.stud_id);
+        this.studid = this.loggedInUserData.data[0]?.stud_id;
       },
-      (error) => {
+      error: (error: HttpErrorResponse) => {
         console.error('Error:', error);
-      }
-    );
+      },
+    });
   }
 
   getLoggedInUser(auth_token: string): Observable<any> {
@@ -111,6 +154,10 @@ export class StudentInfoComponent implements OnInit {
 
   loading = false;
 
+  updateInfoDIalog() {
+    this.showupdateDIalog = true;
+  }
+
   updateInfos() {
     this.loading = true;
 
@@ -118,6 +165,11 @@ export class StudentInfoComponent implements OnInit {
       console.error('Form group not initialized.');
       return;
     }
+
+    // this.enrollForm.get('studid')?.setValue(this.studid);
+    this.enrollForm.patchValue({
+      studid: this.loggedInUserData.data[0]?.stud_id,
+    });
 
     const submitdata = new FormData();
 
@@ -131,8 +183,8 @@ export class StudentInfoComponent implements OnInit {
       this.enrollForm.controls['lastgradecompl'].value
     );
     submitdata.append(
-      'lastschool',
-      this.enrollForm.controls['lastschool'].value
+      'last_school',
+      this.enrollForm.controls['last_school'].value
     );
     submitdata.append(
       'lastschool_yr',
@@ -151,8 +203,15 @@ export class StudentInfoComponent implements OnInit {
       this.enrollForm.controls['special_program'].value
     );
     submitdata.append('lrn', this.enrollForm.controls['lrn'].value);
-    submitdata.append('firstname', this.enrollForm.controls['firstname'].value);
-    submitdata.append('lastname', this.enrollForm.controls['lastname'].value);
+    submitdata.append(
+      'enrolling_for',
+      this.enrollForm.controls['enrolling_for'].value
+    );
+    submitdata.append(
+      'first_name',
+      this.enrollForm.controls['first_name'].value
+    );
+    submitdata.append('last_name', this.enrollForm.controls['last_name'].value);
     submitdata.append(
       'middle_name',
       this.enrollForm.controls['middle_name'].value
@@ -245,20 +304,24 @@ export class StudentInfoComponent implements OnInit {
     );
     submitdata.append('signature', this.enrollForm.controls['signature'].value);
 
-    console.log(submitdata);
+    this.EnrollmentSHSControllers.updatestudent(
+      this.enrollForm.value
+    ).subscribe({
+      next: (res) => {
+        console.log(res);
+        setTimeout(() => {
+          this.messageService.add({
+            severity: 'success',
+            summary: 'Updated',
+            detail: 'Successfully!',
+          });
+        }, 1000);
 
-    // this.EnrollmentSHSControllers.createEnrollmentSHS(submitdata).subscribe(
-    //   (e) => {
-    //     this.studata = e;
-    //     if (this.studata['user'] == 'success') {
-    //       window.location.reload();
-    //       Swal.fire({
-    //         title: 'Success',
-    //         text: 'Changes Saved',
-    //         icon: 'success',
-    //       });
-    //     }
-    //   }
-    // );
+        this.router.navigate(['/student/information']);
+      },
+      error: (error: HttpErrorResponse) => {
+        console.log(error.message);
+      },
+    });
   }
 }
