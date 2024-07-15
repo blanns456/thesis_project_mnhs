@@ -1,5 +1,5 @@
 .background {
-  background-image: url("../../../../src/assets/images/student-d.png");
+  background: #4a8515;
   background-size: cover;
   background-position: center center;
   background-attachment: fixed;
@@ -10,7 +10,6 @@
 }
 canvas {
   background: white;
-  width: 155%;
 }
 
 .q-link {
@@ -26,6 +25,6 @@ canvas {
   background-color: whitesmoke;
 }
 
-.info-holder{
-  margin-top: 77rem !important;
+.info-holder {
+  margin-top: 109rem !important;
 }

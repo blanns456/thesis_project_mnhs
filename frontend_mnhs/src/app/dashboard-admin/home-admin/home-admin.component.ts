@@ -13,11 +13,11 @@ export class HomeAdminComponent {
     var myChart = new Chart('myChart', {
       type: 'bar',
       data: {
-        labels: ['JAN', 'FEB', 'MAR', 'APR', 'MAY', 'JUN'],
+        labels: ['2024', '2025', '2026', '2027', '2028', '2029'],
         datasets: [
           {
             label: "No. of Student's Enrolled",
-            data: [12, 19, 3, 5, 2, 3],
+            data: [12, 0, 0, 0, 0, 0],
             backgroundColor: [
               'rgba(255, 99, 132, 0.2)',
               'rgba(54, 162, 235, 0.2)',

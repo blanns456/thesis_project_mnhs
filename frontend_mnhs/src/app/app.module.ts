@@ -23,6 +23,17 @@ import { StudentInfoComponent } from './dashboard-student/student-info/student-i
 import { AccountSettingsComponent } from './dashboard-student/account-settings/account-settings.component';
 import { PendingStudentsComponent } from './dashboard-admin/pending-students/pending-students.component';
 import { DeclineStudentsComponent } from './dashboard-admin/decline-students/decline-students.component';
+import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
+
+import { InputOtpModule } from 'primeng/inputotp';
+import { ToastModule } from 'primeng/toast';
+import { ButtonModule } from 'primeng/button';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MessagesModule } from 'primeng/messages';
+import { MessageService } from 'primeng/api';
+import { PasswordModule } from 'primeng/password';
+import { ConfirmDialogModule } from 'primeng/confirmdialog';
+import { DialogModule } from 'primeng/dialog';
 
 @NgModule({
   declarations: [
@@ -45,6 +56,7 @@ import { DeclineStudentsComponent } from './dashboard-admin/decline-students/dec
     AccountSettingsComponent,
     PendingStudentsComponent,
     DeclineStudentsComponent,
+    ForgotPasswordComponent,
   ],
   imports: [
     BrowserModule,
@@ -52,8 +64,16 @@ import { DeclineStudentsComponent } from './dashboard-admin/decline-students/dec
     HttpClientModule,
     ReactiveFormsModule,
     FormsModule,
+    InputOtpModule,
+    ToastModule,
+    ButtonModule,
+    BrowserAnimationsModule,
+    MessagesModule,
+    PasswordModule,
+    ConfirmDialogModule,
+    DialogModule,
   ],
-  providers: [],
+  providers: [MessageService],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
