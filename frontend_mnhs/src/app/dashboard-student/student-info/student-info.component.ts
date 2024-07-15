@@ -11,6 +11,7 @@ import Swal from 'sweetalert2';
 import { MessageService } from 'primeng/api';
 import { error } from 'jquery';
 import SignaturePad from 'signature_pad';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-student-info',
@@ -24,7 +25,6 @@ export class StudentInfoComponent implements OnInit {
   uploadForm!: FormGroup;
   signatureImg: any;
   studata: any;
-  router: any;
   showupdateDIalog: boolean = false;
   studid: any;
   // enrollForm: FormGroup;
@@ -35,7 +35,8 @@ export class StudentInfoComponent implements OnInit {
     private http: HttpClient,
     private messageService: MessageService,
     private EnrollmentSHSControllers: EnrollmentSHSControllers,
-    private formBuilder: FormBuilder
+    private formBuilder: FormBuilder,
+    private router: Router
   ) {}
 
   enrollForm: FormGroup = this.formBuilder.group({
@@ -132,7 +133,7 @@ export class StudentInfoComponent implements OnInit {
     this.getLoggedInUser(auth_token).subscribe({
       next: (data) => {
         this.loggedInUserData = data;
-        // console.log(this.loggedInUserData);
+        console.log(this.loggedInUserData);
         // console.log(this.loggedInUserData.data[0]?.stud_id);
         this.studid = this.loggedInUserData.data[0]?.stud_id;
       },
@@ -159,6 +160,9 @@ export class StudentInfoComponent implements OnInit {
   }
 
   updateInfos() {
+    const base64 = this.signaturePad.toDataURL();
+    this.signatureImg = base64;
+    this.signatureNeeded = this.signaturePad.isEmpty();
     this.loading = true;
 
     if (!this.enrollForm) {
@@ -168,14 +172,19 @@ export class StudentInfoComponent implements OnInit {
 
     // this.enrollForm.get('studid')?.setValue(this.studid);
     this.enrollForm.patchValue({
+      signature: this.signatureImg,
       studid: this.loggedInUserData.data[0]?.stud_id,
     });
 
     const submitdata = new FormData();
 
     submitdata.append(
-      'imagefilename',
-      this.enrollForm.controls['profile'].value
+      'studid',
+      this.enrollForm.controls['studid'].value ?? ''
+    );
+    submitdata.append(
+      'profile',
+      this.enrollForm.controls['profile'].value ?? ''
     );
     submitdata.append('schoolID', this.enrollForm.controls['schoolID'].value);
     submitdata.append(
@@ -193,13 +202,9 @@ export class StudentInfoComponent implements OnInit {
     submitdata.append('semester', this.enrollForm.controls['semester'].value);
     submitdata.append('track', this.enrollForm.controls['track'].value);
     submitdata.append('strand', this.enrollForm.controls['strand'].value);
-    submitdata.append(
-      'gradelevel',
-      this.enrollForm.controls['gradelevel'].value
-    );
     // submitdata.append('major', this.enrollForm.controls['major'].value);
     submitdata.append(
-      'major',
+      'special_program',
       this.enrollForm.controls['special_program'].value
     );
     submitdata.append('lrn', this.enrollForm.controls['lrn'].value);
@@ -304,20 +309,18 @@ export class StudentInfoComponent implements OnInit {
     );
     submitdata.append('signature', this.enrollForm.controls['signature'].value);
 
-    this.EnrollmentSHSControllers.updatestudent(
-      this.enrollForm.value
-    ).subscribe({
+    this.EnrollmentSHSControllers.updatestudent(submitdata).subscribe({
       next: (res) => {
         console.log(res);
+        this.messageService.add({
+          severity: 'success',
+          summary: 'Updated',
+          detail: 'Successfully!',
+        });
         setTimeout(() => {
-          this.messageService.add({
-            severity: 'success',
-            summary: 'Updated',
-            detail: 'Successfully!',
-          });
+        this.showupdateDIalog = false;
+          window.location.reload();
         }, 1000);
-
-        this.router.navigate(['/student/information']);
       },
       error: (error: HttpErrorResponse) => {
         console.log(error.message);

@@ -1,5 +1,6 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Component } from '@angular/core';
+import { MessageService } from 'primeng/api';
 
 @Component({
   selector: 'app-account-settings',
@@ -13,7 +14,7 @@ export class AccountSettingsComponent {
   newPasswordConfirmation: any;
   errorMessages: { [key: string]: string } = {}; // Add this property
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private messageService: MessageService,) { }
 
   ngOnInit() {
     const authToken = localStorage.getItem('token');
@@ -54,6 +55,14 @@ export class AccountSettingsComponent {
     this.http.post('http://127.0.0.1:8000/api/reset/password', data, { headers })
       .subscribe(
         response => {
+          this.messageService.add({
+            severity: 'success',
+            summary: 'Success',
+            detail: 'Password reset successful!',
+          });
+          setTimeout(() => {
+            window.location.reload();
+            }, 1000);
           console.log('Password reset successful!');
           this.errorMessages = {}; // Clear the error messages
           // Handle success response

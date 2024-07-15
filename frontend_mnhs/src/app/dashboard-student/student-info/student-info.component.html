@@ -3,11 +3,13 @@
   <app-sidebar></app-sidebar>
   <div class="main-content">
     <app-navbar></app-navbar>
+    <p-toast position="top-center"/>
     <div
       class="container-fluid vh-100 d-flex justify-content-center align-items-center flex-column q-link"
     >
       <div class="d-flex justify-content-evenly my-5 info info-holder">
         <div class="container-fluid">
+          <h2>S.Y. 2023-2024</h2>
           <div class="d-flex justify-content-end p-2">
             <button
               type="submit"
@@ -801,7 +803,7 @@
   [breakpoints]="{ '1199px': '75vw', '575px': '90vw' }"
   [maximizable]="true"
 >
-  <form [formGroup]="enrollForm" (ngSubmit)="updateInfos()">
+  <form [formGroup]="enrollForm" (ngSubmit)="updateInfos()" enctype="multipart/form-data">
     <input type="hidden" formControlName="studid" />
     <div
       *ngIf="
@@ -822,7 +824,6 @@
               <small class="text-danger">*</small>
             </label>
             <input
-              [value]="loggedInUserData.data[0].school_id"
               type="text"
               formControlName="schoolID"
               class="form-control"
@@ -839,7 +840,6 @@
               <small class="text-danger">*</small>
             </label>
             <input
-              [value]="loggedInUserData.data[0].lastgrade_completed"
               type="text"
               class="form-control"
               formControlName="lastgradecompl"
@@ -868,7 +868,6 @@
             <small class="text-danger">*</small>
           </label>
           <input
-            [value]="loggedInUserData?.data[0]?.semester"
             type="text"
             class="form-control"
             formControlName="semester"
@@ -880,7 +879,6 @@
           <div class="mb-3">
             <label for="track" class="form-label"> Track </label>
             <input
-              [value]="loggedInUserData?.data[0]?.track"
               type="text"
               class="form-control"
               name="track"
@@ -897,7 +895,6 @@
               <small class="text-danger">*</small>
             </label>
             <input
-              [value]="loggedInUserData?.data[0]?.strand"
               type="text"
               class="form-control"
               name="strand"
@@ -917,7 +914,6 @@
             Grade Level to Enroll
           </label>
           <input
-            [value]="loggedInUserData?.data[0]?.grade_level"
             name="enrolling_for"
             id="enrolling_for"
             formControlName="enrolling_for"
@@ -931,7 +927,6 @@
             JHS Special Program Offered
           </label>
           <input
-            [value]="loggedInUserData?.data[0]?.special_program"
             name="major"
             formControlName="special_program"
             id="major"
@@ -943,7 +938,6 @@
         <div class="mb-3">
           <label for="lrn" class="form-label"> LRN Number </label>
           <input
-            [value]="loggedInUserData?.data[0]?.LRN"
             type="text"
             class="form-control"
             formControlName="lrn"
@@ -958,7 +952,6 @@
         <div class="mb-3">
           <label for="first_name" class="form-label"> First Name </label>
           <input
-            [value]="loggedInUserData?.data[0]?.firstname"
             type="text"
             class="form-control"
             name="first_name"
@@ -972,7 +965,6 @@
         <div class="mb-3">
           <label for="last_name" class="form-label"> Last Name </label>
           <input
-            [value]="loggedInUserData?.data[0]?.lastname"
             type="text"
             class="form-control"
             formControlName="last_name"
@@ -988,7 +980,6 @@
             Middle Name (Optional)
           </label>
           <input
-            [value]="loggedInUserData?.data[0]?.middlename"
             type="text"
             class="form-control"
             formControlName="middle_name"
@@ -1006,7 +997,6 @@
             <div class="mb-3">
               <label for="suffix" class="form-label"> Suffix (Optional) </label>
               <input
-                [value]="loggedInUserData?.data[0]?.suffix"
                 type="text"
                 class="form-control"
                 name="suffix"
@@ -1020,7 +1010,6 @@
             <div class="mb-3">
               <label for="gender" class="form-label"> Gender </label>
               <select
-                [value]="loggedInUserData?.data[0]?.gender"
                 name="gender"
                 id="gender"
                 formControlName="gender"
@@ -1041,7 +1030,6 @@
             Place of Birth (Municipality/City)
           </label>
           <input
-            [value]="loggedInUserData?.data[0]?.birth_place"
             type="text"
             class="form-control"
             formControlName="birth_place"
@@ -1057,7 +1045,6 @@
             <div class="col-6">
               <label for="birthdate" class="form-label"> Birth Date </label>
               <input
-                [value]="loggedInUserData?.data[0]?.birthdate"
                 type="date"
                 class="form-control"
                 formControlName="birthdate"
@@ -1069,7 +1056,6 @@
             <div class="col-6">
               <label for="age" class="form-label"> Age </label>
               <input
-                [value]="loggedInUserData?.data[0]?.age"
                 type="text"
                 class="form-control"
                 formControlName="age"
@@ -1086,7 +1072,6 @@
         <div class="mb-3">
           <label for="email" class="form-label"> Email </label>
           <input
-            [value]="loggedInUserData?.data[0]?.email"
             type="email"
             class="form-control"
             name="email"
@@ -1100,7 +1085,6 @@
         <div class="mb-3">
           <label for="mobile_number" class="form-label"> Mobile Number </label>
           <input
-            [value]="loggedInUserData?.data[0]?.mobile_number"
             type="text"
             class="form-control"
             formControlName="mobile_number"
@@ -1116,7 +1100,6 @@
             Mother Tounge (Optional)
           </label>
           <input
-            [value]="loggedInUserData?.data[0]?.m_tounge"
             type="text"
             class="form-control text-uppercase"
             name="m_tounge"
@@ -1135,7 +1118,6 @@
           </label>
           <br />
           <input
-            [value]="loggedInUserData?.data[0]?.ip"
             type="text"
             id="ip"
             class="form-control"
@@ -1155,7 +1137,6 @@
           <br />
           <br />
           <input
-            [value]="loggedInUserData?.data[0]?.pantawid"
             type="text"
             id="pantawid"
             name="pantawid"
@@ -1175,7 +1156,6 @@
             Permanent Address
           </label>
           <input
-            [value]="loggedInUserData?.data[0]?.home_address"
             name="home_address"
             id="home_address"
             formControlName="home_address"
@@ -1190,7 +1170,6 @@
             Current Address
           </label>
           <input
-            [value]="loggedInUserData?.data[0]?.present_address"
             name="present_address"
             id="present_address"
             formControlName="present_address"
@@ -1209,7 +1188,6 @@
             Elementary School Name
           </label>
           <input
-            [value]="loggedInUserData?.data[0]?.school_elem"
             type="text"
             class="form-control"
             formControlName="elementary"
@@ -1225,7 +1203,6 @@
             Elementary School Year
           </label>
           <input
-            [value]="loggedInUserData?.data[0]?.elem_schoolyr"
             type="text"
             class="form-control"
             formControlName="elementary_yr"
@@ -1250,7 +1227,6 @@
               Junior High School Name
             </label>
             <input
-              [value]="loggedInUserData?.data[0]?.school_jhs"
               type="text"
               class="form-control"
               formControlName="jhs"
@@ -1266,7 +1242,6 @@
               Juinor High School Year
             </label>
             <input
-              [value]="loggedInUserData?.data[0]?.jhs_schoolyr"
               type="text"
               class="form-control"
               formControlName="jhs_yr"
@@ -1293,7 +1268,6 @@
               Last School Name
             </label>
             <input
-              [value]="loggedInUserData?.data[0]?.last_school"
               type="text"
               class="form-control"
               formControlName="last_school"
@@ -1309,7 +1283,6 @@
               Last School Year
             </label>
             <input
-              [value]="loggedInUserData?.data[0]?.last_schoolyr"
               type="text"
               class="form-control"
               formControlName="last_schoolyr"
@@ -1331,7 +1304,6 @@
         <div class="mb-3">
           <label for="father_lastName" class="form-label"> Last Name </label>
           <input
-            [value]="loggedInUserData?.data[0]?.father_lastName"
             type="text"
             class="form-control text-uppercase"
             formControlName="father_lastName"
@@ -1344,7 +1316,6 @@
         <div class="mb-3">
           <label for="father_firstName" class="form-label"> First Name </label>
           <input
-            [value]="loggedInUserData?.data[0]?.father_firstName"
             type="text"
             class="form-control text-uppercase"
             formControlName="father_firstName"
@@ -1359,7 +1330,6 @@
             Middle Name
           </label>
           <input
-            [value]="loggedInUserData?.data[0]?.father_middleName"
             type="text"
             class="form-control text-uppercase"
             formControlName="father_middleName"
@@ -1372,7 +1342,6 @@
         <div class="mb-3">
           <label for="father_number" class="form-label"> Contact Number </label>
           <input
-            [value]="loggedInUserData?.data[0]?.father_number"
             type="text"
             class="form-control text-uppercase"
             formControlName="father_number"
@@ -1391,7 +1360,6 @@
         <div class="mb-3">
           <label for="mother_lastName" class="form-label"> Last Name </label>
           <input
-            [value]="loggedInUserData?.data[0]?.mother_lastName"
             type="text"
             class="form-control text-uppercase"
             formControlName="mother_lastName"
@@ -1404,7 +1372,6 @@
         <div class="mb-3">
           <label for="mother_firstName" class="form-label"> First Name </label>
           <input
-            [value]="loggedInUserData?.data[0]?.mother_firstName"
             type="text"
             class="form-control text-uppercase"
             formControlName="mother_firstName"
@@ -1419,7 +1386,6 @@
             Middle Name
           </label>
           <input
-            [value]="loggedInUserData?.data[0]?.mother_middleName"
             type="text"
             class="form-control text-uppercase"
             formControlName="mother_middleName"
@@ -1432,7 +1398,6 @@
         <div class="mb-3">
           <label for="mother_number" class="form-label"> Contact Number </label>
           <input
-            [value]="loggedInUserData?.data[0]?.mother_number"
             type="text"
             class="form-control text-uppercase"
             name="mother_number"
@@ -1451,7 +1416,6 @@
         <div class="mb-3">
           <label for="guardian_lastName" class="form-label"> Last Name </label>
           <input
-            [value]="loggedInUserData?.data[0]?.guardian_lastName"
             type="text"
             class="form-control text-uppercase"
             formControlName="guardian_lastName"
@@ -1466,7 +1430,6 @@
             First Name
           </label>
           <input
-            [value]="loggedInUserData?.data[0]?.guardian_firstName"
             type="text"
             class="form-control text-uppercase"
             formControlName="guardian_firstName"
@@ -1481,7 +1444,6 @@
             Middle Name
           </label>
           <input
-            [value]="loggedInUserData?.data[0]?.guardian_middleName"
             type="text"
             class="form-control text-uppercase"
             formControlName="guardian_middleName"
@@ -1496,7 +1458,6 @@
             Contact Number
           </label>
           <input
-            [value]="loggedInUserData?.data[0]?.guardian_number"
             type="text"
             class="form-control text-uppercase"
             formControlName="guardian_number"
@@ -1517,6 +1478,7 @@
           <input
             type="file"
             accept="image/*"
+            capture="user"
             class="form-control mb-3"
             name="profile"
             id="profile"
@@ -1566,7 +1528,8 @@
     </div>
     <div class="d-flex justify-content-end">
       <!-- <p-button type="submit" label="Submit"></p-button> -->
-      <button type="submit" class="btn btn-success">Submit</button>
+      <button pButton 
+      pRipple type="submit" class="p-button-success">Submit</button>
     </div>
   </form>
 </p-dialog>

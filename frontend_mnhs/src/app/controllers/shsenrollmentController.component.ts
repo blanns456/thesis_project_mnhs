@@ -26,6 +26,6 @@ export class EnrollmentSHSControllers {
 
   public updatestudent(data: FormData) {
     console.log(data);
-    return this.http.post(this.Root_URL + 'editstudents', data);
+    return this.http.post(this.Root_URL + 'editstudents', data, this.httpOptions);
   }
 }
