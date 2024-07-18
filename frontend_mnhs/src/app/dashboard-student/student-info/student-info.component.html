@@ -3,6 +3,7 @@
   <app-sidebar></app-sidebar>
   <div class="main-content">
     <app-navbar></app-navbar>
+    <p-toast />
     <div
       class="container-fluid vh-100 d-flex justify-content-center align-items-center flex-column q-link"
     >
@@ -14,7 +15,7 @@
               class="btn btn-success"
               (click)="updateInfoDIalog()"
             >
-              Update Info
+              Edit Information
             </button>
           </div>
           <form>
@@ -43,7 +44,6 @@
                       class="form-control"
                       name="schoolID"
                       id="schoolID"
-                      required
                       readonly
                     />
                   </div>
@@ -60,7 +60,40 @@
                       class="form-control"
                       name="lastgradecompl"
                       id="lastgradecompl"
-                      required
+                      readonly
+                    />
+                  </div>
+                </div>
+                <div class="col-6">
+                  <div class="mb-3">
+                    <label for="lastschool" class="form-label"
+                      >Last School Attended<small class="text-danger"
+                        >*</small
+                      ></label
+                    >
+                    <input
+                      [value]="loggedInUserData.data[0]?.last_school"
+                      type="text"
+                      class="form-control"
+                      name="lastschool"
+                      id="lastschool"
+                      readonly
+                    />
+                  </div>
+                </div>
+                <div class="col-6">
+                  <div class="mb-3">
+                    <label for="lastschool_yr" class="form-label"
+                      >Last School Year Attended<small class="text-danger"
+                        >*</small
+                      ></label
+                    >
+                    <input
+                      [value]="loggedInUserData.data[0]?.last_schoolyr"
+                      type="text"
+                      class="form-control"
+                      name="lastschool_yr"
+                      id="lastschool_yr"
                       readonly
                     />
                   </div>
@@ -141,7 +174,15 @@
                   />
                 </div>
               </div>
-              <div class="col-4">
+              <div
+                class="col-4"
+                *ngIf="
+                  loggedInUserData?.data &&
+                  loggedInUserData.data.length > 0 &&
+                  (loggedInUserData.data[0].status === 'jhs' ||
+                    loggedInUserData.data[0].status === 'jhs_transferee')
+                "
+              >
                 <div class="mb-3">
                   <label for="major" class="form-label">
                     JHS Special Program Offered
@@ -338,7 +379,7 @@
                   <input
                     [value]="loggedInUserData?.data[0]?.m_tounge"
                     type="text"
-                    class="form-control text-uppercase"
+                    class="form-control"
                     name="m_tounge"
                     id="m_tounge"
                     readonly
@@ -462,7 +503,8 @@
               *ngIf="
                 loggedInUserData?.data &&
                 loggedInUserData.data.length > 0 &&
-                loggedInUserData.data[0].status === 'shs'
+                (loggedInUserData.data[0].status === 'shs' ||
+                  loggedInUserData.data[0].status === 'shs_transferee')
               "
             >
               <div class="row">
@@ -500,49 +542,6 @@
                 </div>
               </div>
             </div>
-            <div
-              *ngIf="
-                loggedInUserData?.data &&
-                loggedInUserData.data.length > 0 &&
-                (loggedInUserData.data[0].status === 'jhs_transferee' ||
-                  loggedInUserData.data[0].status === 'shs_transferee')
-              "
-            >
-              <div class="row">
-                <div class="col-6">
-                  <div class="mb-3">
-                    <label for="last_school" class="form-label">
-                      Last School Name
-                    </label>
-                    <input
-                      [value]="loggedInUserData?.data[0]?.last_school"
-                      type="text"
-                      class="form-control"
-                      name="last_school"
-                      id="last_school"
-                      required
-                      readonly
-                    />
-                  </div>
-                </div>
-                <div class="col-6">
-                  <div class="mb-3">
-                    <label for="last_schoolyr" class="form-label">
-                      Last School Year
-                    </label>
-                    <input
-                      [value]="loggedInUserData?.data[0]?.last_schoolyr"
-                      type="text"
-                      class="form-control"
-                      name="last_schoolyr"
-                      id="last_schoolyr"
-                      required
-                      readonly
-                    />
-                  </div>
-                </div>
-              </div>
-            </div>
             <hr />
             <h5>Parents Information</h5>
             <div class="row">
@@ -557,7 +556,7 @@
                   <input
                     [value]="loggedInUserData?.data[0]?.father_lastName"
                     type="text"
-                    class="form-control text-uppercase"
+                    class="form-control"
                     name="father_lastName"
                     id="father_lastName"
                     readonly
@@ -572,7 +571,7 @@
                   <input
                     [value]="loggedInUserData?.data[0]?.father_firstName"
                     type="text"
-                    class="form-control text-uppercase"
+                    class="form-control"
                     name="father_firstName"
                     id="father_firstName"
                     readonly
@@ -587,7 +586,7 @@
                   <input
                     [value]="loggedInUserData?.data[0]?.father_middleName"
                     type="text"
-                    class="form-control text-uppercase"
+                    class="form-control"
                     name="father_middleName"
                     id="father_middleName"
                     readonly
@@ -602,7 +601,7 @@
                   <input
                     [value]="loggedInUserData?.data[0]?.father_number"
                     type="text"
-                    class="form-control text-uppercase"
+                    class="form-control"
                     name="father_number"
                     id="father_number"
                     readonly
@@ -623,7 +622,7 @@
                   <input
                     [value]="loggedInUserData?.data[0]?.mother_lastName"
                     type="text"
-                    class="form-control text-uppercase"
+                    class="form-control"
                     name="mother_lastName"
                     id="mother_lastName"
                     readonly
@@ -638,7 +637,7 @@
                   <input
                     [value]="loggedInUserData?.data[0]?.mother_firstName"
                     type="text"
-                    class="form-control text-uppercase"
+                    class="form-control"
                     name="mother_firstName"
                     id="mother_firstName"
                     readonly
@@ -653,7 +652,7 @@
                   <input
                     [value]="loggedInUserData?.data[0]?.mother_middleName"
                     type="text"
-                    class="form-control text-uppercase"
+                    class="form-control"
                     name="mother_middleName"
                     id="mother_middleName"
                     readonly
@@ -668,7 +667,7 @@
                   <input
                     [value]="loggedInUserData?.data[0]?.mother_number"
                     type="text"
-                    class="form-control text-uppercase"
+                    class="form-control"
                     name="mother_number"
                     id="mother_number"
                     readonly
@@ -689,7 +688,7 @@
                   <input
                     [value]="loggedInUserData?.data[0]?.guardian_lastName"
                     type="text"
-                    class="form-control text-uppercase"
+                    class="form-control"
                     name="guardian_lastName"
                     id="guardian_lastName"
                     readonly
@@ -704,7 +703,7 @@
                   <input
                     [value]="loggedInUserData?.data[0]?.guardian_firstName"
                     type="text"
-                    class="form-control text-uppercase"
+                    class="form-control"
                     name="guardian_firstName"
                     id="guardian_firstName"
                     readonly
@@ -719,7 +718,7 @@
                   <input
                     [value]="loggedInUserData?.data[0]?.guardian_middleName"
                     type="text"
-                    class="form-control text-uppercase"
+                    class="form-control"
                     name="guardian_middleName"
                     id="guardian_middleName"
                     readonly
@@ -734,7 +733,7 @@
                   <input
                     [value]="loggedInUserData?.data[0]?.guardian_number"
                     type="text"
-                    class="form-control text-uppercase"
+                    class="form-control"
                     name="guardian_number"
                     id="guardian_number"
                     readonly
@@ -794,14 +793,14 @@
 </div>
 
 <p-dialog
-  header="Header"
+  header="Edit Information"
   [modal]="true"
   [(visible)]="showupdateDIalog"
   [style]="{ width: '80rem' }"
   [breakpoints]="{ '1199px': '75vw', '575px': '90vw' }"
   [maximizable]="true"
 >
-  <form [formGroup]="enrollForm" (ngSubmit)="updateInfos()">
+  <form [formGroup]="enrollForm">
     <input type="hidden" formControlName="studid" />
     <div
       *ngIf="
@@ -822,7 +821,7 @@
               <small class="text-danger">*</small>
             </label>
             <input
-              [value]="loggedInUserData.data[0].school_id"
+              [value]="loggedInUserData.data[0]?.school_id"
               type="text"
               formControlName="schoolID"
               class="form-control"
@@ -839,7 +838,7 @@
               <small class="text-danger">*</small>
             </label>
             <input
-              [value]="loggedInUserData.data[0].lastgrade_completed"
+              [value]="loggedInUserData.data[0]?.lastgrade_completed"
               type="text"
               class="form-control"
               formControlName="lastgradecompl"
@@ -847,6 +846,40 @@
               id="lastgradecompl"
               required
             />
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-6">
+            <div class="mb-3">
+              <label for="last_school" class="form-label">
+                Last School Name
+              </label>
+              <input
+                [value]="loggedInUserData?.data[0]?.last_school"
+                type="text"
+                class="form-control"
+                formControlName="last_school"
+                name="last_school"
+                id="last_school"
+                required
+              />
+            </div>
+          </div>
+          <div class="col-6">
+            <div class="mb-3">
+              <label for="last_schoolyr" class="form-label">
+                Last School Year
+              </label>
+              <input
+                [value]="loggedInUserData?.data[0]?.last_schoolyr"
+                type="text"
+                class="form-control"
+                formControlName="last_schoolyr"
+                name="last_schoolyr"
+                id="last_schoolyr"
+                required
+              />
+            </div>
           </div>
         </div>
       </div>
@@ -925,7 +958,15 @@
           />
         </div>
       </div>
-      <div class="col-4">
+      <div
+        class="col-4"
+        *ngIf="
+          loggedInUserData?.data &&
+          loggedInUserData.data.length > 0 &&
+          (loggedInUserData.data[0].status === 'jhs' ||
+            loggedInUserData.data[0].status === 'jhs_transferee')
+        "
+      >
         <div class="mb-3">
           <label for="major" class="form-label">
             JHS Special Program Offered
@@ -1118,7 +1159,7 @@
           <input
             [value]="loggedInUserData?.data[0]?.m_tounge"
             type="text"
-            class="form-control text-uppercase"
+            class="form-control"
             name="m_tounge"
             formControlName="m_tounge"
             id="m_tounge"
@@ -1201,8 +1242,8 @@
       </div>
     </div>
     <hr />
+    <h5>Educational Record</h5>
     <div class="row">
-      <h5>Educational Record</h5>
       <div class="col-6">
         <div class="mb-3">
           <label for="elementary" class="form-label">
@@ -1240,7 +1281,8 @@
       *ngIf="
         loggedInUserData?.data &&
         loggedInUserData.data.length > 0 &&
-        loggedInUserData.data[0].status === 'shs'
+        (loggedInUserData.data[0].status === 'shs' ||
+          loggedInUserData.data[0].status === 'shs_transferee')
       "
     >
       <div class="row">
@@ -1278,49 +1320,6 @@
         </div>
       </div>
     </div>
-    <div
-      *ngIf="
-        loggedInUserData?.data &&
-        loggedInUserData.data.length > 0 &&
-        (loggedInUserData.data[0].status === 'jhs_transferee' ||
-          loggedInUserData.data[0].status === 'shs_transferee')
-      "
-    >
-      <div class="row">
-        <div class="col-6">
-          <div class="mb-3">
-            <label for="last_school" class="form-label">
-              Last School Name
-            </label>
-            <input
-              [value]="loggedInUserData?.data[0]?.last_school"
-              type="text"
-              class="form-control"
-              formControlName="last_school"
-              name="last_school"
-              id="last_school"
-              required
-            />
-          </div>
-        </div>
-        <div class="col-6">
-          <div class="mb-3">
-            <label for="last_schoolyr" class="form-label">
-              Last School Year
-            </label>
-            <input
-              [value]="loggedInUserData?.data[0]?.last_schoolyr"
-              type="text"
-              class="form-control"
-              formControlName="last_schoolyr"
-              name="last_schoolyr"
-              id="last_schoolyr"
-              required
-            />
-          </div>
-        </div>
-      </div>
-    </div>
     <hr />
     <h5>Parents Information</h5>
     <div class="row">
@@ -1333,7 +1332,7 @@
           <input
             [value]="loggedInUserData?.data[0]?.father_lastName"
             type="text"
-            class="form-control text-uppercase"
+            class="form-control"
             formControlName="father_lastName"
             name="father_lastName"
             id="father_lastName"
@@ -1346,7 +1345,7 @@
           <input
             [value]="loggedInUserData?.data[0]?.father_firstName"
             type="text"
-            class="form-control text-uppercase"
+            class="form-control"
             formControlName="father_firstName"
             name="father_firstName"
             id="father_firstName"
@@ -1361,7 +1360,7 @@
           <input
             [value]="loggedInUserData?.data[0]?.father_middleName"
             type="text"
-            class="form-control text-uppercase"
+            class="form-control"
             formControlName="father_middleName"
             name="father_middleName"
             id="father_middleName"
@@ -1374,7 +1373,7 @@
           <input
             [value]="loggedInUserData?.data[0]?.father_number"
             type="text"
-            class="form-control text-uppercase"
+            class="form-control"
             formControlName="father_number"
             name="father_number"
             id="father_number"
@@ -1393,7 +1392,7 @@
           <input
             [value]="loggedInUserData?.data[0]?.mother_lastName"
             type="text"
-            class="form-control text-uppercase"
+            class="form-control"
             formControlName="mother_lastName"
             name="mother_lastName"
             id="mother_lastName"
@@ -1406,7 +1405,7 @@
           <input
             [value]="loggedInUserData?.data[0]?.mother_firstName"
             type="text"
-            class="form-control text-uppercase"
+            class="form-control"
             formControlName="mother_firstName"
             name="mother_firstName"
             id="mother_firstName"
@@ -1421,7 +1420,7 @@
           <input
             [value]="loggedInUserData?.data[0]?.mother_middleName"
             type="text"
-            class="form-control text-uppercase"
+            class="form-control"
             formControlName="mother_middleName"
             name="mother_middleName"
             id="mother_middleName"
@@ -1434,7 +1433,7 @@
           <input
             [value]="loggedInUserData?.data[0]?.mother_number"
             type="text"
-            class="form-control text-uppercase"
+            class="form-control"
             name="mother_number"
             formControlName="mother_number"
             id="mother_number"
@@ -1453,7 +1452,7 @@
           <input
             [value]="loggedInUserData?.data[0]?.guardian_lastName"
             type="text"
-            class="form-control text-uppercase"
+            class="form-control"
             formControlName="guardian_lastName"
             name="guardian_lastName"
             id="guardian_lastName"
@@ -1468,7 +1467,7 @@
           <input
             [value]="loggedInUserData?.data[0]?.guardian_firstName"
             type="text"
-            class="form-control text-uppercase"
+            class="form-control"
             formControlName="guardian_firstName"
             name="guardian_firstName"
             id="guardian_firstName"
@@ -1483,7 +1482,7 @@
           <input
             [value]="loggedInUserData?.data[0]?.guardian_middleName"
             type="text"
-            class="form-control text-uppercase"
+            class="form-control"
             formControlName="guardian_middleName"
             name="guardian_middleName"
             id="guardian_middleName"
@@ -1498,7 +1497,7 @@
           <input
             [value]="loggedInUserData?.data[0]?.guardian_number"
             type="text"
-            class="form-control text-uppercase"
+            class="form-control"
             formControlName="guardian_number"
             name="guardian_number"
             id="guardian_number"
@@ -1566,7 +1565,7 @@
     </div>
     <div class="d-flex justify-content-end">
       <!-- <p-button type="submit" label="Submit"></p-button> -->
-      <button type="submit" class="btn btn-success">Submit</button>
+      <p-button type="submit" (click)="updateInfos()"> Submit </p-button>
     </div>
   </form>
 </p-dialog>
