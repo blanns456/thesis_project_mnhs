@@ -34,6 +34,13 @@ import { MessageService } from 'primeng/api';
 import { PasswordModule } from 'primeng/password';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { DialogModule } from 'primeng/dialog';
+import { InputTextModule } from 'primeng/inputtext';
+import { ProgressSpinnerModule } from 'primeng/progressspinner';
+import { SchoolYearSettingsComponent } from './dashboard-admin/school-year-settings/school-year-settings.component';
+import { CardModule } from 'primeng/card';
+import { CalendarModule } from 'primeng/calendar';
+import { TreeTableModule } from 'primeng/treetable';
+import { TableModule } from 'primeng/table';
 
 @NgModule({
   declarations: [
@@ -57,6 +64,7 @@ import { DialogModule } from 'primeng/dialog';
     PendingStudentsComponent,
     DeclineStudentsComponent,
     ForgotPasswordComponent,
+    SchoolYearSettingsComponent,
   ],
   imports: [
     BrowserModule,
@@ -72,6 +80,12 @@ import { DialogModule } from 'primeng/dialog';
     PasswordModule,
     ConfirmDialogModule,
     DialogModule,
+    InputTextModule,
+    ProgressSpinnerModule,
+    CardModule,
+    CalendarModule,
+    TreeTableModule,
+    TableModule
   ],
   providers: [MessageService],
   bootstrap: [AppComponent],

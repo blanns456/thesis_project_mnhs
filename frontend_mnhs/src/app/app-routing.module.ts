@@ -16,6 +16,7 @@ import { StudentInfoComponent } from './dashboard-student/student-info/student-i
 import { AccountSettingsComponent } from './dashboard-student/account-settings/account-settings.component';
 import { AuthGuard } from './auth.guard';
 import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
+import { SchoolYearSettingsComponent } from './dashboard-admin/school-year-settings/school-year-settings.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/', pathMatch: 'full' },
@@ -57,6 +58,10 @@ const routes: Routes = [
   {
     path: 'admin/settings',
     component: SettingsComponent,
+  },
+  {
+    path: 'admin/school year settings',
+    component: SchoolYearSettingsComponent,
   },
   {
     path: 'student/information' , canActivate: [AuthGuard],
