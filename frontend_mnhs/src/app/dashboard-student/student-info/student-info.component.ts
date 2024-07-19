@@ -87,7 +87,7 @@ export class StudentInfoComponent implements OnInit {
     elementary: [''],
     elementary_yr: [''],
     last_school: [''],
-    lastschool_yr: [''],
+    last_schoolyr: [''],
   });
 
   showPreview(event: Event) {
@@ -133,9 +133,52 @@ export class StudentInfoComponent implements OnInit {
     this.getLoggedInUser(auth_token).subscribe({
       next: (data) => {
         this.loggedInUserData = data;
-        console.log(this.loggedInUserData);
-        // console.log(this.loggedInUserData.data[0]?.stud_id);
-        this.studid = this.loggedInUserData.data[0]?.stud_id;
+        // console.log(this.loggedInUserData);
+        this.enrollForm.patchValue({
+          studid: this.loggedInUserData.data[0]?.stud_id,
+          lrn: this.loggedInUserData.data[0]?.LRN,
+          enrolling_for: this.loggedInUserData.data[0]?.grade_level,
+          first_name: this.loggedInUserData.data[0]?.firstname,
+          last_name: this.loggedInUserData.data[0]?.lastname,
+          middle_name: this.loggedInUserData.data[0]?.middlename,
+          suffix: this.loggedInUserData.data[0]?.suffix,
+          gender: this.loggedInUserData.data[0]?.gender,
+          birthdate: this.loggedInUserData.data[0]?.birthdate,
+          age: this.loggedInUserData.data[0]?.age,
+          birth_place: this.loggedInUserData.data[0]?.birth_place,
+          home_address: this.loggedInUserData.data[0]?.home_address,
+          present_address: this.loggedInUserData.data[0]?.present_address,
+          m_tounge: this.loggedInUserData.data[0]?.m_tounge,
+          email: this.loggedInUserData.data[0]?.email,
+          mobile_number: this.loggedInUserData.data[0]?.mobile_number,
+          ip: this.loggedInUserData.data[0]?.ip,
+          pantawid: this.loggedInUserData.data[0]?.pantawid,
+          father_lastName: this.loggedInUserData.data[0]?.father_lastName,
+          father_firstName: this.loggedInUserData.data[0]?.father_firstName,
+          father_middleName: this.loggedInUserData.data[0]?.father_middleName,
+          father_number: this.loggedInUserData.data[0]?.father_number,
+          mother_lastName: this.loggedInUserData.data[0]?.mother_lastName,
+          mother_firstName: this.loggedInUserData.data[0]?.mother_firstName,
+          mother_middleName: this.loggedInUserData.data[0]?.mother_middleName,
+          mother_number: this.loggedInUserData.data[0]?.mother_number,
+          guardian_lastName: this.loggedInUserData.data[0]?.guardian_lastName,
+          guardian_firstName: this.loggedInUserData.data[0]?.guardian_firstName,
+          guardian_middleName:
+            this.loggedInUserData.data[0]?.guardian_middleName,
+          guardian_number: this.loggedInUserData.data[0]?.guardian_number,
+          semester: this.loggedInUserData.data[0]?.semester,
+          track: this.loggedInUserData.data[0]?.track,
+          strand: this.loggedInUserData.data[0]?.strand,
+          jhs: this.loggedInUserData.data[0]?.school_jhs,
+          jhs_yr: this.loggedInUserData.data[0]?.jhs_schoolyr,
+          schoolID: this.loggedInUserData.data[0]?.school_id,
+          special_program: this.loggedInUserData.data[0]?.special_program,
+          lastgradecompl: this.loggedInUserData.data[0]?.lastgrade_completed,
+          elementary: this.loggedInUserData.data[0]?.school_elem,
+          elementary_yr: this.loggedInUserData.data[0]?.elem_schoolyr,
+          last_school: this.loggedInUserData.data[0]?.last_school,
+          last_schoolyr: this.loggedInUserData.data[0]?.last_schoolyr,
+        });
       },
       error: (error: HttpErrorResponse) => {
         console.error('Error:', error);
@@ -164,48 +207,56 @@ export class StudentInfoComponent implements OnInit {
     this.signatureImg = base64;
     this.signatureNeeded = this.signaturePad.isEmpty();
     this.loading = true;
+    const base64Data = this.signaturePad.toDataURL();
+    this.signatureImg = base64Data;
+    this.signatureNeeded = this.signaturePad.isEmpty();
+    if (!this.signatureNeeded) {
+      this.signatureNeeded = false;
+    }
+
+    this.enrollForm.patchValue({
+      signature: this.signatureImg,
+    });
 
     if (!this.enrollForm) {
       console.error('Form group not initialized.');
       return;
     }
 
-    // this.enrollForm.get('studid')?.setValue(this.studid);
-    this.enrollForm.patchValue({
-      signature: this.signatureImg,
-      studid: this.loggedInUserData.data[0]?.stud_id,
-    });
-
     const submitdata = new FormData();
 
+    submitdata.append('studid', this.enrollForm.controls['studid'].value);
+    submitdata.append('profile', this.enrollForm.controls['profile'].value);
     submitdata.append(
-      'studid',
-      this.enrollForm.controls['studid'].value ?? ''
+      'schoolID',
+      this.enrollForm.controls['schoolID'].value || ''
     );
-    submitdata.append(
-      'profile',
-      this.enrollForm.controls['profile'].value ?? ''
-    );
-    submitdata.append('schoolID', this.enrollForm.controls['schoolID'].value);
     submitdata.append(
       'lastgradecompl',
-      this.enrollForm.controls['lastgradecompl'].value
+      this.enrollForm.controls['lastgradecompl'].value || ''
     );
     submitdata.append(
       'last_school',
-      this.enrollForm.controls['last_school'].value
+      this.enrollForm.controls['last_school'].value || ''
     );
     submitdata.append(
-      'lastschool_yr',
-      this.enrollForm.controls['lastschool_yr'].value
+      'last_schoolyr',
+      this.enrollForm.controls['last_schoolyr'].value || ''
     );
-    submitdata.append('semester', this.enrollForm.controls['semester'].value);
-    submitdata.append('track', this.enrollForm.controls['track'].value);
-    submitdata.append('strand', this.enrollForm.controls['strand'].value);
+    submitdata.append(
+      'semester',
+      this.enrollForm.controls['semester'].value || ''
+    );
+    submitdata.append('track', this.enrollForm.controls['track'].value || '');
+    submitdata.append('strand', this.enrollForm.controls['strand'].value || '');
+    submitdata.append(
+      'gradelevel',
+      this.enrollForm.controls['gradelevel'].value || ''
+    );
     // submitdata.append('major', this.enrollForm.controls['major'].value);
     submitdata.append(
       'special_program',
-      this.enrollForm.controls['special_program'].value
+      this.enrollForm.controls['special_program'].value || ''
     );
     submitdata.append('lrn', this.enrollForm.controls['lrn'].value);
     submitdata.append(
@@ -219,9 +270,9 @@ export class StudentInfoComponent implements OnInit {
     submitdata.append('last_name', this.enrollForm.controls['last_name'].value);
     submitdata.append(
       'middle_name',
-      this.enrollForm.controls['middle_name'].value
+      this.enrollForm.controls['middle_name'].value || ''
     );
-    submitdata.append('suffix', this.enrollForm.controls['suffix'].value);
+    submitdata.append('suffix', this.enrollForm.controls['suffix'].value || '');
     submitdata.append('gender', this.enrollForm.controls['gender'].value);
     // submitdata.append(
     //   'civil_status',
@@ -238,9 +289,15 @@ export class StudentInfoComponent implements OnInit {
       'mobile_number',
       this.enrollForm.controls['mobile_number'].value
     );
-    submitdata.append('m_tounge', this.enrollForm.controls['m_tounge'].value);
-    submitdata.append('ip', this.enrollForm.controls['ip'].value);
-    submitdata.append('pantawid', this.enrollForm.controls['pantawid'].value);
+    submitdata.append(
+      'm_tounge',
+      this.enrollForm.controls['m_tounge'].value || ''
+    );
+    submitdata.append('ip', this.enrollForm.controls['ip'].value || '');
+    submitdata.append(
+      'pantawid',
+      this.enrollForm.controls['pantawid'].value || ''
+    );
     submitdata.append(
       'home_address',
       this.enrollForm.controls['home_address'].value
@@ -261,54 +318,55 @@ export class StudentInfoComponent implements OnInit {
     submitdata.append('jhs_yr', this.enrollForm.controls['jhs_yr'].value);
     submitdata.append(
       'father_lastName',
-      this.enrollForm.controls['father_lastName'].value
+      this.enrollForm.controls['father_lastName'].value || ''
     );
     submitdata.append(
       'father_firstName',
-      this.enrollForm.controls['father_firstName'].value
+      this.enrollForm.controls['father_firstName'].value || ''
     );
     submitdata.append(
       'father_middleName',
-      this.enrollForm.controls['father_middleName'].value
+      this.enrollForm.controls['father_middleName'].value || ''
     );
     submitdata.append(
       'father_number',
-      this.enrollForm.controls['father_number'].value
+      this.enrollForm.controls['father_number'].value || ''
     );
     submitdata.append(
       'mother_lastName',
-      this.enrollForm.controls['mother_lastName'].value
+      this.enrollForm.controls['mother_lastName'].value || ''
     );
     submitdata.append(
       'mother_firstName',
-      this.enrollForm.controls['mother_firstName'].value
+      this.enrollForm.controls['mother_firstName'].value || ''
     );
     submitdata.append(
       'mother_middleName',
-      this.enrollForm.controls['mother_middleName'].value
+      this.enrollForm.controls['mother_middleName'].value || ''
     );
     submitdata.append(
       'mother_number',
-      this.enrollForm.controls['mother_number'].value
+      this.enrollForm.controls['mother_number'].value || ''
     );
     submitdata.append(
       'guardian_lastName',
-      this.enrollForm.controls['guardian_lastName'].value
+      this.enrollForm.controls['guardian_lastName'].value || ''
     );
     submitdata.append(
       'guardian_firstName',
-      this.enrollForm.controls['guardian_firstName'].value
+      this.enrollForm.controls['guardian_firstName'].value || ''
     );
     submitdata.append(
       'guardian_middleName',
-      this.enrollForm.controls['guardian_middleName'].value
+      this.enrollForm.controls['guardian_middleName'].value || ''
     );
     submitdata.append(
       'guardian_number',
-      this.enrollForm.controls['guardian_number'].value
+      this.enrollForm.controls['guardian_number'].value || ''
     );
     submitdata.append('signature', this.enrollForm.controls['signature'].value);
 
+    // console.log(submitdata);
     this.EnrollmentSHSControllers.updatestudent(submitdata).subscribe({
       next: (res) => {
         console.log(res);
@@ -318,9 +376,10 @@ export class StudentInfoComponent implements OnInit {
           detail: 'Successfully!',
         });
         setTimeout(() => {
-        this.showupdateDIalog = false;
           window.location.reload();
         }, 1000);
+
+        // this.router.navigate(['/student/information']);
       },
       error: (error: HttpErrorResponse) => {
         console.log(error.message);

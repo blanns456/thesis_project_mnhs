@@ -20,30 +20,46 @@ import { ForgotPasswordComponent } from './forgot-password/forgot-password.compo
 const routes: Routes = [
   { path: '', redirectTo: '/', pathMatch: 'full' },
   { path: '', component: HomeComponent, title: 'Home' },
-  { path: 'JHS/enrollment', component: JhsEnrollmentComponent, title: 'JHS Enrollment' },
-  { path: 'SHS/enrollment', component: ShsEnrollmentComponent, title: 'SHS Enrollment' },
-  { path: 'transferee/enrollment', component: TransfereeEnrollmentComponent, title: 'Transferee JHS' },
+  {
+    path: 'JHS/enrollment',
+    component: JhsEnrollmentComponent,
+    title: 'JHS Enrollment',
+  },
+  {
+    path: 'SHS/enrollment',
+    component: ShsEnrollmentComponent,
+    title: 'SHS Enrollment',
+  },
+  {
+    path: 'transferee/enrollment',
+    component: TransfereeEnrollmentComponent,
+    title: 'Transferee JHS',
+  },
   {
     path: 'transferee/shs/enrollment',
     component: TransfereeShsEnrollmentComponent,
-    title: 'Transferee SHS'
+    title: 'Transferee SHS',
   },
   {
     path: 'login',
     component: LoginComponent,
-    title: 'Login '
+    title: 'Login ',
   },
   // student dashboard
   {
     path: 'student/home',
-    component: HomeStudentComponent , canActivate: [AuthGuard],
+    component: HomeStudentComponent,
+    title: 'Student Homepage',
+    canActivate: [AuthGuard],
   },
   {
     path: 'admin/home',
-    component: HomeAdminComponent , canActivate: [AuthGuard],
+    component: HomeAdminComponent,
+    canActivate: [AuthGuard],
   },
   {
-    path: 'admin/enrolled-students' , canActivate: [AuthGuard],
+    path: 'admin/enrolled-students',
+    canActivate: [AuthGuard],
     component: EnrolledStudentsComponent,
   },
   {
@@ -59,11 +75,13 @@ const routes: Routes = [
     component: SettingsComponent,
   },
   {
-    path: 'student/information' , canActivate: [AuthGuard],
+    path: 'student/information',
+    canActivate: [AuthGuard],
     component: StudentInfoComponent,
   },
   {
-    path: 'student/settings' , canActivate: [AuthGuard],
+    path: 'student/settings',
+    canActivate: [AuthGuard],
     component: AccountSettingsComponent,
   },
   {

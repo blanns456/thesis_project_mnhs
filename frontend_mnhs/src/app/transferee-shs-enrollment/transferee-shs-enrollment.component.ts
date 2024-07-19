@@ -101,11 +101,9 @@ export class TransfereeShsEnrollmentComponent implements OnInit {
     }
   }
 
-  startDrawing(event: Event) {
-  }
+  startDrawing(event: Event) {}
 
-  moved(event: Event) {
-  }
+  moved(event: Event) {}
 
   clearPad() {
     this.signaturePad.clear();
