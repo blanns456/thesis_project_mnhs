@@ -5,7 +5,7 @@
   background-size: cover;
 }
 
-#mainPage{
+#mainPage {
   width: 304px;
   background: rgba(216, 226, 216, 0.89);
 }
@@ -23,7 +23,7 @@ a {
 }
 
 .leftBg {
-  object-fit: contain;
+  -o-object-fit: contain;
+     object-fit: contain;
   border-radius: 10px;
-}
-
+}/*# sourceMappingURL=login.component.css.map */

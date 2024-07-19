@@ -2,6 +2,7 @@
   background-color: #141212;
   width: 20%;
   height: 100vh;
+    overflow-x: hidden;
   position: absolute;
   left: 0;
 
@@ -10,7 +11,7 @@
     height: 12rem;
     opacity: 85%;
     background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
-      url("../../../assets/images/426216969_399806515765668_4124863881843652921_n.jpg");
+      url("../../../assets/images/mnhs-background-1.jpg");
     background-size: cover;
     background-position: center;
   }
@@ -38,5 +39,19 @@
   .active {
     background: #8c7c4c !important;
     color: white;
+  }
+
+  .links {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(155, 155, 155, 0.5) transparent;
+  }
+
+  .links::-webkit-scrollbar {
+    width: 6px;
+  }
+
+  .links::-webkit-scrollbar-thumb {
+    background-color: rgba(155, 155, 155, 0.5);
+    border-radius: 3px;
   }
 }

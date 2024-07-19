@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-sidebar-admin',
@@ -7,4 +8,10 @@ import { Component } from '@angular/core';
 })
 export class SidebarAdminComponent {
 
+  constructor(private router: Router) {}
+
+  logout(): void {
+    localStorage.removeItem('token');
+    this.router.navigate(['/login']);
+  }
 }

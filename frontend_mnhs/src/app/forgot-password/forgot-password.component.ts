@@ -1,8 +1,9 @@
+// src/app/components/forgot-password/forgot-password.component.ts
+
 import { HttpErrorResponse } from '@angular/common/http';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { ApiControllers } from 'src/app/controllers/controller.component';
 import { MessageService, ConfirmationService } from 'primeng/api';
-import { error } from 'jquery';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { DatePipe } from '@angular/common';
@@ -12,6 +13,7 @@ import { DatePipe } from '@angular/common';
   templateUrl: './forgot-password.component.html',
   styleUrls: ['./forgot-password.component.scss'],
   providers: [ConfirmationService, MessageService],
+  encapsulation: ViewEncapsulation.None
 })
 export class ForgotPasswordComponent implements OnInit {
   email!: string;
@@ -23,8 +25,12 @@ export class ForgotPasswordComponent implements OnInit {
   resetpassform: FormGroup;
   pipe: any;
 
+  loadingSendOtp: boolean = false;
+  loadingVerifyOtp: boolean = false;
+  loadingResetPass: boolean = false;
+
   constructor(
-    private ApiControllers: ApiControllers,
+    private apiControllers: ApiControllers,
     private messageService: MessageService,
     private confirmationService: ConfirmationService,
     private router: Router
@@ -38,9 +44,11 @@ export class ForgotPasswordComponent implements OnInit {
   }
 
   sendotp() {
-    this.ApiControllers.sendotp(this.email).subscribe({
+    this.loadingSendOtp = true;
+    this.apiControllers.sendotp(this.email).subscribe({
       next: (res) => {
         this.checkotp = res;
+        this.loadingSendOtp = false;
         if (this.checkotp['message'] == 'User found') {
           this.otp = true;
           this.messageService.add({
@@ -58,23 +66,23 @@ export class ForgotPasswordComponent implements OnInit {
       },
       error: (error: HttpErrorResponse) => {
         console.log(error.message);
+        this.loadingSendOtp = false;
       },
     });
   }
 
   verifyotp(event: Event) {
-    this.ApiControllers.verifcode(this.otpcode).subscribe({
+    this.loadingVerifyOtp = true;
+    this.apiControllers.verifcode(this.otpcode).subscribe({
       next: (res) => {
         this.verify = res;
+        this.loadingVerifyOtp = false;
         if (this.verify['message'] == 'Verified') {
           const d = Date();
           const myFormattedDate = this.pipe.transform(d, 'Y-MM-dd HH:mm:ss');
-          // console.log(myFormattedDate);
-
           if (this.verify[0]['expire'] >= myFormattedDate) {
             this.showForm3 = true;
           } else {
-            // console.log('expire na');
             this.confirmationService.confirm({
               target: event.target as EventTarget,
               message: 'OTP Code Expired. Resend?',
@@ -113,13 +121,15 @@ export class ForgotPasswordComponent implements OnInit {
       },
       error: (error: HttpErrorResponse) => {
         console.log(error.message);
+        this.loadingVerifyOtp = false;
       },
     });
   }
 
   resetpass() {
+    this.loadingResetPass = true;
     this.resetpassform.get('checkcode')?.setValue(this.otpcode);
-    this.ApiControllers.resetpass(this.resetpassform.value).subscribe({
+    this.apiControllers.resetpass(this.resetpassform.value).subscribe({
       next: (res) => {
         console.log(res);
         this.messageService.add({
@@ -133,6 +143,7 @@ export class ForgotPasswordComponent implements OnInit {
       },
       error: (error: HttpErrorResponse) => {
         console.log(error.message);
+        this.loadingResetPass = false;
       },
     });
   }

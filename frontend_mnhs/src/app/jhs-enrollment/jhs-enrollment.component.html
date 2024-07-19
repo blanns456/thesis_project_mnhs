@@ -1,15 +1,23 @@
 <div class="background"></div>
 
-<div class="loading-overlay" *ngIf="loading">
-  <div class="spinner-border" role="status">
+<div
+  class="loading-overlay"
+  *ngIf="loading">
+  <div
+    class="spinner-border"
+    role="status">
     <span class="visually-hidden">Loading...</span>
   </div>
 </div>
 
 <nav class="navbar navbar-expand-lg position-fixed w-100 z-1">
   <div class="container-fluid d-flex justify-content-between py-1">
-    <div class="mx-5 fs-5"><a routerLink="">Home</a></div>
-    <div class="mx-5 fs-5"><a href="">Login</a></div>
+    <div class="mx-5 fs-5">
+      <a routerLink>Home</a>
+    </div>
+    <div class="mx-5 fs-5">
+      <a href>Login</a>
+    </div>
   </div>
 </nav>
 
@@ -18,27 +26,33 @@
     src="../../assets/images/logo.png"
     alt="logo"
     width="150"
-    class="position-absolute top-25 start-50 translate-middle z-4"
-  />
+    class="position-absolute top-25 start-50 translate-middle z-4">
   <div class="container-fluid form-container py-2">
     <h2 class="text-center mt-5 pt-4">Junior HighSchool Enrollment</h2>
-    <hr />
-    <form action="" [formGroup]="enrollForm">
+    <hr>
+    <form
+      action
+      [formGroup]="enrollForm">
       <h2 class="h4">Learner Information</h2>
       <div class="row">
         <div class="col-4">
           <div class="mb-3">
-            <label for="enrolling_for" class="form-label"
-              >Grade Level to Enroll <small class="text-danger">*</small></label
-            >
+            <label
+              for="enrolling_for"
+              class="form-label">
+              Grade Level to Enroll
+              <small class="text-danger">*</small>
+            </label>
             <select
               name="enrolling_for"
               id="enrolling_for"
               class="form-select"
               formControlName="gradelevel"
-              required
-            >
-              <option value="" disabled selected>
+              required>
+              <option
+                value
+                disabled
+                selected>
                 Please Select Grade Level
               </option>
               <option value="7">Grade 7</option>
@@ -50,28 +64,29 @@
         </div>
         <div class="col-4">
           <div class="mb-3">
-            <label for="major" class="form-label"
-              >JHS Special Program Offered:<small class="text-danger"
-                >*</small
-              ></label
-            >
+            <label
+              for="major"
+              class="form-label">
+              JHS Special Program Offered:
+              <small class="text-danger">*</small>
+            </label>
             <select
               name="major"
               formControlName="program"
               id="major"
               class="form-select"
-              required
-            >
-              <option value="" disabled selected>Please Select Program</option>
+              required>
+              <option
+                value
+                disabled
+                selected>
+                Please Select Program
+              </option>
               <optgroup label="Journalism Major In:">
                 <option value="Basic Journalism">Basic Journalism</option>
-                <option value="Page Design & Layout">
-                  Page Design & Layout
-                </option>
+                <option value="Page Design & Layout">Page Design & Layout</option>
                 <option value="Radio Broadcasting">Radio Broadcasting</option>
-                <option value="Television Broadcasting">
-                  Television Broadcasting
-                </option>
+                <option value="Television Broadcasting">Television Broadcasting</option>
               </optgroup>
               <optgroup label="ARTS">
                 <option value="Dance">Dance</option>
@@ -83,8 +98,11 @@
         </div>
         <div class="col-4">
           <div class="mb-3">
-            <label for="lrn" class="form-label">
-              LRN Number<small class="text-danger">*</small>
+            <label
+              for="lrn"
+              class="form-label">
+              LRN Number
+              <small class="text-danger">*</small>
             </label>
             <input
               type="text"
@@ -94,54 +112,58 @@
               maxlength="12"
               (input)="inputMask($event)"
               formControlName="lrn"
-              required
-            />
+              required>
           </div>
         </div>
       </div>
       <div class="row">
         <div class="col-4">
           <div class="mb-3">
-            <label for="first_name" class="form-label"
-              >First Name<small class="text-danger">*</small></label
-            >
+            <label
+              for="first_name"
+              class="form-label">
+              First Name
+              <small class="text-danger">*</small>
+            </label>
             <input
               type="text"
               class="form-control"
               name="first_name"
               id="first_name"
               formControlName="firstname"
-              required
-            />
+              required>
           </div>
         </div>
         <div class="col-4">
           <div class="mb-3">
-            <label for="last_name" class="form-label"
-              >Last Name<small class="text-danger">*</small></label
-            >
+            <label
+              for="last_name"
+              class="form-label">
+              Last Name
+              <small class="text-danger">*</small>
+            </label>
             <input
               type="text"
               class="form-control"
               name="last_name"
               formControlName="lastname"
               id="last_name"
-              required
-            />
+              required>
           </div>
         </div>
         <div class="col-4">
           <div class="mb-3">
-            <label for="middle_name" class="form-label"
-              >Middle Name (Optional)</label
-            >
+            <label
+              for="middle_name"
+              class="form-label">
+              Middle Name (Optional)
+            </label>
             <input
               type="text"
               class="form-control"
               name="middle_name"
               formControlName="middlename"
-              id="middle_name"
-            />
+              id="middle_name">
           </div>
         </div>
       </div>
@@ -150,96 +172,115 @@
           <div class="row">
             <div class="col-6">
               <div class="mb-3">
-                <label for="suffix" class="form-label">Suffix (Optional)</label>
+                <label
+                  for="suffix"
+                  class="form-label">
+                  Suffix (Optional)
+                </label>
                 <input
                   type="text"
                   class="form-control"
                   name="suffix"
                   id="suffix"
-                  formControlName="suffix"
-                />
+                  formControlName="suffix">
               </div>
             </div>
             <div class="col-6">
               <div class="mb-3">
-                <label for="gender" class="form-label"
-                  >Sex<small class="text-danger">*</small></label
-                >
-                <br />
+                <label
+                  for="gender"
+                  class="form-label">
+                  Sex
+                  <small class="text-danger">*</small>
+                </label>
+                <br>
                 <input
                   type="radio"
                   name="gender"
                   id="male"
                   value="male"
                   formControlName="gender"
-                  required
-                />
-                <label for="male" class="mx-2">Male</label>
+                  required>
+                <label
+                  for="male"
+                  class="mx-2">
+                  Male
+                </label>
                 <input
                   type="radio"
                   name="gender"
                   id="female"
                   value="female"
                   formControlName="gender"
-                  required
-                />
-                <label for="female" class="mx-2">Female</label>
+                  required>
+                <label
+                  for="female"
+                  class="mx-2">
+                  Female
+                </label>
               </div>
             </div>
           </div>
         </div>
         <div class="col-3">
           <div class="mb-3">
-            <label for="b_date" class="form-label"
-              >Birth Date<small class="text-danger">*</small></label
-            >
+            <label
+              for="b_date"
+              class="form-label">
+              Birth Date
+              <small class="text-danger">*</small>
+            </label>
             <input
               type="date"
               class="form-control"
               formControlName="birthdate"
               (blur)="calculateAge()"
-              required
-            />
+              required>
           </div>
         </div>
         <div class="col-1">
           <div class="mb-3">
-            <label for="age" class="form-label"
-              >Age<small class="text-danger">*</small></label
-            >
+            <label
+              for="age"
+              class="form-label">
+              Age
+              <small class="text-danger">*</small>
+            </label>
             <input
               type="text"
               class="form-control"
               formControlName="age"
               readonly
-              required
-            />
+              required>
           </div>
         </div>
         <div class="col-4">
           <div class="mb-3">
-            <label for="b_place" class="form-label"
-              >Place of Birth (Municipality/City)<small class="text-danger"
-                >*</small
-              ></label
-            >
+            <label
+              for="b_place"
+              class="form-label">
+              Place of Birth (Municipality/City)
+              <small class="text-danger">*</small>
+            </label>
             <input
               type="text"
               class="form-control"
               name="b_place"
               id="b_place"
               formControlName="birth_place"
-              required
-            />
+              required>
           </div>
         </div>
       </div>
       <div class="row">
         <div class="col-6">
           <div class="mb-3">
-            <label for="present_address" class="form-label"
-              >Current Address<small class="text-danger">*</small></label
-            >
+            <label
+              for="present_address"
+              class="form-label">
+              Current Address
+              <small class="text-danger">*</small>
+            </label>
             <textarea
               name="present_address"
               id="present_address"
@@ -248,15 +289,17 @@
               cols="50"
               rows="2"
               placeholder="House No./Street Name/Barangay/Municipality or City/Province/Zipcode"
-              required
-            ></textarea>
+              required></textarea>
           </div>
         </div>
         <div class="col-6">
           <div class="mb-3">
-            <label for="home_address" class="form-label"
-              >Permanent Address<small class="text-danger">*</small></label
-            >
+            <label
+              for="home_address"
+              class="form-label">
+              Permanent Address
+              <small class="text-danger">*</small>
+            </label>
             <textarea
               name="home_address"
               id="home_address"
@@ -265,46 +308,51 @@
               cols="50"
               rows="2"
               placeholder="House No./Street Name/Barangay/Municipality or City/Province/Zipcode"
-              required
-            ></textarea>
+              required></textarea>
           </div>
         </div>
       </div>
       <div class="row">
         <div class="col-4">
           <div class="mb-3">
-            <label for="m_tounge" class="form-label"
-              >Mother Tounge (Optional)</label
-            >
+            <label
+              for="m_tounge"
+              class="form-label">
+              Mother Tounge (Optional)
+            </label>
             <input
               type="text"
               class="form-control"
               name="m_tounge"
               formControlName="m_tounge"
-              id="m_tounge"
-            />
+              id="m_tounge">
           </div>
         </div>
         <div class="col-4">
           <div class="mb-3">
-            <label for="email" class="form-label"
-              >Email<small class="text-danger">*</small></label
-            >
+            <label
+              for="email"
+              class="form-label">
+              Email
+              <small class="text-danger">*</small>
+            </label>
             <input
               type="email"
               class="form-control"
               name="email"
               formControlName="email"
               id="email"
-              placeholder="ex. johndoe@gmail.com"
-            />
+              placeholder="ex. johndoe@gmail.com">
           </div>
         </div>
         <div class="col-4">
           <div class="mb-3">
-            <label for="mobile_number" class="form-label"
-              >Mobile Number<small class="text-danger">*</small></label
-            >
+            <label
+              for="mobile_number"
+              class="form-label">
+              Mobile Number
+              <small class="text-danger">*</small>
+            </label>
             <input
               type="mobile_number"
               class="form-control"
@@ -314,8 +362,7 @@
               maxlength="11"
               (input)="inputMask($event)"
               placeholder="ex. 09123456789"
-              required
-            />
+              required>
           </div>
         </div>
       </div>
@@ -323,19 +370,21 @@
       <div class="row">
         <div class="col-6">
           <div class="mb-3">
-            <label for="ip" class="form-label"
-              >Belonging to any Indigenous People (IP) Community/Indigenous
-              Cultural Community? <small class="text-danger">*</small></label
-            >
-            <br />
+            <label
+              for="ip"
+              class="form-label">
+              Belonging to any Indigenous People (IP) Community/Indigenous
+              Cultural Community?
+              <small class="text-danger">*</small>
+            </label>
+            <br>
             <input
               type="text"
               id="yesIP"
               class="form-select"
               formControlName="ip"
               required
-              list="ip"
-            />
+              list="ip">
             <datalist id="ip">
               <option value="No">No</option>
             </datalist>
@@ -345,13 +394,14 @@
 
         <div class="col-6">
           <div class="mb-3">
-            <label for="major" class="form-label"
-              >Is your family a beneficiary of 4Ps?<small class="text-danger"
-                >*</small
-              ></label
-            >
-            <br />
-            <br />
+            <label
+              for="major"
+              class="form-label">
+              Is your family a beneficiary of 4Ps?
+              <small class="text-danger">*</small>
+            </label>
+            <br>
+            <br>
             <input
               type="text"
               id="pantawidId"
@@ -359,286 +409,349 @@
               formControlName="pantawid"
               class="form-select"
               required
-              list="pantawid"
-            />
+              list="pantawid">
             <datalist id="pantawid">
               <option value="No">No</option>
             </datalist>
-            <small>If Yes, write the 4Ps Household ID Number Above</small>
+            <small>
+              If Yes, write the 4Ps Household ID Number Above
+            </small>
           </div>
         </div>
       </div>
 
-      <hr />
+      <hr>
       <div class="row">
         <h2 class="h4">Educational Record</h2>
         <div class="col-6">
           <div class="mb-3">
-            <label for="elementary" class="form-label"
-              >Elementary School Name
-              <small class="text-danger">*</small></label
-            >
+            <label
+              for="elementary"
+              class="form-label">
+              Elementary School Name
+              <small class="text-danger">*</small>
+            </label>
             <input
               type="text"
               class="form-control"
               name="elementary"
               id="elementary"
               formControlName="school_elem"
-              required
-            />
+              required>
           </div>
         </div>
         <div class="col-6">
           <div class="mb-3">
-            <label for="elementary_yr" class="form-label"
-              >Elementary School Year
-              <small class="text-danger">*</small></label
-            >
+            <label
+              for="elementary_yr"
+              class="form-label">
+              Elementary School Year
+              <small class="text-danger">*</small>
+            </label>
             <input
               type="text"
               class="form-control"
               name="elementary_yr"
               formControlName="school_schoolyr"
               id="elementary_yr"
-              required
-            />
+              required>
           </div>
         </div>
       </div>
-      <hr />
+      <hr>
       <h2 class="h5 text-center">Parent's/Guardian's Information</h2>
       <div class="row">
-        <caption class="fw-bold">
-          Father's Name
-        </caption>
+        <caption class="fw-bold">Father's Name</caption>
         <div class="col-3">
           <div class="mb-3">
-            <label for="father_lastName" class="form-label">Last Name</label>
+            <label
+              for="father_lastName"
+              class="form-label">
+              Last Name
+            </label>
             <input
               type="text"
               class="form-control"
               formControlName="father_lastName"
               name="father_lastName"
-              id="father_lastName"
-            />
+              id="father_lastName">
           </div>
         </div>
         <div class="col-3">
           <div class="mb-3">
-            <label for="father_firstName" class="form-label">First Name</label>
+            <label
+              for="father_firstName"
+              class="form-label">
+              First Name
+            </label>
             <input
               type="text"
               class="form-control"
               name="father_firstName"
               formControlName="father_firstName"
-              id="father_firstName"
-            />
+              id="father_firstName">
           </div>
         </div>
         <div class="col-3">
           <div class="mb-3">
-            <label for="father_middleName" class="form-label"
-              >Middle Name</label
-            >
+            <label
+              for="father_middleName"
+              class="form-label">
+              Middle Name
+            </label>
             <input
               type="text"
               class="form-control"
               name="father_middleName"
               formControlName="father_middleName"
-              id="father_middleName"
-            />
+              id="father_middleName">
           </div>
         </div>
         <div class="col-3">
           <div class="mb-3">
-            <label for="father_number" class="form-label">Contact Number</label>
+            <label
+              for="father_number"
+              class="form-label">
+              Contact Number
+            </label>
             <input
               type="text"
               class="form-control"
               name="father_number"
               formControlName="father_number"
-              id="father_number"
-            />
+              id="father_number">
           </div>
         </div>
-        <hr />
+        <hr>
       </div>
       <div class="row">
-        <caption class="fw-bold">
-          Mother's Name
-        </caption>
+        <caption class="fw-bold">Mother's Name</caption>
         <div class="col-3">
           <div class="mb-3">
-            <label for="mother_lastName" class="form-label">Last Name</label>
+            <label
+              for="mother_lastName"
+              class="form-label">
+              Last Name
+            </label>
             <input
               type="text"
               class="form-control"
               name="mother_lastName"
               formControlName="mother_lastName"
-              id="mother_lastName"
-            />
+              id="mother_lastName">
           </div>
         </div>
         <div class="col-3">
           <div class="mb-3">
-            <label for="mother_firstName" class="form-label">First Name</label>
+            <label
+              for="mother_firstName"
+              class="form-label">
+              First Name
+            </label>
             <input
               type="text"
               class="form-control"
               formControlName="mother_firstName"
               name="mother_firstName"
-              id="mother_firstName"
-            />
+              id="mother_firstName">
           </div>
         </div>
         <div class="col-3">
           <div class="mb-3">
-            <label for="mother_middleName" class="form-label"
-              >Middle Name</label
-            >
+            <label
+              for="mother_middleName"
+              class="form-label">
+              Middle Name
+            </label>
             <input
               type="text"
               class="form-control"
               name="mother_middleName"
               formControlName="mother_middleName"
-              id="mother_middleName"
-            />
+              id="mother_middleName">
           </div>
         </div>
         <div class="col-3">
           <div class="mb-3">
-            <label for="mother_number" class="form-label">Contact Number</label>
+            <label
+              for="mother_number"
+              class="form-label">
+              Contact Number
+            </label>
             <input
               type="text"
               class="form-control"
               name="mother_number"
               formControlName="mother_number"
-              id="mother_number"
-            />
+              id="mother_number">
           </div>
         </div>
-        <hr />
+        <hr>
       </div>
       <div class="row">
-        <caption class="fw-bold">
-          Guardian's Name
-        </caption>
+        <caption class="fw-bold">Guardian's Name</caption>
         <div class="col-3">
           <div class="mb-3">
-            <label for="guardian_lastName" class="form-label">Last Name</label>
+            <label
+              for="guardian_lastName"
+              class="form-label">
+              Last Name
+            </label>
             <input
               type="text"
               class="form-control"
               name="guardian_lastName"
               formControlName="guardian_lastName"
-              id="guardian_lastName"
-            />
+              id="guardian_lastName">
           </div>
         </div>
         <div class="col-3">
           <div class="mb-3">
-            <label for="guardian_firstName" class="form-label"
-              >First Name</label
-            >
+            <label
+              for="guardian_firstName"
+              class="form-label">
+              First Name
+            </label>
             <input
               type="text"
               class="form-control"
               name="guardian_firstName"
               formControlName="guardian_firstName"
-              id="guardian_firstName"
-            />
+              id="guardian_firstName">
           </div>
         </div>
         <div class="col-3">
           <div class="mb-3">
-            <label for="guardian_middleName" class="form-label"
-              >Middle Name</label
-            >
+            <label
+              for="guardian_middleName"
+              class="form-label">
+              Middle Name
+            </label>
             <input
               type="text"
               class="form-control"
               name="guardian_middleName"
               formControlName="guardian_middleName"
-              id="guardian_middleName"
-            />
+              id="guardian_middleName">
           </div>
         </div>
         <div class="col-3">
           <div class="mb-3">
-            <label for="guardian_number" class="form-label"
-              >Contact Number</label
-            >
+            <label
+              for="guardian_number"
+              class="form-label">
+              Contact Number
+            </label>
             <input
               type="text"
               class="form-control"
               name="guardian_number"
               formControlName="guardian_number"
-              id="guardian_number"
-            />
+              id="guardian_number">
           </div>
         </div>
-        <hr />
+        <hr>
       </div>
       <div class="row">
+
         <div class="col-6">
           <div class="mb-3">
-            <label for="profile" class="form-label"
-              >Profile Image <small class="text-danger">*</small></label
-            >
+            <label
+              for="profile"
+              class="form-label">
+              Profile Image
+              <small class="text-danger">*</small>
+            </label>
             <input
               type="file"
               accept="image/*"
               class="form-control mb-3"
               name="profile"
               id="profile"
-              (change)="showPreview($event)"
-            />
+              (change)="showPreview($event, 'profileImageURL')">
             <div class="imagePreview text-center">
               <img
-                *ngIf="!imageURL || imageURL === ''"
+                *ngIf="!profileImageURL || profileImageURL === ''"
                 src="../../assets/images/default_Profile.png"
                 alt="Default Image"
                 class="img-thumbnail"
-                width="300"
-              />
-
+                width="300">
               <img
-                *ngIf="imageURL && imageURL !== ''"
-                [src]="imageURL"
+                *ngIf="profileImageURL && profileImageURL !== ''"
+                [src]="profileImageURL"
                 [alt]="enrollForm.value.name"
                 class="img-thumbnail"
-                width="300"
-              />
+                width="300">
             </div>
           </div>
         </div>
-
-        <div class="col-4">
+        <div class="col-6">
           <div class="mb-3">
-            <label for="mother_occupation" class="form-label"
-              >Your Signature <small class="text-danger">*</small></label
-            >
+            <label
+              for="mother_occupation"
+              class="form-label">
+              Your Signature
+              <small class="text-danger">*</small>
+            </label>
             <canvas
               #canvas
               (touchstart)="startDrawing($event)"
               (touchmove)="moved($event)"
               width="500"
-              height="200"
-            ></canvas>
-            <p class="error-message text-danger" *ngIf="signatureNeeded">
+              height="200"></canvas>
+            <p
+              class="error-message text-danger"
+              *ngIf="signatureNeeded">
               Signature is required
             </p>
 
             <div class="my-3">
-              <button (click)="clearPad()" class="btn btn-info">Clear</button>
+              <button
+                (click)="clearPad()"
+                class="btn btn-info">
+                Clear
+              </button>
             </div>
           </div>
         </div>
-      </div>
-      <div class="text-center">
-        <button (click)="savestudent()" class="btn btn-success">
-          Enroll Now!
-        </button>
+        <div class="col-6 mx-auto">
+          <div class="mb-3">
+            <label
+              for="form_137"
+              class="form-label">
+              Form 137
+              <small class="text-danger">*</small>
+            </label>
+            <input
+              type="file"
+              accept="image/*"
+              class="form-control mb-3"
+              name="form_137"
+              id="form_137"
+              (change)="showPreview($event, 'form137ImageURL')">
+            <div class="imagePreview text-center">
+              <img
+                *ngIf="!form137ImageURL || form137ImageURL === ''"
+                src="../../assets/images/default.jpg"
+                alt="Default Image"
+                class="img-thumbnail"
+                width="400">
+              <img
+                *ngIf="form137ImageURL && form137ImageURL !== ''"
+                [src]="form137ImageURL"
+                [alt]="enrollForm.value.name"
+                class="img-thumbnail"
+                width="300">
+            </div>
+          </div>
+        </div>
+        <div class="text-center">
+          <button
+            (click)="savestudent()"
+            class="btn btn-success">
+            Enroll Now!
+          </button>
+        </div>
       </div>
     </form>
   </div>

@@ -1,0 +1,48 @@
+.sidebar {
+  background-color: #141212;
+  width: 20%;
+  height: 100vh;
+  overflow-x: hidden;
+  position: absolute;
+  left: 0;
+}
+.sidebar .logout {
+  width: 100%;
+  height: 12rem;
+  opacity: 85%;
+  background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("../../../assets/images/mnhs-background-1.jpg");
+  background-size: cover;
+  background-position: center;
+}
+.sidebar .list-group ul {
+  margin-left: -25px;
+}
+.sidebar .list-group a {
+  color: #fff;
+  display: inline-block;
+  background: linear-gradient(to left, #141212 50%, #8c7c4c 50%) right;
+  background-size: 200%;
+  transition: 0.3s ease-out;
+  border-radius: 0 !important;
+  border: none;
+  cursor: pointer;
+}
+.sidebar .list-group a:hover {
+  background-position: left;
+  color: white;
+}
+.sidebar .active {
+  background: #8c7c4c !important;
+  color: white;
+}
+.sidebar .links {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(155, 155, 155, 0.5) transparent;
+}
+.sidebar .links::-webkit-scrollbar {
+  width: 6px;
+}
+.sidebar .links::-webkit-scrollbar-thumb {
+  background-color: rgba(155, 155, 155, 0.5);
+  border-radius: 3px;
+}/*# sourceMappingURL=sidebar-admin.component.css.map */

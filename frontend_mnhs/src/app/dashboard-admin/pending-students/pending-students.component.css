@@ -1,0 +1,29 @@
+.bgcontent {
+  background: #4A8515;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  height: 100vh;
+}
+
+.container-dashboard {
+  width: 100%;
+  min-height: 100%;
+}
+
+.main-content {
+  min-width: 80%;
+  height: 100vh;
+  margin-left: 20%;
+  z-index: 1;
+}
+.main-content .chart-container {
+  width: 100%;
+  height: 350px;
+}
+.main-content .chartbg {
+  min-height: 100%;
+}
+.main-content .text-content {
+  margin-top: 2rem;
+}/*# sourceMappingURL=pending-students.component.css.map */

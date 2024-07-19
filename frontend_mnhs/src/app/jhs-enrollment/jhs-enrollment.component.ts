@@ -17,6 +17,8 @@ export class JhsEnrollmentComponent implements OnInit {
   myForm: any;
   isYesSelected: boolean = false;
   isPantawidSelected: boolean = false;
+  profileImageURL: string = '';
+  form137ImageURL: string = '';
 
   constructor(
     private formBuilder: FormBuilder,
@@ -64,6 +66,7 @@ export class JhsEnrollmentComponent implements OnInit {
     guardian_middleName: [''],
     guardian_number: [''],
     profile: ['', [Validators.required]],
+    form_137: ['', [Validators.required]],
     signature: ['', [Validators.required]],
   });
   ngOnInit() {}
@@ -118,6 +121,10 @@ export class JhsEnrollmentComponent implements OnInit {
     submitdata.append(
       'imagefilename',
       this.enrollForm.controls['profile'].value
+    );
+    submitdata.append(
+      'form_137',
+      this.enrollForm.controls['form_137'].value
     );
     submitdata.append('lrn', this.enrollForm.controls['lrn'].value);
     submitdata.append('firstname', this.enrollForm.controls['firstname'].value);
@@ -214,6 +221,7 @@ export class JhsEnrollmentComponent implements OnInit {
 
     if (
       this.enrollForm.controls['profile'].invalid ||
+      this.enrollForm.controls['form_137'].invalid ||
       this.enrollForm.controls['firstname'].invalid ||
       this.enrollForm.controls['lastname'].invalid ||
       this.enrollForm.controls['gender'].invalid ||
@@ -258,26 +266,35 @@ export class JhsEnrollmentComponent implements OnInit {
             'Email, LRN, or Mobile Number  Already Taken',
             'error'
         );
-      } 
+      }
     });
   }
 
-  showPreview(event: Event) {
+  showPreview(event: Event, imageType: 'profileImageURL' | 'form137ImageURL') {
     const inputElement = event.target as HTMLInputElement;
     if (inputElement.files && inputElement.files.length > 0) {
       const file = inputElement.files[0];
 
       const reader = new FileReader();
       reader.onload = () => {
-        this.imageURL = reader.result as string;
+        if (imageType === 'profileImageURL') {
+          this.profileImageURL = reader.result as string;
+        } else if (imageType === 'form137ImageURL') {
+          this.form137ImageURL = reader.result as string;
+        }
       };
       reader.readAsDataURL(file);
-      this.enrollForm.patchValue({
-        profile: file,
-      });
+      if (imageType === 'profileImageURL') {
+        this.enrollForm.patchValue({
+          profile: file,
+        });
+      } else if (imageType === 'form137ImageURL') {
+        this.enrollForm.patchValue({
+          form_137: file,
+        });
+      }
     }
   }
-
   inputMask(event: Event) {
     var numberValue = (event.target as HTMLSelectElement).value;
 

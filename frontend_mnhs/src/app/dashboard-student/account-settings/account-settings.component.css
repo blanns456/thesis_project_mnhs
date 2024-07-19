@@ -1,0 +1,23 @@
+.background {
+  background: #4A8515;
+  background-size: cover;
+  background-position: center center;
+  background-attachment: fixed;
+  position: fixed;
+  width: 100%;
+  height: 100vh;
+  z-index: -1;
+}
+
+.q-link {
+  margin-left: 33%;
+  width: 50%;
+  padding-top: 120px;
+}
+
+.info {
+  width: 90%;
+  border-radius: 10px;
+  margin: auto;
+  background-color: whitesmoke;
+}/*# sourceMappingURL=account-settings.component.css.map */
