@@ -11,6 +11,7 @@ import Swal from 'sweetalert2';
 import { MessageService } from 'primeng/api';
 import { error } from 'jquery';
 import SignaturePad from 'signature_pad';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-student-info',
@@ -24,7 +25,6 @@ export class StudentInfoComponent implements OnInit {
   uploadForm!: FormGroup;
   signatureImg: any;
   studata: any;
-  router: any;
   showupdateDIalog: boolean = false;
   studid: any;
   // enrollForm: FormGroup;
@@ -35,7 +35,8 @@ export class StudentInfoComponent implements OnInit {
     private http: HttpClient,
     private messageService: MessageService,
     private EnrollmentSHSControllers: EnrollmentSHSControllers,
-    private formBuilder: FormBuilder
+    private formBuilder: FormBuilder,
+    private router: Router
   ) {}
 
   enrollForm: FormGroup = this.formBuilder.group({
@@ -202,6 +203,9 @@ export class StudentInfoComponent implements OnInit {
   }
 
   updateInfos() {
+    const base64 = this.signaturePad.toDataURL();
+    this.signatureImg = base64;
+    this.signatureNeeded = this.signaturePad.isEmpty();
     this.loading = true;
     const base64Data = this.signaturePad.toDataURL();
     this.signatureImg = base64Data;

@@ -13,10 +13,13 @@ export class LoginComponent {
   username: string = '';
   password: string = '';
 
+  loading = false;
   constructor(private http: HttpClient, private router: Router) {}
 
   login(): void {
+    this.loading = true;
     if (!this.username || !this.password) {
+      this.loading = false;
       Swal.fire({
         title: 'Error',
         text: 'Username and password are required.',
@@ -51,6 +54,7 @@ export class LoginComponent {
           }
         },
         (error) => {
+          this.loading = false;
           Swal.fire({
             title: 'Error',
             text: 'Invalid username or password.',
