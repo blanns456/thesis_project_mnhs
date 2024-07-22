@@ -41,7 +41,6 @@
                       student.lastname,
                       student.middlename,
                       student.track,
-                      student.strand,
                       student.LRN,
                       student.suffix,
                       student.ip,
@@ -52,8 +51,6 @@
                       student.birth_place,
                       student.email,
                       student.mobile_number,
-                      student.citizenship,
-                      student.religion,
                       student.home_address,
                       student.present_address,
                       student.grade_level,
@@ -63,6 +60,7 @@
                       student.school_jhs,
                       student.jhs_schoolyr,
                       student.profile_image,
+                      student.form_137,
                       student.school_id,
                       student.lastgrade_completed,
                       student.last_school,
@@ -120,7 +118,7 @@
                 name="semester"
                 id="semester">
             </div>
-            <div class="col-2">
+            <div class="col-4">
               <div class="mb-3">
                 <label
                   for="track"
@@ -133,23 +131,6 @@
                   class="form-control"
                   name="track"
                   id="track"
-                  aria-describedby="helpId"
-                  required>
-              </div>
-            </div>
-            <div class="col-2">
-              <div class="mb-3">
-                <label
-                  for="strand"
-                  class="form-label">
-                  Strand
-                  <small class="text-danger">*</small>
-                </label>
-                <input
-                  type="text"
-                  class="form-control"
-                  name="strand"
-                  id="strand"
                   aria-describedby="helpId"
                   required>
               </div>
@@ -248,15 +229,10 @@
                       class="form-label">
                       Gender
                     </label>
-                    <select
-                      name="gender"
+                    <input
+                      type="text"
                       id="gender"
-                      class="form-select"
-                      required>
-                      <option value>Please Select Gender</option>
-                      <option value="male">Male</option>
-                      <option value="female">Female</option>
-                    </select>
+                      class="form-control">
                   </div>
                 </div>
               </div>
@@ -268,16 +244,10 @@
                   class="form-label">
                   Civil Status
                 </label>
-                <select
-                  name="civil_status"
+                <input
+                  type="text"
                   id="civil_status"
-                  class="form-select"
-                  required>
-                  <option value>Please Select Status</option>
-                  <option value="Single">Single</option>
-                  <option value="Married">Married</option>
-                  <option value="Widowed">Widowed</option>
-                </select>
+                  class="form-control">
               </div>
             </div>
             <div class="col-4">
@@ -288,7 +258,7 @@
                   Birth Date
                 </label>
                 <input
-                  type="date"
+                  type="text"
                   class="form-control"
                   name="b_date"
                   id="b_date"
@@ -348,46 +318,12 @@
             </div>
           </div>
           <div class="row">
-            <div class="col-4">
-              <div class="mb-3">
-                <label
-                  for="citizenship"
-                  class="form-label">
-                  Citizenship
-                </label>
-                <input
-                  type="text"
-                  class="form-control"
-                  name="citizenship"
-                  id="citizenship"
-                  aria-describedby="helpId"
-                  required>
-              </div>
-            </div>
-            <div class="col-4">
-              <div class="mb-3">
-                <label
-                  for="religion"
-                  class="form-label">
-                  Religion
-                </label>
-                <input
-                  type="text"
-                  class="form-control"
-                  name="religion"
-                  id="religion"
-                  aria-describedby="helpId"
-                  required>
-              </div>
-            </div>
-          </div>
-          <div class="row">
             <div class="col-6">
               <div class="mb-3">
                 <label
                   for="home_address"
                   class="form-label">
-                  Home Address
+                  Permanent Address
                 </label>
                 <textarea
                   name="home_address"
@@ -403,7 +339,7 @@
                 <label
                   for="present_address"
                   class="form-label">
-                  Present Address
+                  Current Address
                 </label>
                 <textarea
                   name="present_address"
@@ -423,47 +359,12 @@
                   class="form-label">
                   Enrolling For
                 </label>
-                <select
-                  name="enrolling_for"
+                <input
+                  type="text"
+                  class="form-control"
                   id="enrolling_for"
-                  class="form-select">
-                  <option
-                    value
-                    disabled
-                    selected>
-                    Please Select Year Level
-                  </option>
-                  <option value="11">Grade 11</option>
-                  <option value="12">Grade 12</option>
-                </select>
-              </div>
-            </div>
-            <div class="col-5">
-              <div class="mb-3">
-                <label
-                  for="major"
-                  class="form-label">
-                  SHS Course Offered:
-                </label>
-                <select
-                  name="major"
-                  id="major"
-                  class="form-select"
+                  aria-describedby="helpId"
                   required>
-                  <option
-                    value
-                    disabled
-                    selected>
-                    Please Select Course
-                  </option>
-                  <optgroup label="General Academic Strand (GAS)">
-                    <option value="Technical Vocational">Technical Vocational</option>
-                    <option value="Livelihood Skills">Livelihood Skills</option>
-                  </optgroup>
-                  <option value="Shielded Metal Arc Welding">Shielded Metal Arc Welding (SMAW)</option>
-                  <option value="Illustration / Animation">Illustration / Animation</option>
-                  <option value="Dressmaking / Tailoring">Dressmaking / Tailoring</option>
-                </select>
               </div>
             </div>
           </div>
@@ -518,6 +419,187 @@
             </div>
           </div>
           <hr>
+          <!-- <h2 class="h5 text-center">Parent's/Guardian's Information</h2>
+          <div class="row">
+            <caption class="fw-bold">Father's Name</caption>
+            <div class="col-3">
+              <div class="mb-3">
+                <label
+                  for="father_lastName"
+                  class="form-label">
+                  Last Name
+                </label>
+                <input
+                  type="text"
+                  class="form-control text-uppercase"
+                  name="father_lastName"
+                  id="father_lastName">
+              </div>
+            </div>
+            <div class="col-3">
+              <div class="mb-3">
+                <label
+                  for="father_firstName"
+                  class="form-label">
+                  First Name
+                </label>
+                <input
+                  type="text"
+                  class="form-control text-uppercase"
+                  name="father_firstName"
+                  id="father_firstName">
+              </div>
+            </div>
+            <div class="col-3">
+              <div class="mb-3">
+                <label
+                  for="father_middleName"
+                  class="form-label">
+                  Middle Name
+                </label>
+                <input
+                  type="text"
+                  class="form-control text-uppercase"
+                  name="father_middleName"
+                  id="father_middleName">
+              </div>
+            </div>
+            <div class="col-3">
+              <div class="mb-3">
+                <label
+                  for="father_number"
+                  class="form-label">
+                  Contact Number
+                </label>
+                <input
+                  type="text"
+                  class="form-control"
+                  name="father_number"
+                  id="father_number">
+              </div>
+            </div>
+            <hr>
+          </div>
+          <div class="row">
+            <caption class="fw-bold">Mother's Name</caption>
+            <div class="col-3">
+              <div class="mb-3">
+                <label
+                  for="mother_lastName"
+                  class="form-label">
+                  Last Name
+                </label>
+                <input
+                  type="text"
+                  class="form-control text-uppercase"
+                  name="mother_lastName"
+                  id="mother_lastName">
+              </div>
+            </div>
+            <div class="col-3">
+              <div class="mb-3">
+                <label
+                  for="mother_firstName"
+                  class="form-label">
+                  First Name
+                </label>
+                <input
+                  type="text"
+                  class="form-control text-uppercase"
+                  name="mother_firstName"
+                  id="mother_firstName">
+              </div>
+            </div>
+            <div class="col-3">
+              <div class="mb-3">
+                <label
+                  for="mother_middleName"
+                  class="form-label">
+                  Middle Name
+                </label>
+                <input
+                  type="text"
+                  class="form-control text-uppercase"
+                  name="mother_middleName"
+                  id="mother_middleName">
+              </div>
+            </div>
+            <div class="col-3">
+              <div class="mb-3">
+                <label
+                  for="mother_number"
+                  class="form-label">
+                  Contact Number
+                </label>
+                <input
+                  type="text"
+                  class="form-control"
+                  name="mother_number"
+                  id="mother_number">
+              </div>
+            </div>
+            <hr>
+          </div>
+          <div class="row">
+            <caption class="fw-bold">Guardian's Name</caption>
+            <div class="col-3">
+              <div class="mb-3">
+                <label
+                  for="guardian_lastName"
+                  class="form-label">
+                  Last Name
+                </label>
+                <input
+                  type="text"
+                  class="form-control text-uppercase"
+                  name="guardian_lastName"
+                  id="guardian_lastName">
+              </div>
+            </div>
+            <div class="col-3">
+              <div class="mb-3">
+                <label
+                  for="guardian_firstName"
+                  class="form-label">
+                  First Name
+                </label>
+                <input
+                  type="text"
+                  class="form-control text-uppercase"
+                  name="guardian_firstName"
+                  id="guardian_firstName">
+              </div>
+            </div>
+            <div class="col-3">
+              <div class="mb-3">
+                <label
+                  for="guardian_middleName"
+                  class="form-label">
+                  Middle Name
+                </label>
+                <input
+                  type="text"
+                  class="form-control text-uppercase"
+                  name="guardian_middleName"
+                  id="guardian_middleName">
+              </div>
+            </div>
+            <div class="col-3">
+              <div class="mb-3">
+                <label
+                  for="guardian_number"
+                  class="form-label">
+                  Contact Number
+                </label>
+                <input
+                  type="text"
+                  class="form-control"
+                  name="guardian_number"
+                  id="guardian_number">
+              </div>
+            </div>
+            <hr>
+          </div> -->
           <div class="row">
             <h2>Educational Record</h2>
             <div class="col-6">
@@ -553,6 +635,7 @@
               </div>
             </div>
           </div>
+
           <div class="row">
             <div class="col-6">
               <div class="mb-3">
@@ -669,32 +752,44 @@
                   for="profile"
                   class="form-label">
                   Profile Image
-                  <small class="text-danger">*</small>
                 </label>
                 <div class="imagePreview text-center">
                   <img
                     [src]
                     [alt]
-                    class="img-thumbnail"
+                    class="img-holder-def"
                     width="200"
                     id="imgprev">
                 </div>
               </div>
             </div>
 
-            <div class="col-4">
+            <div class="col-6">
               <div class="mb-3">
                 <label
                   for="mother_occupation"
                   class="form-label">
                   Your Signature
-                  <small class="text-danger">*</small>
                 </label>
                 <img
                   [src]="students[0].signature"
-                  width="500"
-                  height="200"
+                  class="img-holder-def"
+                  width="200"
                   id="signprev">
+              </div>
+            </div>
+            <div class="col-12">
+              <div class="mb-3">
+                <label
+                  for="form_137"
+                  class="form-label">
+                  Form 137
+                </label>
+                <img
+                  [src]
+                  class="img-holder-def"
+                  width="200"
+                  id="form_137">
               </div>
             </div>
           </div>

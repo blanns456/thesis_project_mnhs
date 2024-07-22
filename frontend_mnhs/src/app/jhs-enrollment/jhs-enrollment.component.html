@@ -127,7 +127,7 @@
             </label>
             <input
               type="text"
-              class="form-control"
+              class="form-control text-uppercase"
               name="first_name"
               id="first_name"
               formControlName="firstname"
@@ -144,7 +144,7 @@
             </label>
             <input
               type="text"
-              class="form-control"
+              class="form-control text-uppercase"
               name="last_name"
               formControlName="lastname"
               id="last_name"
@@ -160,7 +160,7 @@
             </label>
             <input
               type="text"
-              class="form-control"
+              class="form-control text-uppercase"
               name="middle_name"
               formControlName="middlename"
               id="middle_name">
@@ -179,7 +179,7 @@
                 </label>
                 <input
                   type="text"
-                  class="form-control"
+                  class="form-control text-uppercase"
                   name="suffix"
                   id="suffix"
                   formControlName="suffix">
@@ -264,7 +264,7 @@
             </label>
             <input
               type="text"
-              class="form-control"
+              class="form-control text-uppercase"
               name="b_place"
               id="b_place"
               formControlName="birth_place"
@@ -284,7 +284,7 @@
             <textarea
               name="present_address"
               id="present_address"
-              class="form-control"
+              class="form-control text-uppercase"
               formControlName="present_address"
               cols="50"
               rows="2"
@@ -303,7 +303,7 @@
             <textarea
               name="home_address"
               id="home_address"
-              class="form-control"
+              class="form-control text-uppercase"
               formControlName="home_address"
               cols="50"
               rows="2"
@@ -322,7 +322,7 @@
             </label>
             <input
               type="text"
-              class="form-control"
+              class="form-control text-uppercase"
               name="m_tounge"
               formControlName="m_tounge"
               id="m_tounge">
@@ -381,7 +381,7 @@
             <input
               type="text"
               id="yesIP"
-              class="form-select"
+              class="form-select text-uppercase"
               formControlName="ip"
               required
               list="ip">
@@ -407,7 +407,7 @@
               id="pantawidId"
               name="pantawidText"
               formControlName="pantawid"
-              class="form-select"
+              class="form-select text-uppercase"
               required
               list="pantawid">
             <datalist id="pantawid">
@@ -433,7 +433,7 @@
             </label>
             <input
               type="text"
-              class="form-control"
+              class="form-control text-uppercase"
               name="elementary"
               id="elementary"
               formControlName="school_elem"
@@ -471,7 +471,7 @@
             </label>
             <input
               type="text"
-              class="form-control"
+              class="form-control text-uppercase"
               formControlName="father_lastName"
               name="father_lastName"
               id="father_lastName">
@@ -486,7 +486,7 @@
             </label>
             <input
               type="text"
-              class="form-control"
+              class="form-control text-uppercase"
               name="father_firstName"
               formControlName="father_firstName"
               id="father_firstName">
@@ -501,7 +501,7 @@
             </label>
             <input
               type="text"
-              class="form-control"
+              class="form-control text-uppercase"
               name="father_middleName"
               formControlName="father_middleName"
               id="father_middleName">
@@ -535,7 +535,7 @@
             </label>
             <input
               type="text"
-              class="form-control"
+              class="form-control text-uppercase"
               name="mother_lastName"
               formControlName="mother_lastName"
               id="mother_lastName">
@@ -550,7 +550,7 @@
             </label>
             <input
               type="text"
-              class="form-control"
+              class="form-control text-uppercase"
               formControlName="mother_firstName"
               name="mother_firstName"
               id="mother_firstName">
@@ -565,7 +565,7 @@
             </label>
             <input
               type="text"
-              class="form-control"
+              class="form-control text-uppercase"
               name="mother_middleName"
               formControlName="mother_middleName"
               id="mother_middleName">
@@ -599,7 +599,7 @@
             </label>
             <input
               type="text"
-              class="form-control"
+              class="form-control text-uppercase"
               name="guardian_lastName"
               formControlName="guardian_lastName"
               id="guardian_lastName">
@@ -614,7 +614,7 @@
             </label>
             <input
               type="text"
-              class="form-control"
+              class="form-control text-uppercase"
               name="guardian_firstName"
               formControlName="guardian_firstName"
               id="guardian_firstName">
@@ -629,7 +629,7 @@
             </label>
             <input
               type="text"
-              class="form-control"
+              class="form-control text-uppercase"
               name="guardian_middleName"
               formControlName="guardian_middleName"
               id="guardian_middleName">
@@ -674,43 +674,14 @@
                 *ngIf="!profileImageURL || profileImageURL === ''"
                 src="../../assets/images/default_Profile.png"
                 alt="Default Image"
-                class="img-thumbnail"
+                class="img-holder-def"
                 width="300">
               <img
                 *ngIf="profileImageURL && profileImageURL !== ''"
                 [src]="profileImageURL"
                 [alt]="enrollForm.value.name"
-                class="img-thumbnail"
+                class="img-holder"
                 width="300">
-            </div>
-          </div>
-        </div>
-        <div class="col-6">
-          <div class="mb-3">
-            <label
-              for="mother_occupation"
-              class="form-label">
-              Your Signature
-              <small class="text-danger">*</small>
-            </label>
-            <canvas
-              #canvas
-              (touchstart)="startDrawing($event)"
-              (touchmove)="moved($event)"
-              width="500"
-              height="200"></canvas>
-            <p
-              class="error-message text-danger"
-              *ngIf="signatureNeeded">
-              Signature is required
-            </p>
-
-            <div class="my-3">
-              <button
-                (click)="clearPad()"
-                class="btn btn-info">
-                Clear
-              </button>
             </div>
           </div>
         </div>
@@ -734,23 +705,63 @@
                 *ngIf="!form137ImageURL || form137ImageURL === ''"
                 src="../../assets/images/default.jpg"
                 alt="Default Image"
-                class="img-thumbnail"
+                class="img-holder-def"
                 width="400">
               <img
                 *ngIf="form137ImageURL && form137ImageURL !== ''"
                 [src]="form137ImageURL"
                 [alt]="enrollForm.value.name"
-                class="img-thumbnail"
-                width="300">
+                class="img-holder">
             </div>
           </div>
         </div>
+        <div class="col-12">
+          <div class="mb-3 text-center">
+            <label
+              for="mother_occupation"
+              class="form-label">
+              Your Signature
+              <small class="text-danger">*</small>
+            </label>
+            <br>
+            <canvas
+              #canvas
+              (touchstart)="startDrawing($event)"
+              (touchmove)="moved($event)"
+              width="500"
+              height="300"></canvas>
+            <p
+              class="error-message text-danger"
+              *ngIf="signatureNeeded">
+              Signature is required
+            </p>
+
+            <div class="my-3">
+              <p-button
+                (click)="clearPad()"
+                label="Clear Signature"
+                severity="info"></p-button>
+              <!-- <button
+                (click)="clearPad()"
+                class="btn btn-info">
+                Clear
+              </button> -->
+            </div>
+          </div>
+        </div>
+
+        <hr>
+
         <div class="text-center">
-          <button
+          <p-button
             (click)="savestudent()"
-            class="btn btn-success">
+            label="Submit Enrollment"
+            severity="success"></p-button>
+          <!-- <p-button
+            (click)="savestudent()"
+            class="p-button-success">
             Enroll Now!
-          </button>
+          </p-button> -->
         </div>
       </div>
     </form>

@@ -1,7 +1,7 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { catchError } from 'rxjs/operators';
-import { Router } from '@angular/router'; 
+import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 
 @Component({
@@ -17,7 +17,7 @@ export class SidebarComponent implements OnInit, OnDestroy {
   profile: any;
   private httpSubscription: Subscription | undefined;
 
-  constructor(private http: HttpClient, private router: Router) {} 
+  constructor(private http: HttpClient, private router: Router) {}
 
   ngOnInit() {
     this.getLoggedInUser();
@@ -58,7 +58,7 @@ export class SidebarComponent implements OnInit, OnDestroy {
   logout() {
     localStorage.removeItem('token');
     this.loggedInUserData = {};
-    this.router.navigate(['login']); 
+    this.router.navigate(['login']);
   }
 
   ngOnDestroy() {

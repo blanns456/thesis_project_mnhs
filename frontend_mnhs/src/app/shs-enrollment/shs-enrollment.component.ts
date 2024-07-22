@@ -15,6 +15,8 @@ export class ShsEnrollmentComponent implements OnInit {
   uploadForm!: FormGroup;
   studata: any;
   imageURL: string | undefined;
+  profileImageURL: string = '';
+  form137ImageURL: string = '';
 
   constructor(
     private formBuilder: FormBuilder,
@@ -30,7 +32,7 @@ export class ShsEnrollmentComponent implements OnInit {
   enrollForm: FormGroup = this.formBuilder.group({
     semester: ['', [Validators.required]],
     track: ['', [Validators.required]],
-    strand: ['', [Validators.required]],
+    // strand: ['', [Validators.required]],
 
     gradelevel: ['', [Validators.required]],
     lrn: ['', [Validators.required]],
@@ -67,6 +69,7 @@ export class ShsEnrollmentComponent implements OnInit {
     guardian_middleName: [''],
     guardian_number: [''],
     profile: ['', [Validators.required]],
+    form_137: ['', [Validators.required]],
     signature: ['', [Validators.required]],
   });
 
@@ -78,23 +81,6 @@ export class ShsEnrollmentComponent implements OnInit {
 
   ngAfterViewInit() {
     this.signaturePad = new SignaturePad(this.canvasEl.nativeElement);
-  }
-
-  calculateAge() {
-    const birthdate = this.enrollForm?.get('birthdate')?.value;
-    if (birthdate) {
-      const birthdateDate = new Date(birthdate);
-      const today = new Date();
-      let age = today.getFullYear() - birthdateDate.getFullYear();
-      const monthDiff = today.getMonth() - birthdateDate.getMonth();
-      if (
-        monthDiff < 0 ||
-        (monthDiff === 0 && today.getDate() < birthdateDate.getDate())
-      ) {
-        age--;
-      }
-      this.enrollForm?.get('age')?.setValue(age);
-    }
   }
 
   startDrawing(event: Event) {
@@ -129,9 +115,13 @@ export class ShsEnrollmentComponent implements OnInit {
       'imagefilename',
       this.enrollForm.controls['profile'].value
     );
+    submitdata.append(
+      'form_137',
+      this.enrollForm.controls['form_137'].value
+    );
     submitdata.append('semester', this.enrollForm.controls['semester'].value);
     submitdata.append('track', this.enrollForm.controls['track'].value);
-    submitdata.append('strand', this.enrollForm.controls['strand'].value);
+    // submitdata.append('strand', this.enrollForm.controls['strand'].value);
     submitdata.append(
       'gradelevel',
       this.enrollForm.controls['gradelevel'].value
@@ -239,7 +229,7 @@ export class ShsEnrollmentComponent implements OnInit {
       this.enrollForm.controls['profile'].invalid ||
       this.enrollForm.controls['semester'].invalid ||
       this.enrollForm.controls['track'].invalid ||
-      this.enrollForm.controls['strand'].invalid ||
+      // this.enrollForm.controls['strand'].invalid ||
       this.enrollForm.controls['gradelevel'].invalid ||
       this.enrollForm.controls['firstname'].invalid ||
       this.enrollForm.controls['lastname'].invalid ||
@@ -290,26 +280,33 @@ export class ShsEnrollmentComponent implements OnInit {
     );
   }
 
-  showPreview(event: Event) {
+  showPreview(event: Event, imageType: 'profileImageURL' | 'form137ImageURL') {
     const inputElement = event.target as HTMLInputElement;
     if (inputElement.files && inputElement.files.length > 0) {
       const file = inputElement.files[0];
-      this.uploadForm!.patchValue({
-        avatar: file,
-      });
-      this.uploadForm!.get('avatar')!.updateValueAndValidity();
+
       const reader = new FileReader();
       reader.onload = () => {
-        this.imageURL = reader.result as string;
+        if (imageType === 'profileImageURL') {
+          this.profileImageURL = reader.result as string;
+        } else if (imageType === 'form137ImageURL') {
+          this.form137ImageURL = reader.result as string;
+        }
       };
       reader.readAsDataURL(file);
-      this.enrollForm.patchValue({
-        profile: file,
-      });
+      if (imageType === 'profileImageURL') {
+        this.enrollForm.patchValue({
+          profile: file,
+        });
+      } else if (imageType === 'form137ImageURL') {
+        this.enrollForm.patchValue({
+          form_137: file,
+        });
+      }
     }
   }
 
-    inputMask(event: Event) {
+  inputMask(event: Event) {
     var numberValue = (event.target as HTMLSelectElement).value;
 
     var numericRegex = /^[0-9]+$/;
@@ -320,6 +317,23 @@ export class ShsEnrollmentComponent implements OnInit {
       (event.target as HTMLSelectElement).value = sanitizedValue;
 
       console.log('Invalid input. Please enter only numeric values.');
+    }
+  }
+
+  calculateAge() {
+    const birthdate = this.enrollForm?.get('birthdate')?.value;
+    if (birthdate) {
+      const birthdateDate = new Date(birthdate);
+      const today = new Date();
+      let age = today.getFullYear() - birthdateDate.getFullYear();
+      const monthDiff = today.getMonth() - birthdateDate.getMonth();
+      if (
+        monthDiff < 0 ||
+        (monthDiff === 0 && today.getDate() < birthdateDate.getDate())
+      ) {
+        age--;
+      }
+      this.enrollForm?.get('age')?.setValue(age);
     }
   }
 }

@@ -17,6 +17,7 @@ import { AccountSettingsComponent } from './dashboard-student/account-settings/a
 import { AuthGuard } from './auth.guard';
 import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
 import { SchoolYearSettingsComponent } from './dashboard-admin/school-year-settings/school-year-settings.component';
+import { ParentComponent } from './dashboard-student/parent/parent.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/', pathMatch: 'full' },
@@ -47,12 +48,12 @@ const routes: Routes = [
     title: 'Login ',
   },
   // student dashboard
-  {
-    path: 'student/home',
-    component: HomeStudentComponent,
-    title: 'Student Homepage',
-    canActivate: [AuthGuard],
-  },
+  // {
+  //   path: 'student/home',
+  //   component: HomeStudentComponent,
+  //   title: 'Student Homepage',
+  //   canActivate: [AuthGuard],
+  // },
   {
     path: 'admin/home',
     component: HomeAdminComponent,
@@ -79,18 +80,40 @@ const routes: Routes = [
     path: 'admin/school year settings',
     component: SchoolYearSettingsComponent,
   },
-  {
-    path: 'student/information' , canActivate: [AuthGuard],
-    component: StudentInfoComponent,
-  },
-  {
-    path: 'student/settings',
-    canActivate: [AuthGuard],
-    component: AccountSettingsComponent,
-  },
+  // {
+  //   path: 'student/information' , canActivate: [AuthGuard],
+  //   component: StudentInfoComponent,
+  // },
+
   {
     path: 'forgot-password',
     component: ForgotPasswordComponent,
+  },
+
+    {
+    path: 'student',
+    component: ParentComponent,
+    canActivate: [AuthGuard],
+    // data: { expectedRoels: 'college' },
+    children: [
+      {
+        path: '',
+        redirectTo: 'home',
+        pathMatch: 'full',
+      },
+      {
+        path: 'home',
+        component: HomeStudentComponent,
+      },
+      {
+        path: 'information',
+        component: StudentInfoComponent,
+      },
+      {
+        path: 'settings',
+        component: AccountSettingsComponent,
+      },
+    ],
   },
 ];
 

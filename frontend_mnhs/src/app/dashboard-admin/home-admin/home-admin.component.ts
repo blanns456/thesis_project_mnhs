@@ -1,23 +1,53 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Chart, registerables } from 'chart.js';
+import { StudentEnrollmentService } from 'src/app/student-enrollment.service';
+
 Chart.register(...registerables);
+
+interface EnrollmentData {
+  school_year: string;
+  student_count: number;
+}
 
 @Component({
   selector: 'app-home-admin',
   templateUrl: './home-admin.component.html',
   styleUrls: ['./home-admin.component.scss'],
 })
-export class HomeAdminComponent {
+export class HomeAdminComponent implements OnInit {
   title = 'Chart';
+  chart: Chart | null = null;
+
+  constructor(private enrollmentService: StudentEnrollmentService) {}
+
   ngOnInit() {
-    var myChart = new Chart('myChart', {
+    this.loadData();
+  }
+
+  loadData() {
+    this.enrollmentService.getEnrollmentData().subscribe(
+      (data: EnrollmentData[]) => {
+        console.log('Received data:', data);
+        this.createChart(data);
+      },
+      (error) => {
+        console.error('Error loading data:', error);
+      }
+    );
+  }
+
+  createChart(data: EnrollmentData[]) {
+    const labels = data.map(item => item.school_year);
+    const values = data.map(item => item.student_count);
+
+    this.chart = new Chart('myChart', {
       type: 'bar',
       data: {
-        labels: ['2024', '2025', '2026', '2027', '2028', '2029'],
+        labels: labels,
         datasets: [
           {
             label: "No. of Student's Enrolled",
-            data: [12, 0, 0, 0, 0, 0],
+            data: values,
             backgroundColor: [
               'rgba(255, 99, 132, 0.2)',
               'rgba(54, 162, 235, 0.2)',

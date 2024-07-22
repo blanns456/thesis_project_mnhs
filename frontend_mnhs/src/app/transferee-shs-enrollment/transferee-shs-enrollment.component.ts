@@ -15,6 +15,8 @@ export class TransfereeShsEnrollmentComponent implements OnInit {
   uploadForm!: FormGroup;
   imageURL: string | undefined;
   studata: any;
+  profileImageURL: string = '';
+  form137ImageURL: string = '';
 
   constructor(
     private formBuilder: FormBuilder,
@@ -35,7 +37,7 @@ export class TransfereeShsEnrollmentComponent implements OnInit {
 
     semester: ['', [Validators.required]],
     track: ['', [Validators.required]],
-    strand: ['', [Validators.required]],
+    // strand: ['', [Validators.required]],
     gradelevel: ['', [Validators.required]],
     lrn: ['', [Validators.required]],
     firstname: ['', [Validators.required]],
@@ -71,6 +73,7 @@ export class TransfereeShsEnrollmentComponent implements OnInit {
     guardian_middleName: [''],
     guardian_number: [''],
     profile: ['', [Validators.required]],
+    form_137: ['', [Validators.required]],
     signature: ['', [Validators.required]],
   });
 
@@ -112,7 +115,7 @@ export class TransfereeShsEnrollmentComponent implements OnInit {
   loading = false;
 
   savestudent() {
-    this.loading = true;
+    // this.loading = true;
     const base64Data = this.signaturePad.toDataURL();
     this.signatureImg = base64Data;
     this.signatureNeeded = this.signaturePad.isEmpty();
@@ -125,15 +128,10 @@ export class TransfereeShsEnrollmentComponent implements OnInit {
 
     const submitdata = new FormData();
 
-    submitdata.append(
-      'imagefilename',
-      this.enrollForm.controls['profile'].value
-    );
+    submitdata.append('imagefilename',this.enrollForm.controls['profile'].value);
+    submitdata.append('form_137',this.enrollForm.controls['form_137'].value);
     submitdata.append('schoolID', this.enrollForm.controls['schoolID'].value);
-    submitdata.append(
-      'lastgradecompl',
-      this.enrollForm.controls['lastgradecompl'].value
-    );
+    submitdata.append('lastgradecompl',this.enrollForm.controls['lastgradecompl'].value);
     submitdata.append(
       'lastschool',
       this.enrollForm.controls['lastschool'].value
@@ -144,7 +142,7 @@ export class TransfereeShsEnrollmentComponent implements OnInit {
     );
     submitdata.append('semester', this.enrollForm.controls['semester'].value);
     submitdata.append('track', this.enrollForm.controls['track'].value);
-    submitdata.append('strand', this.enrollForm.controls['strand'].value);
+    // submitdata.append('strand', this.enrollForm.controls['strand'].value);
     submitdata.append(
       'gradelevel',
       this.enrollForm.controls['gradelevel'].value
@@ -256,7 +254,7 @@ export class TransfereeShsEnrollmentComponent implements OnInit {
       this.enrollForm.controls['lastschool_yr'].invalid ||
       this.enrollForm.controls['semester'].invalid ||
       this.enrollForm.controls['track'].invalid ||
-      this.enrollForm.controls['strand'].invalid ||
+      // this.enrollForm.controls['strand'].invalid ||
       this.enrollForm.controls['gradelevel'].invalid ||
       this.enrollForm.controls['firstname'].invalid ||
       this.enrollForm.controls['lastname'].invalid ||
@@ -306,22 +304,29 @@ export class TransfereeShsEnrollmentComponent implements OnInit {
     );
   }
 
-  showPreview(event: Event) {
+  showPreview(event: Event, imageType: 'profileImageURL' | 'form137ImageURL') {
     const inputElement = event.target as HTMLInputElement;
     if (inputElement.files && inputElement.files.length > 0) {
       const file = inputElement.files[0];
-      this.uploadForm!.patchValue({
-        avatar: file,
-      });
-      this.uploadForm!.get('avatar')!.updateValueAndValidity();
+
       const reader = new FileReader();
       reader.onload = () => {
-        this.imageURL = reader.result as string;
+        if (imageType === 'profileImageURL') {
+          this.profileImageURL = reader.result as string;
+        } else if (imageType === 'form137ImageURL') {
+          this.form137ImageURL = reader.result as string;
+        }
       };
       reader.readAsDataURL(file);
-      this.enrollForm.patchValue({
-        profile: file,
-      });
+      if (imageType === 'profileImageURL') {
+        this.enrollForm.patchValue({
+          profile: file,
+        });
+      } else if (imageType === 'form137ImageURL') {
+        this.enrollForm.patchValue({
+          form_137: file,
+        });
+      }
     }
   }
 

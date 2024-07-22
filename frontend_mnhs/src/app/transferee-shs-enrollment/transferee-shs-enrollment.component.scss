@@ -41,3 +41,25 @@ canvas {
 label {
   user-select: none;
 }
+
+.img-holder{
+  width: 100%;
+  height: auto;
+  aspect-ratio: 3 / 2;
+  object-fit: contain;
+  // background-position: top;
+  // background-size: cover;
+  border: 1px solid black;
+  display: block;
+}
+
+.img-holder-def{
+  width: 100%;
+  height: auto;
+  aspect-ratio: 3 / 2;
+  object-fit: cover;
+  // background-position: top;
+  // background-size: cover;
+  border: 1px solid black;
+  display: block;
+}
