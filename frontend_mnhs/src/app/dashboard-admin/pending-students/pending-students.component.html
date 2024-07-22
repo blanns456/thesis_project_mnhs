@@ -8,49 +8,124 @@
         <h3 class="fw-bold text-uppercase py-2 text-white">List of Pending Students</h3>
       </div>
       <div class="chart-container bg-white h-auto p-3 rounded">
-        <table
-          class="table table-bordered table-striped"
-          #dataTable
-          style="width: 100%"
-        >
-          <thead>
+        <p-table
+          #dt
+          [value]="students"
+          dataKey="studid"
+          [rows]="10"
+          [rowsPerPageOptions]="[10, 25, 50]"
+          [loading]="loading"
+          [paginator]="true"
+          [globalFilterFields]="['studname', 'gradelevel', 'LRN', 'status']">
+          <ng-template pTemplate="caption">
+            <div class="flex">
+              <p-button
+                label="Clear"
+                [outlined]="true"
+                icon="pi pi-filter-slash"
+                (onClick)="dt.clear()"></p-button>
+              <span class="p-input-icon-left ml-auto">
+                <i class="pi pi-search"></i>
+                <input
+                  pInputText
+                  type="text"
+                  [(ngModel)]="searchValue"
+                  (input)="filterGlobal($event, 'contains')"
+                  placeholder="Search keyword">
+              </span>
+            </div>
+          </ng-template>
+          <ng-template pTemplate="header">
             <tr>
-              <th>Student Name</th>
-              <th>Year Level</th>
-              <th>LRN No.</th>
-              <th>Status</th>
-              <th>Action</th>
+              <th
+                pSortableColumn="studname"
+                style="min-width:15rem">
+                <div class="flex align-items-center">
+                  Name
+                  <p-columnFilter
+                    type="text"
+                    field="studname"
+                    display="menu"></p-columnFilter>
+                </div>
+              </th>
+              <th
+                pSortableColumn="gradelevel"
+                style="min-width:15rem">
+                <div class="flex align-items-center">
+                  Year Level
+                  <p-columnFilter
+                    type="text"
+                    field="gradelevel"
+                    display="menu"></p-columnFilter>
+                </div>
+              </th>
+              <th
+                pSortableColumn="LRN"
+                style="min-width:15rem">
+                <div class="flex align-items-center">
+                  LRN No.
+                  <p-columnFilter
+                    type="text"
+                    field="LRN"
+                    display="menu"></p-columnFilter>
+                </div>
+              </th>
+              <th
+                pSortableColumn="status"
+                style="min-width:15rem">
+                <div class="flex align-items-center">
+                  Status
+                  <p-columnFilter
+                    type="text"
+                    field="status"
+                    display="menu"></p-columnFilter>
+                </div>
+              </th>
+              <th style="min-width:10rem">Action</th>
             </tr>
-          </thead>
-          <tbody *ngIf="students.length">
-            <tr *ngFor="let student of students">
+          </ng-template>
+          <ng-template
+            pTemplate="body"
+            let-student>
+            <tr>
               <td>{{ student.studname }}</td>
               <td>Grade {{ student.gradelevel }}</td>
               <td>{{ student.LRN }}</td>
-              <td class="fw-bold text-danger text-uppercase">
-                {{ student.status }}
-              </td>
-              <td>
-                <button
-                  class="btn btn-success me-2"
-                  (click)="approveStudent(student.studid)"
-                >
-                  <a class="text-white text-decoration-none"
-                    ><i class="fa-solid fa-check"></i>Approve</a
-                  >
-                </button>
-                <button
-                  class="btn btn-danger"
-                  (click)="declineStudent(student.studid)"
-                >
-                  <a class="text-white text-decoration-none"
-                    ><i class="fa-solid fa-trash"></i>Decline</a
-                  >
-                </button>
+              <td class="fw-bold text-danger text-uppercase">{{ student.status }}</td>
+              <td class="d-flex">
+                <p-button
+                  label="Approve"
+                  severity="success"
+                  (click)="approveStudent(student.studid)"></p-button>
+                <!-- <button
+                  class="btn btn-success me-2 d-flex"
+                  (click)="approveStudent(student.studid)">
+                  Approve
+                  <i class="pi pi-check"></i>
+                </button> -->
+                <p-button
+                  label="Decline"
+                  severity="danger"
+                  (click)="declineStudent(student.studid)"></p-button>
+                <!-- <button
+                  class="btn btn-danger d-flex"
+                  (click)="declineStudent(student.studid)">
+                  Decline
+                  <i class="pi pi-times"></i>
+                </button> -->
               </td>
             </tr>
-          </tbody>
-        </table>
+          </ng-template>
+          <ng-template pTemplate="emptymessage">
+            <tr>
+              <td
+                colspan="5"
+                class="text-center">
+                No pending students found
+              </td>
+            </tr>
+          </ng-template>
+        </p-table>
       </div>
     </div>
   </div>

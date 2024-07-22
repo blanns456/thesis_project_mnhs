@@ -1,16 +1,24 @@
 <div class="container-holder">
   <div class="background"></div>
 
-  <div class="loading-overlay" *ngIf="loading">
-    <div class="spinner-border" role="status">
+  <div
+    class="loading-overlay"
+    *ngIf="loading">
+    <div
+      class="spinner-border"
+      role="status">
       <span class="visually-hidden">Loading...</span>
     </div>
   </div>
 
   <nav class="navbar navbar-expand-lg position-fixed w-100 z-1">
     <div class="container-fluid d-flex justify-content-between py-1">
-      <div class="mx-5 fs-5"><a routerLink="">Home</a></div>
-      <div class="mx-5 fs-5"><a href="">Login</a></div>
+      <div class="mx-5 fs-5">
+        <a routerLink>Home</a>
+      </div>
+      <div class="mx-5 fs-5">
+        <a href>Login</a>
+      </div>
     </div>
   </nav>
 
@@ -19,19 +27,23 @@
       src="../../assets/images/logo.png"
       alt="logo"
       width="150"
-      class="position-absolute top-25 start-50 translate-middle z-4"
-    />
+      class="position-absolute top-25 start-50 translate-middle z-4">
     <div class="container-fluid form-container py-2">
       <h2 class="text-center mt-5 pt-4">Senior HighSchool Enrollment</h2>
-      <hr />
-      <form action="" [formGroup]="enrollForm">
+      <hr>
+      <form
+        action
+        [formGroup]="enrollForm">
         <h3>For Learners in Senior High School</h3>
         <div class="row">
           <div class="col-4">
             <div class="d-flex mt-3 align-items-center gap-3">
-              <label for="semester" class="form-label"
-                >Semester:<small class="text-danger">*</small></label
-              >
+              <label
+                for="semester"
+                class="form-label">
+                Semester:
+                <small class="text-danger">*</small>
+              </label>
               <div class="form-check">
                 <input
                   class="form-check-input"
@@ -39,9 +51,10 @@
                   formControlName="semester"
                   name="semester"
                   value="1st Sem"
-                  id="flexCheckDefault"
-                />
-                <label class="form-check-label" for="flexCheckDefault">
+                  id="flexCheckDefault">
+                <label
+                  class="form-check-label"
+                  for="flexCheckDefault">
                   1st Sem
                 </label>
               </div>
@@ -52,62 +65,101 @@
                   name="semester"
                   formControlName="semester"
                   value="2nd Sem"
-                  id="flexCheckDefault2"
-                />
-                <label class="form-check-label" for="flexCheckDefault2">
+                  id="flexCheckDefault2">
+                <label
+                  class="form-check-label"
+                  for="flexCheckDefault2">
                   2nd Sem
                 </label>
               </div>
             </div>
           </div>
-          <div class="col-4">
+          <!-- <div class="col-4">
             <div class="mb-3">
-              <label for="track" class="form-label"
-                >Track<small class="text-danger">*</small></label
-              >
+              <label
+                for="track"
+                class="form-label">
+                Track
+                <small class="text-danger">*</small>
+              </label>
               <input
                 type="text"
                 class="form-control"
                 name="track"
                 formControlName="track"
                 id="track"
-                required
-              />
+                required>
             </div>
-          </div>
+          </div> -->
           <div class="col-4">
             <div class="mb-3">
-              <label for="strand" class="form-label"
-                >Strand<small class="text-danger">*</small></label
-              >
+              <label
+                for="track"
+                class="form-label">
+                Track
+              </label>
+              <select
+                name="track"
+                id="track"
+                class="form-select"
+                formControlName="track"
+                required>
+                <option
+                  value
+                  disabled
+                  selected>
+                  Please Select
+                </option>
+                <option value="General Academic Strand (GAS)">General Academic Strand (GAS)</option>
+                <!-- <optgroup label="General Academic Strand (GAS)">
+                  <option value="Technical Vocational">Technical Vocational</option>
+                  <option value="Livelihood Skills">Livelihood Skills</option>
+                </optgroup> -->
+                <option value="Shielded Metal Arc Welding">Shielded Metal Arc Welding (SMAW)</option>
+                <option value="Illustration / Animation">Illustration / Animation</option>
+                <option value="Dressmaking / Tailoring">Dressmaking / Tailoring</option>
+              </select>
+            </div>
+          </div>
+          <!-- <div class="col-4">
+            <div class="mb-3">
+              <label
+                for="strand"
+                class="form-label">
+                Strand
+                <small class="text-danger">*</small>
+              </label>
               <input
                 type="text"
                 class="form-control"
                 formControlName="strand"
                 name="strand"
                 id="strand"
-                required
-              />
+                required>
             </div>
-          </div>
+          </div> -->
         </div>
-        <hr />
+        <hr>
         <h2>Learner Information</h2>
         <div class="row">
           <div class="col-4">
             <div class="mb-3">
-              <label for="gradelevel" class="form-label"
-                >Grade Level to Enroll
-                <small class="text-danger">*</small></label
-              >
+              <label
+                for="gradelevel"
+                class="form-label">
+                Grade Level to Enroll
+                <small class="text-danger">*</small>
+              </label>
               <select
                 formControlName="gradelevel"
                 name="gradelevel"
                 id="gradelevel"
                 class="form-select"
-                required
-              >
-                <option value="" disabled selected>
+                required>
+                <option
+                  value
+                  disabled
+                  selected>
                   Please Select Year Level
                 </option>
                 <option value="11">Grade 11</option>
@@ -117,8 +169,11 @@
           </div>
           <div class="col-4">
             <div class="mb-3">
-              <label for="lrn" class="form-label">
-                LRN Number<small class="text-danger">*</small>
+              <label
+                for="lrn"
+                class="form-label">
+                LRN Number
+                <small class="text-danger">*</small>
               </label>
               <input
                 type="text"
@@ -128,31 +183,34 @@
                 maxlength="12"
                 (input)="inputMask($event)"
                 formControlName="lrn"
-                required
-              />
+                required>
             </div>
           </div>
           <div class="col-4">
             <div class="mb-3">
-              <label for="m_tounge" class="form-label"
-                >Mother Tounge (Optional)</label
-              >
+              <label
+                for="m_tounge"
+                class="form-label">
+                Mother Tounge (Optional)
+              </label>
               <input
                 type="text"
                 class="form-control"
                 name="m_tounge"
                 formControlName="m_tounge"
-                id="m_tounge"
-              />
+                id="m_tounge">
             </div>
           </div>
         </div>
         <div class="row">
           <div class="col-4">
             <div class="mb-3">
-              <label for="firstname" class="form-label"
-                >First Name<small class="text-danger">*</small></label
-              >
+              <label
+                for="firstname"
+                class="form-label">
+                First Name
+                <small class="text-danger">*</small>
+              </label>
               <input
                 type="text"
                 class="form-control"
@@ -160,15 +218,17 @@
                 id="firstname"
                 formControlName="firstname"
                 placeholder="ex. John"
-                required
-              />
+                required>
             </div>
           </div>
           <div class="col-4">
             <div class="mb-3">
-              <label for="lastname" class="form-label"
-                >Last Name<small class="text-danger">*</small></label
-              >
+              <label
+                for="lastname"
+                class="form-label">
+                Last Name
+                <small class="text-danger">*</small>
+              </label>
               <input
                 type="text"
                 class="form-control"
@@ -176,23 +236,23 @@
                 id="lastname"
                 formControlName="lastname"
                 placeholder="ex. Doe"
-                required
-              />
+                required>
             </div>
           </div>
           <div class="col-4">
             <div class="mb-3">
-              <label for="middle_name" class="form-label"
-                >Middle Name (Optional)</label
-              >
+              <label
+                for="middle_name"
+                class="form-label">
+                Middle Name (Optional)
+              </label>
               <input
                 type="text"
                 class="form-control"
                 name="middle_name"
                 id="middle_name"
                 formControlName="middle_name"
-                required
-              />
+                required>
             </div>
           </div>
         </div>
@@ -201,44 +261,54 @@
             <div class="row">
               <div class="col-6">
                 <div class="mb-3">
-                  <label for="suffix" class="form-label"
-                    >Suffix (Optional)</label
-                  >
+                  <label
+                    for="suffix"
+                    class="form-label">
+                    Suffix (Optional)
+                  </label>
                   <input
                     type="text"
                     class="form-control"
                     name="suffix"
                     id="suffix"
                     formControlName="suffix"
-                    required
-                  />
+                    required>
                 </div>
               </div>
               <div class="col-6">
                 <div class="mb-3">
                   <div class="mb-3">
-                    <label for="gender" class="form-label"
-                      >Sex<small class="text-danger">*</small></label
-                    >
-                    <br />
+                    <label
+                      for="gender"
+                      class="form-label">
+                      Sex
+                      <small class="text-danger">*</small>
+                    </label>
+                    <br>
                     <input
                       type="radio"
                       name="gender"
                       id="male"
                       value="male"
                       formControlName="gender"
-                      required
-                    />
-                    <label for="male" class="mx-2">Male</label>
+                      required>
+                    <label
+                      for="male"
+                      class="mx-2">
+                      Male
+                    </label>
                     <input
                       type="radio"
                       name="gender"
                       id="female"
                       value="female"
                       formControlName="gender"
-                      required
-                    />
-                    <label for="female" class="mx-2">Female</label>
+                      required>
+                    <label
+                      for="female"
+                      class="mx-2">
+                      Female
+                    </label>
                   </div>
                 </div>
               </div>
@@ -246,9 +316,12 @@
           </div>
           <div class="col-3">
             <div class="mb-3">
-              <label for="b_date" class="form-label"
-                >Birth Date<small class="text-danger">*</small></label
-              >
+              <label
+                for="b_date"
+                class="form-label">
+                Birth Date
+                <small class="text-danger">*</small>
+              </label>
               <input
                 type="date"
                 class="form-control"
@@ -256,36 +329,39 @@
                 id="b_date"
                 (blur)="calculateAge()"
                 formControlName="birthdate"
-                required
-              />
+                required>
             </div>
           </div>
           <div class="col-1">
             <div class="mb-3">
-              <label for="age" class="form-label"
-                >Age<small class="text-danger">*</small></label
-              >
+              <label
+                for="age"
+                class="form-label">
+                Age
+                <small class="text-danger">*</small>
+              </label>
               <input
                 type="text"
                 class="form-control"
                 formControlName="age"
-                required
-              />
+                required>
             </div>
           </div>
           <div class="col-4">
             <div class="mb-3">
-              <label for="civil_status" class="form-label"
-                >Civil Status<small class="text-danger">*</small></label
-              >
+              <label
+                for="civil_status"
+                class="form-label">
+                Civil Status
+                <small class="text-danger">*</small>
+              </label>
               <select
                 name="civil_status"
                 id="civil_status"
                 formControlName="civil_status"
                 class="form-select"
-                required
-              >
-                <option value="">Please Select Status</option>
+                required>
+                <option value>Please Select Status</option>
                 <option value="Single">Single</option>
                 <option value="Married">Married</option>
                 <option value="Widowed">Widowed</option>
@@ -296,26 +372,29 @@
         <div class="row">
           <div class="col-4">
             <div class="mb-3">
-              <label for="birth_place" class="form-label"
-                >Place of Birth (Municipality/City)<small class="text-danger"
-                  >*</small
-                ></label
-              >
+              <label
+                for="birth_place"
+                class="form-label">
+                Place of Birth (Municipality/City)
+                <small class="text-danger">*</small>
+              </label>
               <input
                 type="text"
                 class="form-control"
                 name="birth_place"
                 id="birth_place"
                 formControlName="birth_place"
-                required
-              />
+                required>
             </div>
           </div>
           <div class="col-4">
             <div class="mb-3">
-              <label for="email" class="form-label"
-                >Email<small class="text-danger">*</small></label
-              >
+              <label
+                for="email"
+                class="form-label">
+                Email
+                <small class="text-danger">*</small>
+              </label>
               <input
                 type="email"
                 class="form-control"
@@ -323,15 +402,17 @@
                 id="email"
                 formControlName="email"
                 placeholder="ex. johndoe@gmail.com"
-                required
-              />
+                required>
             </div>
           </div>
           <div class="col-4">
             <div class="mb-3">
-              <label for="mobile_number" class="form-label"
-                >Mobile Number<small class="text-danger">*</small></label
-              >
+              <label
+                for="mobile_number"
+                class="form-label">
+                Mobile Number
+                <small class="text-danger">*</small>
+              </label>
               <input
                 type="text"
                 class="form-control"
@@ -341,27 +422,28 @@
                 maxlength="12"
                 (input)="inputMask($event)"
                 placeholder="ex. 09123456789"
-                required
-              />
+                required>
             </div>
           </div>
         </div>
         <div class="row">
           <div class="col-6">
             <div class="mb-3">
-              <label for="ip" class="form-label"
-                >Belonging to any Indigenous People (IP) Community/Indigenous
-                Cultural Community? <small class="text-danger">*</small></label
-              >
-              <br />
+              <label
+                for="ip"
+                class="form-label">
+                Belonging to any Indigenous People (IP) Community/Indigenous
+                Cultural Community?
+                <small class="text-danger">*</small>
+              </label>
+              <br>
               <input
                 type="text"
                 id="yesIP"
                 class="form-select"
                 formControlName="ip"
                 required
-                list="ip"
-              />
+                list="ip">
               <datalist id="ip">
                 <option value="No">No</option>
               </datalist>
@@ -371,13 +453,14 @@
 
           <div class="col-6">
             <div class="mb-3">
-              <label for="pantawidText" class="form-label"
-                >Is your family a beneficiary of 4Ps?<small class="text-danger"
-                  >*</small
-                ></label
-              >
-              <br />
-              <br />
+              <label
+                for="pantawidText"
+                class="form-label">
+                Is your family a beneficiary of 4Ps?
+                <small class="text-danger">*</small>
+              </label>
+              <br>
+              <br>
               <input
                 type="text"
                 id="pantawidId"
@@ -385,21 +468,25 @@
                 formControlName="pantawid"
                 class="form-select"
                 required
-                list="pantawid"
-              />
+                list="pantawid">
               <datalist id="pantawid">
                 <option value="No">No</option>
               </datalist>
-              <small>If Yes, write the 4Ps Household ID Number Above</small>
+              <small>
+                If Yes, write the 4Ps Household ID Number Above
+              </small>
             </div>
           </div>
         </div>
         <div class="row">
           <div class="col-6">
             <div class="mb-3">
-              <label for="home_address" class="form-label"
-                >Current Address<small class="text-danger">*</small></label
-              >
+              <label
+                for="home_address"
+                class="form-label">
+                Current Address
+                <small class="text-danger">*</small>
+              </label>
               <textarea
                 name="home_address"
                 id="home_address"
@@ -408,15 +495,17 @@
                 cols="50"
                 rows="2"
                 placeholder="House No./Street Name/Barangay/Municipality or City/Province/Zipcode"
-                required
-              ></textarea>
+                required></textarea>
             </div>
           </div>
           <div class="col-6">
             <div class="mb-3">
-              <label for="present_address" class="form-label"
-                >Permanent Address<small class="text-danger">*</small></label
-              >
+              <label
+                for="present_address"
+                class="form-label">
+                Permanent Address
+                <small class="text-danger">*</small>
+              </label>
               <textarea
                 name="present_address"
                 id="present_address"
@@ -425,330 +514,389 @@
                 cols="50"
                 rows="2"
                 placeholder="House No./Street Name/Barangay/Municipality or City/Province/Zipcode"
-                required
-              ></textarea>
+                required></textarea>
             </div>
           </div>
         </div>
 
-        <hr />
+        <hr>
         <div class="row">
           <h2>Educational Record</h2>
           <div class="col-6">
             <div class="mb-3">
-              <label for="elementary" class="form-label"
-                >Elementary School Name<small class="text-danger"
-                  >*</small
-                ></label
-              >
+              <label
+                for="elementary"
+                class="form-label">
+                Elementary School Name
+                <small class="text-danger">*</small>
+              </label>
               <input
                 type="text"
                 class="form-control"
                 name="elementary"
                 id="elementary"
                 formControlName="elementary"
-                required
-              />
+                required>
             </div>
           </div>
           <div class="col-6">
             <div class="mb-3">
-              <label for="elementary_yr" class="form-label"
-                >Elementary School Year<small class="text-danger"
-                  >*</small
-                ></label
-              >
+              <label
+                for="elementary_yr"
+                class="form-label">
+                Elementary School Year
+                <small class="text-danger">*</small>
+              </label>
               <input
                 type="text"
                 class="form-control"
                 formControlName="elementary_yr"
                 name="elementary_yr"
                 id="elementary_yr"
-                required
-              />
+                required>
             </div>
           </div>
         </div>
         <div class="row">
           <div class="col-6">
             <div class="mb-3">
-              <label for="jhs" class="form-label"
-                >Junior High School Name<small class="text-danger"
-                  >*</small
-                ></label
-              >
+              <label
+                for="jhs"
+                class="form-label">
+                Junior High School Name
+                <small class="text-danger">*</small>
+              </label>
               <input
                 type="text"
                 class="form-control"
                 name="jhs"
                 id="jhs"
                 formControlName="jhs"
-                required
-              />
+                required>
             </div>
           </div>
           <div class="col-6">
             <div class="mb-3">
-              <label for="jhs_yr" class="form-label"
-                >Juinor High School Year<small class="text-danger"
-                  >*</small
-                ></label
-              >
+              <label
+                for="jhs_yr"
+                class="form-label">
+                Juinor High School Year
+                <small class="text-danger">*</small>
+              </label>
               <input
                 type="text"
                 class="form-control"
                 formControlName="jhs_yr"
                 name="jhs_yr"
                 id="jhs_yr"
-                required
-              />
+                required>
             </div>
           </div>
         </div>
-        <hr />
+        <hr>
         <h2>Parents Information</h2>
         <div class="row">
-          <caption class="fw-bold">
-            Father's Name
-          </caption>
+          <caption class="fw-bold">Father's Name</caption>
           <div class="col-3">
             <div class="mb-3">
-              <label for="father_lastName" class="form-label">Last Name</label>
+              <label
+                for="father_lastName"
+                class="form-label">
+                Last Name
+              </label>
               <input
                 type="text"
                 class="form-control"
                 formControlName="father_lastName"
                 name="father_lastName"
-                id="father_lastName"
-              />
+                id="father_lastName">
             </div>
           </div>
           <div class="col-3">
             <div class="mb-3">
-              <label for="father_firstName" class="form-label"
-                >First Name</label
-              >
+              <label
+                for="father_firstName"
+                class="form-label">
+                First Name
+              </label>
               <input
                 type="text"
                 class="form-control"
                 name="father_firstName"
                 formControlName="father_firstName"
-                id="father_firstName"
-              />
+                id="father_firstName">
             </div>
           </div>
           <div class="col-3">
             <div class="mb-3">
-              <label for="father_middleName" class="form-label"
-                >Middle Name</label
-              >
+              <label
+                for="father_middleName"
+                class="form-label">
+                Middle Name
+              </label>
               <input
                 type="text"
                 class="form-control"
                 name="father_middleName"
                 formControlName="father_middleName"
-                id="father_middleName"
-              />
+                id="father_middleName">
             </div>
           </div>
           <div class="col-3">
             <div class="mb-3">
-              <label for="father_number" class="form-label"
-                >Contact Number</label
-              >
+              <label
+                for="father_number"
+                class="form-label">
+                Contact Number
+              </label>
               <input
                 type="text"
                 class="form-control"
                 name="father_number"
                 formControlName="father_number"
-                id="father_number"
-              />
+                id="father_number">
             </div>
           </div>
-          <hr />
+          <hr>
         </div>
         <div class="row">
-          <caption class="fw-bold">
-            Mother's Name
-          </caption>
+          <caption class="fw-bold">Mother's Name</caption>
           <div class="col-3">
             <div class="mb-3">
-              <label for="mother_lastName" class="form-label">Last Name</label>
+              <label
+                for="mother_lastName"
+                class="form-label">
+                Last Name
+              </label>
               <input
                 type="text"
                 class="form-control"
                 name="mother_lastName"
                 formControlName="mother_lastName"
-                id="mother_lastName"
-              />
+                id="mother_lastName">
             </div>
           </div>
           <div class="col-3">
             <div class="mb-3">
-              <label for="mother_firstName" class="form-label"
-                >First Name</label
-              >
+              <label
+                for="mother_firstName"
+                class="form-label">
+                First Name
+              </label>
               <input
                 type="text"
                 class="form-control"
                 formControlName="mother_firstName"
                 name="mother_firstName"
-                id="mother_firstName"
-              />
+                id="mother_firstName">
             </div>
           </div>
           <div class="col-3">
             <div class="mb-3">
-              <label for="mother_middleName" class="form-label"
-                >Middle Name</label
-              >
+              <label
+                for="mother_middleName"
+                class="form-label">
+                Middle Name
+              </label>
               <input
                 type="text"
                 class="form-control"
                 name="mother_middleName"
                 formControlName="mother_middleName"
-                id="mother_middleName"
-              />
+                id="mother_middleName">
             </div>
           </div>
           <div class="col-3">
             <div class="mb-3">
-              <label for="mother_number" class="form-label"
-                >Contact Number</label
-              >
+              <label
+                for="mother_number"
+                class="form-label">
+                Contact Number
+              </label>
               <input
                 type="text"
                 class="form-control"
                 name="mother_number"
                 formControlName="mother_number"
-                id="mother_number"
-              />
+                id="mother_number">
             </div>
           </div>
-          <hr />
+          <hr>
         </div>
         <div class="row">
-          <caption class="fw-bold">
-            Guardian's Name
-          </caption>
+          <caption class="fw-bold">Guardian's Name</caption>
           <div class="col-3">
             <div class="mb-3">
-              <label for="guardian_lastName" class="form-label"
-                >Last Name</label
-              >
+              <label
+                for="guardian_lastName"
+                class="form-label">
+                Last Name
+              </label>
               <input
                 type="text"
                 class="form-control"
                 name="guardian_lastName"
                 formControlName="guardian_lastName"
-                id="guardian_lastName"
-              />
+                id="guardian_lastName">
             </div>
           </div>
           <div class="col-3">
             <div class="mb-3">
-              <label for="guardian_firstName" class="form-label"
-                >First Name</label
-              >
+              <label
+                for="guardian_firstName"
+                class="form-label">
+                First Name
+              </label>
               <input
                 type="text"
                 class="form-control"
                 name="guardian_firstName"
                 formControlName="guardian_firstName"
-                id="guardian_firstName"
-              />
+                id="guardian_firstName">
             </div>
           </div>
           <div class="col-3">
             <div class="mb-3">
-              <label for="guardian_middleName" class="form-label"
-                >Middle Name</label
-              >
+              <label
+                for="guardian_middleName"
+                class="form-label">
+                Middle Name
+              </label>
               <input
                 type="text"
                 class="form-control"
                 name="guardian_middleName"
                 formControlName="guardian_middleName"
-                id="guardian_middleName"
-              />
+                id="guardian_middleName">
             </div>
           </div>
           <div class="col-3">
             <div class="mb-3">
-              <label for="guardian_number" class="form-label"
-                >Contact Number</label
-              >
+              <label
+                for="guardian_number"
+                class="form-label">
+                Contact Number
+              </label>
               <input
                 type="text"
                 class="form-control"
                 name="guardian_number"
                 formControlName="guardian_number"
-                id="guardian_number"
-              />
+                id="guardian_number">
             </div>
           </div>
         </div>
-        <hr />
+        <hr>
         <div class="row">
           <div class="col-6">
             <div class="mb-3">
-              <label for="profile" class="form-label"
-                >Profile Image <small class="text-danger">*</small></label
-              >
+              <label
+                for="profile"
+                class="form-label">
+                Profile Image
+                <small class="text-danger">*</small>
+              </label>
               <input
                 type="file"
                 accept="image/*"
                 class="form-control mb-3"
                 name="profile"
                 id="profile"
-                (change)="showPreview($event)"
-              />
+                (change)="showPreview($event, 'profileImageURL')">
               <div class="imagePreview text-center">
                 <img
-                  *ngIf="!imageURL || imageURL === ''"
+                  *ngIf="!profileImageURL || profileImageURL === ''"
                   src="../../assets/images/default_Profile.png"
                   alt="Default Image"
-                  class="img-thumbnail"
-                  width="300"
-                />
-
+                  class="img-holder-def"
+                  width="300">
                 <img
-                  *ngIf="imageURL && imageURL !== ''"
-                  [src]="imageURL"
+                  *ngIf="profileImageURL && profileImageURL !== ''"
+                  [src]="profileImageURL"
                   [alt]="enrollForm.value.name"
-                  class="img-thumbnail"
-                  width="300"
-                />
+                  class="img-holder"
+                  width="300">
               </div>
             </div>
           </div>
-
-          <div class="col-4">
+          <div class="col-6 mx-auto">
             <div class="mb-3">
-              <label for="mother_occupation" class="form-label"
-                >Your Signature <small class="text-danger">*</small></label
-              >
+              <label
+                for="form_137"
+                class="form-label">
+                Form 137
+                <small class="text-danger">*</small>
+              </label>
+              <input
+                type="file"
+                accept="image/*"
+                class="form-control mb-3"
+                name="form_137"
+                id="form_137"
+                (change)="showPreview($event, 'form137ImageURL')">
+              <div class="imagePreview text-center">
+                <img
+                  *ngIf="!form137ImageURL || form137ImageURL === ''"
+                  src="../../assets/images/default.jpg"
+                  alt="Default Image"
+                  class="img-holder-def"
+                  width="400">
+                <img
+                  *ngIf="form137ImageURL && form137ImageURL !== ''"
+                  [src]="form137ImageURL"
+                  [alt]="enrollForm.value.name"
+                  class="img-holder">
+              </div>
+            </div>
+          </div>
+          <div class="col-12">
+            <div class="mb-3 text-center">
+              <label
+                for="mother_occupation"
+                class="form-label">
+                Your Signature
+                <small class="text-danger">*</small>
+              </label>
+              <br>
               <canvas
                 #canvas
                 (touchstart)="startDrawing($event)"
                 (touchmove)="moved($event)"
                 width="500"
-                height="200"
-              ></canvas>
-              <p class="error-message text-danger" *ngIf="signatureNeeded">
-                Signature is required
-              </p>
+                height="300"></canvas>
+              <p
+                class="error-message text-danger"
+                *ngIf="signatureNeeded">
+              Signature is required
+            </p>
 
               <div class="my-3">
-                <button (click)="clearPad()" class="btn btn-info">Clear</button>
+                <p-button
+                  (click)="clearPad()"
+                  label="Clear Signature"
+                  severity="info"></p-button>
+                <!-- <button
+                (click)="clearPad()"
+                class="btn btn-info">
+                Clear
+              </button> -->
               </div>
             </div>
           </div>
-        </div>
-        <div class="text-center">
-          <button (click)="savestudent()" class="btn btn-success">
+
+          <hr>
+
+          <div class="text-center">
+            <p-button
+              (click)="savestudent()"
+              label="Submit Enrollment"
+              severity="success"></p-button>
+            <!-- <p-button
+            (click)="savestudent()"
+            class="p-button-success">
             Enroll Now!
-          </button>
+          </p-button> -->
+          </div>
         </div>
       </form>
     </div>

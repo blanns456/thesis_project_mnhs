@@ -19,18 +19,17 @@ export class JhsEnrollmentComponent implements OnInit {
   isPantawidSelected: boolean = false;
   profileImageURL: string = '';
   form137ImageURL: string = '';
+  signatureNeeded!: boolean;
+  signaturePad!: SignaturePad;
+  @ViewChild('canvas') canvasEl!: ElementRef;
+  signatureImg!: string;
 
   constructor(
     private formBuilder: FormBuilder,
     private apiController: ApiControllers,
     private router: Router
   ) {}
-  // enrollForm!: FormGroup;
-  signatureNeeded!: boolean;
-  signaturePad!: SignaturePad;
-  @ViewChild('canvas') canvasEl!: ElementRef;
-  signatureImg!: string;
-  // formControlName = 'password';
+
 
   enrollForm: FormGroup = this.formBuilder.group({
     gradelevel: ['', [Validators.required]],
@@ -295,6 +294,7 @@ export class JhsEnrollmentComponent implements OnInit {
       }
     }
   }
+
   inputMask(event: Event) {
     var numberValue = (event.target as HTMLSelectElement).value;
 

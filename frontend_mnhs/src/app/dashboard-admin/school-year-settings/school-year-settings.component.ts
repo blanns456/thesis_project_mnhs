@@ -155,9 +155,15 @@ export class SchoolYearSettingsComponent implements OnInit {
 
   editSchoolYear(year: any): void {
     this.currentSchoolYearId = year.id; // Store the ID of the school year being edited
+
+    // Parse the school year string
+    const schoolYearParts = year.school_year.replace('S.Y. ', '').split('-');
+    const startYear = parseInt(schoolYearParts[0]);
+    const endYear = parseInt(schoolYearParts[1]);
+
     this.school_year_form.patchValue({
       school_year_duration: [new Date(year.school_start), new Date(year.school_end)],
-      school_year: [new Date(year.school_year.split(' - ')[0]), new Date(year.school_year.split(' - ')[1])],
+      school_year: [new Date(startYear, 0, 1), new Date(endYear, 0, 1)], // January 1st of each year
       enrollment_duration: [new Date(year.enrollment_start), new Date(year.enrollment_end)],
     });
   }

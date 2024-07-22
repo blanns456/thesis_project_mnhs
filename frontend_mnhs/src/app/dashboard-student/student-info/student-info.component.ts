@@ -31,6 +31,9 @@ export class StudentInfoComponent implements OnInit {
   signatureNeeded!: boolean;
   signaturePad!: SignaturePad;
   @ViewChild('canvas') canvasEl!: ElementRef;
+  activeEnrollments: any[] = [];
+
+
   constructor(
     private http: HttpClient,
     private messageService: MessageService,
@@ -78,7 +81,7 @@ export class StudentInfoComponent implements OnInit {
     signature: [''],
     semester: [''],
     track: [''],
-    strand: [''],
+    // strand: [''],
     jhs: [''],
     jhs_yr: [''],
     schoolID: [''],
@@ -106,9 +109,9 @@ export class StudentInfoComponent implements OnInit {
     }
   }
 
-  ngAfterViewInit() {
-    this.signaturePad = new SignaturePad(this.canvasEl.nativeElement);
-  }
+  // ngAfterViewInit() {
+  //   this.signaturePad = new SignaturePad(this.canvasEl.nativeElement);
+  // }
 
   startDrawing(event: Event) {}
 
@@ -119,6 +122,8 @@ export class StudentInfoComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.getActiveEnrollments();
+
     this.uploadForm = this.formBuilder.group({
       avatar: [''],
     });
@@ -135,7 +140,7 @@ export class StudentInfoComponent implements OnInit {
         this.loggedInUserData = data;
         // console.log(this.loggedInUserData);
         this.enrollForm.patchValue({
-          studid: this.loggedInUserData.data[0]?.stud_id,
+          studid: this.loggedInUserData.data[0]?.user_id,
           lrn: this.loggedInUserData.data[0]?.LRN,
           enrolling_for: this.loggedInUserData.data[0]?.grade_level,
           first_name: this.loggedInUserData.data[0]?.firstname,
@@ -178,11 +183,23 @@ export class StudentInfoComponent implements OnInit {
           elementary_yr: this.loggedInUserData.data[0]?.elem_schoolyr,
           last_school: this.loggedInUserData.data[0]?.last_school,
           last_schoolyr: this.loggedInUserData.data[0]?.last_schoolyr,
+          profile: this.loggedInUserData.data[0]?.profile_image,
         });
       },
       error: (error: HttpErrorResponse) => {
         console.error('Error:', error);
       },
+    });
+  }
+
+  getActiveEnrollments() {
+    this.http.get<any[]>('http://127.0.0.1:8000/api/active-enrollments').subscribe({
+      next: (response) => {
+        this.activeEnrollments = response;
+      },
+      error: (error) => {
+        console.error('Error fetching active enrollments:', error);
+      }
     });
   }
 
@@ -203,21 +220,7 @@ export class StudentInfoComponent implements OnInit {
   }
 
   updateInfos() {
-    const base64 = this.signaturePad.toDataURL();
-    this.signatureImg = base64;
-    this.signatureNeeded = this.signaturePad.isEmpty();
     this.loading = true;
-    const base64Data = this.signaturePad.toDataURL();
-    this.signatureImg = base64Data;
-    this.signatureNeeded = this.signaturePad.isEmpty();
-    if (!this.signatureNeeded) {
-      this.signatureNeeded = false;
-    }
-
-    this.enrollForm.patchValue({
-      signature: this.signatureImg,
-    });
-
     if (!this.enrollForm) {
       console.error('Form group not initialized.');
       return;
@@ -226,7 +229,7 @@ export class StudentInfoComponent implements OnInit {
     const submitdata = new FormData();
 
     submitdata.append('studid', this.enrollForm.controls['studid'].value);
-    submitdata.append('profile', this.enrollForm.controls['profile'].value);
+    // submitdata.append('profile', this.enrollForm.controls['profile'].value);
     submitdata.append(
       'schoolID',
       this.enrollForm.controls['schoolID'].value || ''
@@ -243,12 +246,12 @@ export class StudentInfoComponent implements OnInit {
       'last_schoolyr',
       this.enrollForm.controls['last_schoolyr'].value || ''
     );
-    submitdata.append(
-      'semester',
-      this.enrollForm.controls['semester'].value || ''
-    );
-    submitdata.append('track', this.enrollForm.controls['track'].value || '');
-    submitdata.append('strand', this.enrollForm.controls['strand'].value || '');
+    // submitdata.append(
+    //   'semester',
+    //   this.enrollForm.controls['semester'].value || ''
+    // );
+    // submitdata.append('track', this.enrollForm.controls['track'].value || '');
+    // submitdata.append('strand', this.enrollForm.controls['strand'].value || '');
     submitdata.append(
       'gradelevel',
       this.enrollForm.controls['gradelevel'].value || ''
@@ -284,7 +287,7 @@ export class StudentInfoComponent implements OnInit {
       'birth_place',
       this.enrollForm.controls['birth_place'].value
     );
-    submitdata.append('email', this.enrollForm.controls['email'].value);
+    // submitdata.append('email', this.enrollForm.controls['email'].value);
     submitdata.append(
       'mobile_number',
       this.enrollForm.controls['mobile_number'].value
@@ -364,9 +367,13 @@ export class StudentInfoComponent implements OnInit {
       'guardian_number',
       this.enrollForm.controls['guardian_number'].value || ''
     );
-    submitdata.append('signature', this.enrollForm.controls['signature'].value);
-
-    // console.log(submitdata);
+    // submitdata.append('signature', this.enrollForm.controls['signature'].value);
+    // console.log('Form Data:', submitdata.get('studid'));
+    const formDataEntries = submitdata as any;
+    for (let pair of formDataEntries.entries()) {
+      console.log(`${pair[0]}: ${pair[1]}`);
+    }
+    console.log(submitdata);
     this.EnrollmentSHSControllers.updatestudent(submitdata).subscribe({
       next: (res) => {
         console.log(res);
@@ -385,5 +392,22 @@ export class StudentInfoComponent implements OnInit {
         console.log(error.message);
       },
     });
+  }
+
+  calculateAge() {
+    const birthdate = this.enrollForm?.get('birthdate')?.value;
+    if (birthdate) {
+      const birthdateDate = new Date(birthdate);
+      const today = new Date();
+      let age = today.getFullYear() - birthdateDate.getFullYear();
+      const monthDiff = today.getMonth() - birthdateDate.getMonth();
+      if (
+        monthDiff < 0 ||
+        (monthDiff === 0 && today.getDate() < birthdateDate.getDate())
+      ) {
+        age--;
+      }
+      this.enrollForm?.get('age')?.setValue(age);
+    }
   }
 }

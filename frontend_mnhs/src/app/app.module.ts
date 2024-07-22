@@ -30,7 +30,7 @@ import { ToastModule } from 'primeng/toast';
 import { ButtonModule } from 'primeng/button';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MessagesModule } from 'primeng/messages';
-import { MessageService } from 'primeng/api';
+import { ConfirmationService, MessageService } from 'primeng/api';
 import { PasswordModule } from 'primeng/password';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { DialogModule } from 'primeng/dialog';
@@ -41,6 +41,8 @@ import { CardModule } from 'primeng/card';
 import { CalendarModule } from 'primeng/calendar';
 import { TreeTableModule } from 'primeng/treetable';
 import { TableModule } from 'primeng/table';
+import { ParentComponent } from './dashboard-student/parent/parent.component';
+import { ConfirmPopupModule } from 'primeng/confirmpopup';
 
 @NgModule({
   declarations: [
@@ -65,6 +67,7 @@ import { TableModule } from 'primeng/table';
     DeclineStudentsComponent,
     ForgotPasswordComponent,
     SchoolYearSettingsComponent,
+    ParentComponent,
   ],
   imports: [
     BrowserModule,
@@ -85,9 +88,11 @@ import { TableModule } from 'primeng/table';
     CardModule,
     CalendarModule,
     TreeTableModule,
-    TableModule
+    TableModule,
+    ConfirmPopupModule
+
   ],
-  providers: [MessageService],
+  providers: [ConfirmationService, MessageService],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
