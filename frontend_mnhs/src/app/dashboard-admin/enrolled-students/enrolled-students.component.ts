@@ -70,7 +70,19 @@ export class EnrolledStudentsComponent implements OnInit, AfterViewInit {
     school_id: string,
     lastgrade_completed: string,
     last_school: string,
-    last_schoolyr: string
+    last_schoolyr: string,
+    father_lastName: string,
+    father_firstName: string,
+    father_middleName: string,
+    father_number: string,
+    mother_lastName: string,
+    mother_firstName: string,
+    mother_middleName: string,
+    mother_number: string,
+    guardian_lastName: string,
+    guardian_firstName: string,
+    guardian_middleName: string,
+    guardian_number: string
   ): void {
     try {
       $('#studid').html(studentId);
@@ -102,6 +114,18 @@ export class EnrolledStudentsComponent implements OnInit, AfterViewInit {
       $('#lastgradecompl').val(lastgrade_completed);
       $('#lastschool').val(last_school);
       $('#lastschool_yr').val(last_schoolyr);
+      $('#father_lastName').val(father_lastName);
+      $('#father_firstName').val(father_firstName);
+      $('#father_middleName').val(father_middleName);
+      $('#father_number').val(father_number);
+      $('#mother_lastName').val(mother_lastName);
+      $('#mother_firstName').val(mother_firstName);
+      $('#mother_middleName').val(mother_middleName);
+      $('#mother_number').val(mother_number);
+      $('#guardian_lastName').val(guardian_lastName);
+      $('#guardian_firstName').val(guardian_firstName);
+      $('#guardian_middleName').val(guardian_middleName);
+      $('#guardian_number').val(guardian_number);
       $('#imgprev').attr(
         'src',
         'http://127.0.0.1:8000/uploads/userimages/' + profile_image

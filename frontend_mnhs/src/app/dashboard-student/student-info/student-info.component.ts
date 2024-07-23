@@ -35,7 +35,6 @@ export class StudentInfoComponent implements OnInit {
   profileImageURL: string = '';
   form137ImageURL: string = '';
 
-
   constructor(
     private http: HttpClient,
     private messageService: MessageService,
@@ -55,6 +54,7 @@ export class StudentInfoComponent implements OnInit {
     middle_name: [''],
     suffix: [''],
     gender: [''],
+    civil_status: [''],
     birthdate: [''],
     age: [''],
     birth_place: [''],
@@ -160,6 +160,7 @@ export class StudentInfoComponent implements OnInit {
           middle_name: this.loggedInUserData.data[0]?.middlename,
           suffix: this.loggedInUserData.data[0]?.suffix,
           gender: this.loggedInUserData.data[0]?.gender,
+          civil_status: this.loggedInUserData.data[0]?.civil_status,
           birthdate: this.loggedInUserData.data[0]?.birthdate,
           age: this.loggedInUserData.data[0]?.age,
           birth_place: this.loggedInUserData.data[0]?.birth_place,
@@ -204,14 +205,16 @@ export class StudentInfoComponent implements OnInit {
   }
 
   getActiveEnrollments() {
-    this.http.get<any[]>('http://127.0.0.1:8000/api/active-enrollments').subscribe({
-      next: (response) => {
-        this.activeEnrollments = response;
-      },
-      error: (error) => {
-        console.error('Error fetching active enrollments:', error);
-      }
-    });
+    this.http
+      .get<any[]>('http://127.0.0.1:8000/api/active-enrollments')
+      .subscribe({
+        next: (response) => {
+          this.activeEnrollments = response;
+        },
+        error: (error) => {
+          console.error('Error fetching active enrollments:', error);
+        },
+      });
   }
 
   getLoggedInUser(auth_token: string): Observable<any> {
@@ -252,45 +255,141 @@ export class StudentInfoComponent implements OnInit {
       submitdata.append('form_137', this.enrollForm.controls['form_137'].value);
     }
 
-    submitdata.append('schoolID', this.enrollForm.controls['schoolID'].value ?? '');
-    submitdata.append('lastgradecompl', this.enrollForm.controls['lastgradecompl'].value ?? '');
-    submitdata.append('last_school', this.enrollForm.controls['last_school'].value ?? '');
-    submitdata.append('last_schoolyr', this.enrollForm.controls['last_schoolyr'].value ?? '');
-    submitdata.append('gradelevel', this.enrollForm.controls['gradelevel'].value ?? '');
-    submitdata.append('special_program', this.enrollForm.controls['special_program'].value ?? '');
+    submitdata.append(
+      'schoolID',
+      this.enrollForm.controls['schoolID'].value ?? ''
+    );
+    submitdata.append(
+      'semester',
+      this.enrollForm.controls['semester'].value ?? ''
+    );
+    submitdata.append('track', this.enrollForm.controls['track'].value ?? '');
+    submitdata.append(
+      'lastgradecompl',
+      this.enrollForm.controls['lastgradecompl'].value ?? ''
+    );
+    submitdata.append(
+      'last_school',
+      this.enrollForm.controls['last_school'].value ?? ''
+    );
+    submitdata.append(
+      'last_schoolyr',
+      this.enrollForm.controls['last_schoolyr'].value ?? ''
+    );
+    submitdata.append(
+      'gradelevel',
+      this.enrollForm.controls['gradelevel'].value ?? ''
+    );
+    submitdata.append(
+      'special_program',
+      this.enrollForm.controls['special_program'].value ?? ''
+    );
     submitdata.append('lrn', this.enrollForm.controls['lrn'].value);
-    submitdata.append('enrolling_for', this.enrollForm.controls['enrolling_for'].value);
-    submitdata.append('first_name', this.enrollForm.controls['first_name'].value);
+    submitdata.append(
+      'enrolling_for',
+      this.enrollForm.controls['enrolling_for'].value
+    );
+    submitdata.append(
+      'first_name',
+      this.enrollForm.controls['first_name'].value
+    );
     submitdata.append('last_name', this.enrollForm.controls['last_name'].value);
-    submitdata.append('middle_name', this.enrollForm.controls['middle_name'].value ?? '');
+    submitdata.append(
+      'middle_name',
+      this.enrollForm.controls['middle_name'].value ?? ''
+    );
     submitdata.append('suffix', this.enrollForm.controls['suffix'].value ?? '');
     submitdata.append('gender', this.enrollForm.controls['gender'].value);
     submitdata.append('email', this.enrollForm.controls['email'].value);
     submitdata.append('age', this.enrollForm.controls['age'].value);
+    submitdata.append(
+      'civil_status',
+      this.enrollForm.controls['civil_status'].value
+    );
     submitdata.append('birthdate', this.enrollForm.controls['birthdate'].value);
-    submitdata.append('birth_place', this.enrollForm.controls['birth_place'].value);
-    submitdata.append('mobile_number', this.enrollForm.controls['mobile_number'].value);
-    submitdata.append('m_tounge', this.enrollForm.controls['m_tounge'].value ?? '');
+    submitdata.append(
+      'birth_place',
+      this.enrollForm.controls['birth_place'].value
+    );
+    submitdata.append(
+      'mobile_number',
+      this.enrollForm.controls['mobile_number'].value
+    );
+    submitdata.append(
+      'm_tounge',
+      this.enrollForm.controls['m_tounge'].value ?? ''
+    );
     submitdata.append('ip', this.enrollForm.controls['ip'].value ?? '');
-    submitdata.append('pantawid', this.enrollForm.controls['pantawid'].value ?? '');
-    submitdata.append('home_address', this.enrollForm.controls['home_address'].value);
-    submitdata.append('present_address', this.enrollForm.controls['present_address'].value);
-    submitdata.append('elementary', this.enrollForm.controls['elementary'].value);
-    submitdata.append('elementary_yr', this.enrollForm.controls['elementary_yr'].value);
+    submitdata.append(
+      'pantawid',
+      this.enrollForm.controls['pantawid'].value ?? ''
+    );
+    submitdata.append(
+      'home_address',
+      this.enrollForm.controls['home_address'].value
+    );
+    submitdata.append(
+      'present_address',
+      this.enrollForm.controls['present_address'].value
+    );
+    submitdata.append(
+      'elementary',
+      this.enrollForm.controls['elementary'].value
+    );
+    submitdata.append(
+      'elementary_yr',
+      this.enrollForm.controls['elementary_yr'].value
+    );
     submitdata.append('jhs', this.enrollForm.controls['jhs'].value);
     submitdata.append('jhs_yr', this.enrollForm.controls['jhs_yr'].value);
-    submitdata.append('father_lastName', this.enrollForm.controls['father_lastName'].value ?? '');
-    submitdata.append('father_firstName', this.enrollForm.controls['father_firstName'].value ?? '');
-    submitdata.append('father_middleName', this.enrollForm.controls['father_middleName'].value ?? '');
-    submitdata.append('father_number', this.enrollForm.controls['father_number'].value ?? '');
-    submitdata.append('mother_lastName', this.enrollForm.controls['mother_lastName'].value ?? '');
-    submitdata.append('mother_firstName', this.enrollForm.controls['mother_firstName'].value ?? '');
-    submitdata.append('mother_middleName', this.enrollForm.controls['mother_middleName'].value ?? '');
-    submitdata.append('mother_number', this.enrollForm.controls['mother_number'].value ?? '');
-    submitdata.append('guardian_lastName', this.enrollForm.controls['guardian_lastName'].value ?? '');
-    submitdata.append('guardian_firstName', this.enrollForm.controls['guardian_firstName'].value ?? '');
-    submitdata.append('guardian_middleName', this.enrollForm.controls['guardian_middleName'].value ?? '');
-    submitdata.append('guardian_number', this.enrollForm.controls['guardian_number'].value ?? '');
+    submitdata.append(
+      'father_lastName',
+      this.enrollForm.controls['father_lastName'].value ?? ''
+    );
+    submitdata.append(
+      'father_firstName',
+      this.enrollForm.controls['father_firstName'].value ?? ''
+    );
+    submitdata.append(
+      'father_middleName',
+      this.enrollForm.controls['father_middleName'].value ?? ''
+    );
+    submitdata.append(
+      'father_number',
+      this.enrollForm.controls['father_number'].value ?? ''
+    );
+    submitdata.append(
+      'mother_lastName',
+      this.enrollForm.controls['mother_lastName'].value ?? ''
+    );
+    submitdata.append(
+      'mother_firstName',
+      this.enrollForm.controls['mother_firstName'].value ?? ''
+    );
+    submitdata.append(
+      'mother_middleName',
+      this.enrollForm.controls['mother_middleName'].value ?? ''
+    );
+    submitdata.append(
+      'mother_number',
+      this.enrollForm.controls['mother_number'].value ?? ''
+    );
+    submitdata.append(
+      'guardian_lastName',
+      this.enrollForm.controls['guardian_lastName'].value ?? ''
+    );
+    submitdata.append(
+      'guardian_firstName',
+      this.enrollForm.controls['guardian_firstName'].value ?? ''
+    );
+    submitdata.append(
+      'guardian_middleName',
+      this.enrollForm.controls['guardian_middleName'].value ?? ''
+    );
+    submitdata.append(
+      'guardian_number',
+      this.enrollForm.controls['guardian_number'].value ?? ''
+    );
 
     // Append signature
     const base64Data = this.signaturePad.toDataURL();
@@ -324,7 +423,6 @@ export class StudentInfoComponent implements OnInit {
       },
     });
   }
-
 
   calculateAge() {
     const birthdate = this.enrollForm?.get('birthdate')?.value;
