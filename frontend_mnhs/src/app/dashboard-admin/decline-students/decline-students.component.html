@@ -5,7 +5,9 @@
     <app-navbar-admin></app-navbar-admin>
     <div class="container p-5 chartbg">
       <div class="text-content">
-        <h3 class="fw-bold text-uppercase py-2 text-white">Declined Students</h3>
+        <h3 class="fw-bold text-uppercase py-2 text-white">
+          Declined Students
+        </h3>
       </div>
       <div class="chart-container bg-white h-auto p-3 rounded">
         <table
@@ -23,7 +25,9 @@
           </thead>
           <tbody *ngIf="students.length">
             <tr *ngFor="let student of students">
-              <td>{{ student.firstname }} {{ student.lastname }}</td>
+              <td class="text-uppercase">
+                {{ student.firstname }} {{ student.lastname }}
+              </td>
               <td>Grade {{ student.grade_level }}</td>
               <td>{{ student.LRN }}</td>
               <td class="fw-bold text-danger text-uppercase">

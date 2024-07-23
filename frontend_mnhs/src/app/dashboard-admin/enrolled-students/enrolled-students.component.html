@@ -5,13 +5,18 @@
     <app-navbar-admin></app-navbar-admin>
     <div class="container p-5 chartbg">
       <div class="text-content">
-        <h3 class="fw-bold text-uppercase py-2 text-white">List of Enrolled Students</h3>
+        <h3 class="fw-bold text-uppercase py-2 text-white">
+          List of Enrolled Students
+        </h3>
       </div>
-      <div class="chart-container bg-white h-auto p-3 rounded card border shadow-lg">
+      <div
+        class="chart-container bg-white h-auto p-3 rounded card border shadow-lg"
+      >
         <table
           class="table table-bordered table-striped"
           #dataTable
-          style="width: 100%">
+          style="width: 100%"
+        >
           <thead>
             <tr>
               <th>Student Name</th>
@@ -23,18 +28,21 @@
           </thead>
           <tbody *ngIf="students.length">
             <tr *ngFor="let student of students">
-              <td>
+              <td class="text-uppercase">
                 {{ student.firstname }} {{ student.lastname }}
               </td>
               <td>Grade {{ student.grade_level }}</td>
               <td>{{ student.LRN }}</td>
-              <td class="fw-bold text-success text-uppercase">{{ student.account_status }}</td>
+              <td class="fw-bold text-success text-uppercase">
+                {{ student.account_status }}
+              </td>
               <td>
                 <button
                   class="btn btn-info me-2"
                   data-bs-toggle="modal"
                   data-bs-target="#viewmodal"
-                  (click)="retrieve(
+                  (click)="
+                    retrieve(
                       student.stud_id,
                       student.semester,
                       student.firstname,
@@ -65,7 +73,9 @@
                       student.lastgrade_completed,
                       student.last_school,
                       student.last_schoolyr
-                    )">
+                    )
+                  "
+                >
                   <a class="text-white text-decoration-none">
                     <i class="fa-solid fa-eye"></i>
                     View
@@ -85,30 +95,26 @@
   id="viewmodal"
   tabindex="-1"
   aria-labelledby="viewmodalLabel"
-  aria-hidden="true">
+  aria-hidden="true"
+>
   <div class="modal-dialog modal-xl">
     <div class="modal-content">
       <div class="modal-header">
-        <h1
-          class="modal-title fs-5 text-uppercase"
-          id="viewmodalLabel">
+        <h1 class="modal-title fs-5 text-uppercase" id="viewmodalLabel">
           <span id="fullname"></span>'s Information
         </h1>
         <button
           type="button"
           class="btn-close"
           data-bs-dismiss="modal"
-          aria-label="Close"></button>
+          aria-label="Close"
+        ></button>
       </div>
       <div class="modal-body">
-        <form
-          action
-          class="p-3">
+        <form action class="p-3">
           <div class="row">
             <div class="col-4">
-              <label
-                for="semester"
-                class="form-label">
+              <label for="semester" class="form-label">
                 Semester:
                 <small class="text-danger">*</small>
               </label>
@@ -116,13 +122,13 @@
                 type="text"
                 class="form-control"
                 name="semester"
-                id="semester">
+                id="semester"
+                readonly
+              />
             </div>
             <div class="col-4">
               <div class="mb-3">
-                <label
-                  for="track"
-                  class="form-label">
+                <label for="track" class="form-label">
                   Track
                   <small class="text-danger">*</small>
                 </label>
@@ -132,14 +138,14 @@
                   name="track"
                   id="track"
                   aria-describedby="helpId"
-                  required>
+                  required
+                  readonly
+                />
               </div>
             </div>
             <div class="col-4">
               <div class="mb-3">
-                <label
-                  for="lrn"
-                  class="form-label">
+                <label for="lrn" class="form-label">
                   LRN
                   <small class="text-danger">*</small>
                 </label>
@@ -149,48 +155,44 @@
                   name="lrn"
                   id="lrn"
                   aria-describedby="helpId"
-                  required>
+                  required
+                  readonly
+                />
               </div>
             </div>
           </div>
           <div class="row">
             <div class="col-4">
               <div class="mb-3">
-                <label
-                  for="first_name"
-                  class="form-label">
-                  First Name
-                </label>
+                <label for="first_name" class="form-label"> First Name </label>
                 <input
                   type="text"
                   class="form-control"
                   name="first_name"
                   id="first_name"
                   aria-describedby="helpId"
-                  required>
+                  required
+                  readonly
+                />
               </div>
             </div>
             <div class="col-4">
               <div class="mb-3">
-                <label
-                  for="last_name"
-                  class="form-label">
-                  Last Name
-                </label>
+                <label for="last_name" class="form-label"> Last Name </label>
                 <input
                   type="text"
                   class="form-control"
                   name="last_name"
                   id="last_name"
                   aria-describedby="helpId"
-                  required>
+                  required
+                  readonly
+                />
               </div>
             </div>
             <div class="col-4">
               <div class="mb-3">
-                <label
-                  for="middle_name"
-                  class="form-label">
+                <label for="middle_name" class="form-label">
                   Middle Name (Optional)
                 </label>
                 <input
@@ -199,7 +201,9 @@
                   name="middle_name"
                   id="middle_name"
                   aria-describedby="helpId"
-                  required>
+                  required
+                  readonly
+                />
               </div>
             </div>
           </div>
@@ -208,9 +212,7 @@
               <div class="row">
                 <div class="col-6">
                   <div class="mb-3">
-                    <label
-                      for="suffix"
-                      class="form-label">
+                    <label for="suffix" class="form-label">
                       Suffix (Optional)
                     </label>
                     <input
@@ -219,110 +221,100 @@
                       name="suffix"
                       id="suffix"
                       aria-describedby="helpId"
-                      required>
+                      required
+                      readonly
+                    />
                   </div>
                 </div>
                 <div class="col-6">
                   <div class="mb-3">
-                    <label
-                      for="gender"
-                      class="form-label">
-                      Gender
-                    </label>
+                    <label for="gender" class="form-label"> Gender </label>
                     <input
                       type="text"
                       id="gender"
-                      class="form-control">
+                      class="form-control"
+                      readonly
+                    />
                   </div>
                 </div>
               </div>
             </div>
             <div class="col-4">
               <div class="mb-3">
-                <label
-                  for="civil_status"
-                  class="form-label">
+                <label for="civil_status" class="form-label">
                   Civil Status
                 </label>
                 <input
                   type="text"
                   id="civil_status"
-                  class="form-control">
+                  class="form-control"
+                  readonly
+                />
               </div>
             </div>
             <div class="col-4">
               <div class="mb-3">
-                <label
-                  for="b_date"
-                  class="form-label">
-                  Birth Date
-                </label>
+                <label for="b_date" class="form-label"> Birth Date </label>
                 <input
                   type="text"
                   class="form-control"
                   name="b_date"
                   id="b_date"
                   aria-describedby="helpId"
-                  required>
+                  required
+                  readonly
+                />
               </div>
             </div>
           </div>
           <div class="row">
             <div class="col-4">
               <div class="mb-3">
-                <label
-                  for="b_place"
-                  class="form-label">
-                  Birth Place
-                </label>
+                <label for="b_place" class="form-label"> Birth Place </label>
                 <input
                   type="text"
                   class="form-control"
                   name="b_place"
                   id="b_place"
                   aria-describedby="helpId"
-                  required>
+                  required
+                  readonly
+                />
               </div>
             </div>
             <div class="col-4">
               <div class="mb-3">
-                <label
-                  for="email"
-                  class="form-label">
-                  Email
-                </label>
+                <label for="email" class="form-label"> Email </label>
                 <input
                   type="email"
                   class="form-control"
                   name="email"
                   id="email"
                   aria-describedby="helpId"
-                  required>
+                  required
+                  readonly
+                />
               </div>
             </div>
             <div class="col-4">
               <div class="mb-3">
-                <label
-                  for="number"
-                  class="form-label">
-                  Mobile Number
-                </label>
+                <label for="number" class="form-label"> Mobile Number </label>
                 <input
                   type="text"
                   class="form-control"
                   name="number"
                   id="number"
                   aria-describedby="helpId"
-                  required>
+                  required
+                  readonly
+                />
               </div>
             </div>
           </div>
           <div class="row">
             <div class="col-6">
               <div class="mb-3">
-                <label
-                  for="home_address"
-                  class="form-label">
+                <label for="home_address" class="form-label">
                   Permanent Address
                 </label>
                 <textarea
@@ -331,14 +323,14 @@
                   class="form-control"
                   cols="50"
                   rows="2"
-                  required></textarea>
+                  required
+                  readonly
+                ></textarea>
               </div>
             </div>
             <div class="col-6">
               <div class="mb-3">
-                <label
-                  for="present_address"
-                  class="form-label">
+                <label for="present_address" class="form-label">
                   Current Address
                 </label>
                 <textarea
@@ -347,16 +339,16 @@
                   class="form-control"
                   cols="50"
                   rows="2"
-                  required></textarea>
+                  required
+                  readonly
+                ></textarea>
               </div>
             </div>
           </div>
           <div class="row">
             <div class="col-4">
               <div class="mb-3">
-                <label
-                  for="enrolling_for"
-                  class="form-label">
+                <label for="enrolling_for" class="form-label">
                   Enrolling For
                 </label>
                 <input
@@ -364,27 +356,29 @@
                   class="form-control"
                   id="enrolling_for"
                   aria-describedby="helpId"
-                  required>
+                  required
+                  readonly
+                />
               </div>
             </div>
           </div>
           <div class="row">
             <div class="col-6">
               <div class="mb-3">
-                <label
-                  for="ip"
-                  class="form-label">
+                <label for="ip" class="form-label">
                   Belonging to any Indigenous People (IP) Community/Indigenous
                   Cultural Community?
                   <small class="text-danger">*</small>
                 </label>
-                <br>
+                <br />
                 <input
                   type="text"
                   id="yesIP"
                   class="form-select"
                   required
-                  list="ip">
+                  list="ip"
+                  readonly
+                />
                 <datalist id="ip">
                   <option value="No">No</option>
                 </datalist>
@@ -394,219 +388,34 @@
 
             <div class="col-6">
               <div class="mb-3">
-                <label
-                  for="major"
-                  class="form-label">
+                <label for="major" class="form-label">
                   Is your family a beneficiary of 4Ps?
                   <small class="text-danger">*</small>
                 </label>
-                <br>
-                <br>
+                <br />
+                <br />
                 <input
                   type="text"
                   id="pantawidId"
                   name="pantawidText"
                   class="form-select"
                   required
-                  list="pantawid">
+                  list="pantawid"
+                  readonly
+                />
                 <datalist id="pantawid">
                   <option value="No">No</option>
                 </datalist>
-                <small>
-                  If Yes, write the 4Ps Household ID Number Above
-                </small>
+                <small> If Yes, write the 4Ps Household ID Number Above </small>
               </div>
             </div>
           </div>
-          <hr>
-          <!-- <h2 class="h5 text-center">Parent's/Guardian's Information</h2>
-          <div class="row">
-            <caption class="fw-bold">Father's Name</caption>
-            <div class="col-3">
-              <div class="mb-3">
-                <label
-                  for="father_lastName"
-                  class="form-label">
-                  Last Name
-                </label>
-                <input
-                  type="text"
-                  class="form-control text-uppercase"
-                  name="father_lastName"
-                  id="father_lastName">
-              </div>
-            </div>
-            <div class="col-3">
-              <div class="mb-3">
-                <label
-                  for="father_firstName"
-                  class="form-label">
-                  First Name
-                </label>
-                <input
-                  type="text"
-                  class="form-control text-uppercase"
-                  name="father_firstName"
-                  id="father_firstName">
-              </div>
-            </div>
-            <div class="col-3">
-              <div class="mb-3">
-                <label
-                  for="father_middleName"
-                  class="form-label">
-                  Middle Name
-                </label>
-                <input
-                  type="text"
-                  class="form-control text-uppercase"
-                  name="father_middleName"
-                  id="father_middleName">
-              </div>
-            </div>
-            <div class="col-3">
-              <div class="mb-3">
-                <label
-                  for="father_number"
-                  class="form-label">
-                  Contact Number
-                </label>
-                <input
-                  type="text"
-                  class="form-control"
-                  name="father_number"
-                  id="father_number">
-              </div>
-            </div>
-            <hr>
-          </div>
-          <div class="row">
-            <caption class="fw-bold">Mother's Name</caption>
-            <div class="col-3">
-              <div class="mb-3">
-                <label
-                  for="mother_lastName"
-                  class="form-label">
-                  Last Name
-                </label>
-                <input
-                  type="text"
-                  class="form-control text-uppercase"
-                  name="mother_lastName"
-                  id="mother_lastName">
-              </div>
-            </div>
-            <div class="col-3">
-              <div class="mb-3">
-                <label
-                  for="mother_firstName"
-                  class="form-label">
-                  First Name
-                </label>
-                <input
-                  type="text"
-                  class="form-control text-uppercase"
-                  name="mother_firstName"
-                  id="mother_firstName">
-              </div>
-            </div>
-            <div class="col-3">
-              <div class="mb-3">
-                <label
-                  for="mother_middleName"
-                  class="form-label">
-                  Middle Name
-                </label>
-                <input
-                  type="text"
-                  class="form-control text-uppercase"
-                  name="mother_middleName"
-                  id="mother_middleName">
-              </div>
-            </div>
-            <div class="col-3">
-              <div class="mb-3">
-                <label
-                  for="mother_number"
-                  class="form-label">
-                  Contact Number
-                </label>
-                <input
-                  type="text"
-                  class="form-control"
-                  name="mother_number"
-                  id="mother_number">
-              </div>
-            </div>
-            <hr>
-          </div>
-          <div class="row">
-            <caption class="fw-bold">Guardian's Name</caption>
-            <div class="col-3">
-              <div class="mb-3">
-                <label
-                  for="guardian_lastName"
-                  class="form-label">
-                  Last Name
-                </label>
-                <input
-                  type="text"
-                  class="form-control text-uppercase"
-                  name="guardian_lastName"
-                  id="guardian_lastName">
-              </div>
-            </div>
-            <div class="col-3">
-              <div class="mb-3">
-                <label
-                  for="guardian_firstName"
-                  class="form-label">
-                  First Name
-                </label>
-                <input
-                  type="text"
-                  class="form-control text-uppercase"
-                  name="guardian_firstName"
-                  id="guardian_firstName">
-              </div>
-            </div>
-            <div class="col-3">
-              <div class="mb-3">
-                <label
-                  for="guardian_middleName"
-                  class="form-label">
-                  Middle Name
-                </label>
-                <input
-                  type="text"
-                  class="form-control text-uppercase"
-                  name="guardian_middleName"
-                  id="guardian_middleName">
-              </div>
-            </div>
-            <div class="col-3">
-              <div class="mb-3">
-                <label
-                  for="guardian_number"
-                  class="form-label">
-                  Contact Number
-                </label>
-                <input
-                  type="text"
-                  class="form-control"
-                  name="guardian_number"
-                  id="guardian_number">
-              </div>
-            </div>
-            <hr>
-          </div> -->
+          <hr />
           <div class="row">
             <h2>Educational Record</h2>
             <div class="col-6">
               <div class="mb-3">
-                <label
-                  for="elementary"
-                  class="form-label">
+                <label for="elementary" class="form-label">
                   Elementary School Name
                 </label>
                 <input
@@ -615,14 +424,14 @@
                   name="elementary"
                   id="elementary"
                   aria-describedby="helpId"
-                  required>
+                  required
+                  readonly
+                />
               </div>
             </div>
             <div class="col-6">
               <div class="mb-3">
-                <label
-                  for="elementary_yr"
-                  class="form-label">
+                <label for="elementary_yr" class="form-label">
                   Elementary School Year
                 </label>
                 <input
@@ -631,17 +440,16 @@
                   name="elementary_yr"
                   id="elementary_yr"
                   aria-describedby="helpId"
-                  required>
+                  required
+                  readonly
+                />
               </div>
             </div>
           </div>
-
           <div class="row">
             <div class="col-6">
               <div class="mb-3">
-                <label
-                  for="jhs"
-                  class="form-label">
+                <label for="jhs" class="form-label">
                   Junior High School Name
                 </label>
                 <input
@@ -650,14 +458,14 @@
                   name="jhs"
                   id="jhs"
                   aria-describedby="helpId"
-                  required>
+                  required
+                  readonly
+                />
               </div>
             </div>
             <div class="col-6">
               <div class="mb-3">
-                <label
-                  for="jhs_yr"
-                  class="form-label">
+                <label for="jhs_yr" class="form-label">
                   Juinor High School Year
                 </label>
                 <input
@@ -666,11 +474,201 @@
                   name="jhs_yr"
                   id="jhs_yr"
                   aria-describedby="helpId"
-                  required>
+                  required
+                  readonly
+                />
               </div>
             </div>
           </div>
-          <hr>
+          <hr />
+          <h2>Parent's Information</h2>
+          <div class="row">
+            <caption class="fw-bold">
+              Father's Name
+            </caption>
+            <div class="col-3">
+              <div class="mb-3">
+                <label for="father_lastName" class="form-label">
+                  Last Name
+                </label>
+                <input
+                  type="text"
+                  class="form-control text-uppercase"
+                  name="father_lastName"
+                  id="father_lastName"
+                  readonly
+                />
+              </div>
+            </div>
+            <div class="col-3">
+              <div class="mb-3">
+                <label for="father_firstName" class="form-label">
+                  First Name
+                </label>
+                <input
+                  type="text"
+                  class="form-control text-uppercase"
+                  name="father_firstName"
+                  id="father_firstName"
+                  readonly
+                />
+              </div>
+            </div>
+            <div class="col-3">
+              <div class="mb-3">
+                <label for="father_middleName" class="form-label">
+                  Middle Name
+                </label>
+                <input
+                  type="text"
+                  class="form-control text-uppercase"
+                  name="father_middleName"
+                  id="father_middleName"
+                  readonly
+                />
+              </div>
+            </div>
+            <div class="col-3">
+              <div class="mb-3">
+                <label for="father_number" class="form-label">
+                  Contact Number
+                </label>
+                <input
+                  type="text"
+                  class="form-control"
+                  name="father_number"
+                  id="father_number"
+                  readonly
+                />
+              </div>
+            </div>
+            <hr />
+          </div>
+          <div class="row">
+            <caption class="fw-bold">
+              Mother's Name
+            </caption>
+            <div class="col-3">
+              <div class="mb-3">
+                <label for="mother_lastName" class="form-label">
+                  Last Name
+                </label>
+                <input
+                  type="text"
+                  class="form-control text-uppercase"
+                  name="mother_lastName"
+                  id="mother_lastName"
+                  readonly
+                />
+              </div>
+            </div>
+            <div class="col-3">
+              <div class="mb-3">
+                <label for="mother_firstName" class="form-label">
+                  First Name
+                </label>
+                <input
+                  type="text"
+                  class="form-control text-uppercase"
+                  name="mother_firstName"
+                  id="mother_firstName"
+                  readonly
+                />
+              </div>
+            </div>
+            <div class="col-3">
+              <div class="mb-3">
+                <label for="mother_middleName" class="form-label">
+                  Middle Name
+                </label>
+                <input
+                  type="text"
+                  class="form-control text-uppercase"
+                  name="mother_middleName"
+                  id="mother_middleName"
+                  readonly
+                />
+              </div>
+            </div>
+            <div class="col-3">
+              <div class="mb-3">
+                <label for="mother_number" class="form-label">
+                  Contact Number
+                </label>
+                <input
+                  type="text"
+                  class="form-control"
+                  name="mother_number"
+                  id="mother_number"
+                  readonly
+                />
+              </div>
+            </div>
+            <hr />
+          </div>
+          <div class="row">
+            <caption class="fw-bold">
+              Guardian's Name
+            </caption>
+            <div class="col-3">
+              <div class="mb-3">
+                <label for="guardian_lastName" class="form-label">
+                  Last Name
+                </label>
+                <input
+                  type="text"
+                  class="form-control text-uppercase"
+                  name="guardian_lastName"
+                  id="guardian_lastName"
+                  readonly
+                />
+              </div>
+            </div>
+            <div class="col-3">
+              <div class="mb-3">
+                <label for="guardian_firstName" class="form-label">
+                  First Name
+                </label>
+                <input
+                  type="text"
+                  class="form-control text-uppercase"
+                  name="guardian_firstName"
+                  id="guardian_firstName"
+                  readonly
+                />
+              </div>
+            </div>
+            <div class="col-3">
+              <div class="mb-3">
+                <label for="guardian_middleName" class="form-label">
+                  Middle Name
+                </label>
+                <input
+                  type="text"
+                  class="form-control text-uppercase"
+                  name="guardian_middleName"
+                  id="guardian_middleName"
+                  readonly
+                />
+              </div>
+            </div>
+            <div class="col-3">
+              <div class="mb-3">
+                <label for="guardian_number" class="form-label">
+                  Contact Number
+                </label>
+                <input
+                  type="text"
+                  class="form-control"
+                  name="guardian_number"
+                  id="guardian_number"
+                  readonly
+                />
+              </div>
+            </div>
+          </div>
+
+          <hr />
           <h6>
             For Returning Learner (Balik-Aral) and Those Who will Transfer/Move
             In
@@ -678,9 +676,7 @@
           <div class="row">
             <div class="col-4">
               <div class="mb-3">
-                <label
-                  for="schoolID"
-                  class="form-label">
+                <label for="schoolID" class="form-label">
                   School ID
                   <small class="text-danger">*</small>
                 </label>
@@ -690,14 +686,14 @@
                   name="schoolID"
                   id="schoolID"
                   aria-describedby="helpId"
-                  required>
+                  required
+                  readonly
+                />
               </div>
             </div>
             <div class="col-4">
               <div class="mb-3">
-                <label
-                  for="lastgradecompl"
-                  class="form-label">
+                <label for="lastgradecompl" class="form-label">
                   Last Grade Level Completed
                   <small class="text-danger">*</small>
                 </label>
@@ -707,14 +703,14 @@
                   name="lastgradecompl"
                   id="lastgradecompl"
                   aria-describedby="helpId"
-                  required>
+                  required
+                  readonly
+                />
               </div>
             </div>
             <div class="col-6">
               <div class="mb-3">
-                <label
-                  for="lastschool"
-                  class="form-label">
+                <label for="lastschool" class="form-label">
                   Last School Attended
                   <small class="text-danger">*</small>
                 </label>
@@ -724,14 +720,14 @@
                   name="lastschool"
                   id="lastschool"
                   aria-describedby="helpId"
-                  required>
+                  required
+                  readonly
+                />
               </div>
             </div>
             <div class="col-6">
               <div class="mb-3">
-                <label
-                  for="lastschool_yr"
-                  class="form-label">
+                <label for="lastschool_yr" class="form-label">
                   Last School Year Attended
                   <small class="text-danger">*</small>
                 </label>
@@ -741,55 +737,45 @@
                   name="lastschool_yr"
                   id="lastschool_yr"
                   aria-describedby="helpId"
-                  required>
+                  required
+                  readonly
+                />
               </div>
             </div>
           </div>
           <div class="row">
             <div class="col-6">
               <div class="mb-3">
-                <label
-                  for="profile"
-                  class="form-label">
-                  Profile Image
-                </label>
+                <label for="profile" class="form-label"> Profile Image </label>
                 <div class="imagePreview text-center">
                   <img
                     [src]
                     [alt]
                     class="img-holder-def"
                     width="200"
-                    id="imgprev">
+                    id="imgprev"
+                  />
                 </div>
               </div>
             </div>
 
             <div class="col-6">
               <div class="mb-3">
-                <label
-                  for="mother_occupation"
-                  class="form-label">
+                <label for="mother_occupation" class="form-label">
                   Your Signature
                 </label>
                 <img
                   [src]="students[0].signature"
                   class="img-holder-def"
                   width="200"
-                  id="signprev">
+                  id="signprev"
+                />
               </div>
             </div>
             <div class="col-12">
               <div class="mb-3">
-                <label
-                  for="form_137"
-                  class="form-label">
-                  Form 137
-                </label>
-                <img
-                  [src]
-                  class="img-holder-def"
-                  width="200"
-                  id="form_137">
+                <label for="form_137" class="form-label"> Form 137 </label>
+                <img [src] class="img-holder-def" width="200" id="form_137" />
               </div>
             </div>
           </div>

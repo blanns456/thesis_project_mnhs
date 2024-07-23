@@ -5,7 +5,9 @@
     <app-navbar-admin></app-navbar-admin>
     <div class="container p-5 chartbg">
       <div class="text-content">
-        <h3 class="fw-bold text-uppercase py-2 text-white">List of Pending Students</h3>
+        <h3 class="fw-bold text-uppercase py-2 text-white">
+          List of Pending Students
+        </h3>
       </div>
       <div class="chart-container bg-white h-auto p-3 rounded">
         <p-table
@@ -16,14 +18,16 @@
           [rowsPerPageOptions]="[10, 25, 50]"
           [loading]="loading"
           [paginator]="true"
-          [globalFilterFields]="['studname', 'gradelevel', 'LRN', 'status']">
+          [globalFilterFields]="['studname', 'gradelevel', 'LRN', 'status']"
+        >
           <ng-template pTemplate="caption">
             <div class="flex">
               <p-button
                 label="Clear"
                 [outlined]="true"
                 icon="pi pi-filter-slash"
-                (onClick)="dt.clear()"></p-button>
+                (onClick)="dt.clear()"
+              ></p-button>
               <span class="p-input-icon-left ml-auto">
                 <i class="pi pi-search"></i>
                 <input
@@ -31,72 +35,70 @@
                   type="text"
                   [(ngModel)]="searchValue"
                   (input)="filterGlobal($event, 'contains')"
-                  placeholder="Search keyword">
+                  placeholder="Search keyword"
+                />
               </span>
             </div>
           </ng-template>
           <ng-template pTemplate="header">
             <tr>
-              <th
-                pSortableColumn="studname"
-                style="min-width:15rem">
+              <th pSortableColumn="studname" style="min-width: 15rem">
                 <div class="flex align-items-center">
                   Name
                   <p-columnFilter
                     type="text"
                     field="studname"
-                    display="menu"></p-columnFilter>
+                    display="menu"
+                  ></p-columnFilter>
                 </div>
               </th>
-              <th
-                pSortableColumn="gradelevel"
-                style="min-width:15rem">
+              <th pSortableColumn="gradelevel" style="min-width: 15rem">
                 <div class="flex align-items-center">
                   Year Level
                   <p-columnFilter
                     type="text"
                     field="gradelevel"
-                    display="menu"></p-columnFilter>
+                    display="menu"
+                  ></p-columnFilter>
                 </div>
               </th>
-              <th
-                pSortableColumn="LRN"
-                style="min-width:15rem">
+              <th pSortableColumn="LRN" style="min-width: 15rem">
                 <div class="flex align-items-center">
                   LRN No.
                   <p-columnFilter
                     type="text"
                     field="LRN"
-                    display="menu"></p-columnFilter>
+                    display="menu"
+                  ></p-columnFilter>
                 </div>
               </th>
-              <th
-                pSortableColumn="status"
-                style="min-width:15rem">
+              <th pSortableColumn="status" style="min-width: 15rem">
                 <div class="flex align-items-center">
                   Status
                   <p-columnFilter
                     type="text"
                     field="status"
-                    display="menu"></p-columnFilter>
+                    display="menu"
+                  ></p-columnFilter>
                 </div>
               </th>
-              <th style="min-width:10rem">Action</th>
+              <th style="min-width: 10rem">Action</th>
             </tr>
           </ng-template>
-          <ng-template
-            pTemplate="body"
-            let-student>
+          <ng-template pTemplate="body" let-student>
             <tr>
-              <td>{{ student.studname }}</td>
+              <td class="text-uppercase">{{ student.studname }}</td>
               <td>Grade {{ student.gradelevel }}</td>
               <td>{{ student.LRN }}</td>
-              <td class="fw-bold text-danger text-uppercase">{{ student.status }}</td>
+              <td class="fw-bold text-danger text-uppercase">
+                {{ student.status }}
+              </td>
               <td class="d-flex">
                 <p-button
                   label="Approve"
                   severity="success"
-                  (click)="approveStudent(student.studid)"></p-button>
+                  (click)="approveStudent(student.studid)"
+                ></p-button>
                 <!-- <button
                   class="btn btn-success me-2 d-flex"
                   (click)="approveStudent(student.studid)">
@@ -106,7 +108,8 @@
                 <p-button
                   label="Decline"
                   severity="danger"
-                  (click)="declineStudent(student.studid)"></p-button>
+                  (click)="declineStudent(student.studid)"
+                ></p-button>
                 <!-- <button
                   class="btn btn-danger d-flex"
                   (click)="declineStudent(student.studid)">
@@ -118,11 +121,7 @@
           </ng-template>
           <ng-template pTemplate="emptymessage">
             <tr>
-              <td
-                colspan="5"
-                class="text-center">
-                No pending students found
-              </td>
+              <td colspan="5" class="text-center">No pending students found</td>
             </tr>
           </ng-template>
         </p-table>
