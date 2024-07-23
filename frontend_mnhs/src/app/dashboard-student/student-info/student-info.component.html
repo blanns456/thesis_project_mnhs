@@ -1209,8 +1209,7 @@
             name="email"
             formControlName="email"
             id="email"
-            required
-            readonly>
+            required>
         </div>
       </div>
       <div class="col-4">
@@ -1590,7 +1589,7 @@
       </div>
     </div>
     <hr>
-    <!-- <div class="row">
+    <div class="row">
       <div class="col-6">
         <div class="mb-3">
           <label
@@ -1602,57 +1601,99 @@
           <input
             type="file"
             accept="image/*"
-            capture="user"
             class="form-control mb-3"
             name="profile"
             id="profile"
-            (change)="showPreview($event)">
+            (change)="showPreview($event, 'profileImageURL')">
           <div class="imagePreview text-center">
             <img
-              [src]="imageURL"
-              [alt]="imageURL === '../../assets/images/default_Profile.png' ? 'Default Image' : 'Profile Image'"
-              class="profile-img"
-              [width]="imageURL === '../../assets/images/default_Profile.png' ? 300 : 200">
+              *ngIf="!profileImageURL || profileImageURL === ''"
+              src="../../assets/images/default_Profile.png"
+              alt="Default Image"
+              class="img-holder-def"
+              width="300">
+            <img
+              *ngIf="profileImageURL && profileImageURL !== ''"
+              [src]="profileImageURL"
+              [alt]="enrollForm.value.name"
+              class="img-holder"
+              width="300">
           </div>
         </div>
       </div>
-      <div class="col-6">
+      <div class="col-6 mx-auto">
         <div class="mb-3">
+          <label
+            for="form_137"
+            class="form-label">
+            Form 137
+            <small class="text-danger">*</small>
+          </label>
+          <input
+            type="file"
+            accept="image/*"
+            class="form-control mb-3"
+            name="form_137"
+            id="form_137"
+            (change)="showPreview($event, 'form137ImageURL')">
+          <div class="imagePreview text-center">
+            <img
+              *ngIf="!form137ImageURL || form137ImageURL === ''"
+              src="../../assets/images/default.jpg"
+              alt="Default Image"
+              class="img-holder-def"
+              width="400">
+            <img
+              *ngIf="form137ImageURL && form137ImageURL !== ''"
+              [src]="form137ImageURL"
+              [alt]="enrollForm.value.name"
+              class="img-holder">
+          </div>
+        </div>
+      </div>
+      <div class="col-12">
+        <div class="mb-3 d-flex justify-content-center align-items-center flex-column">
           <label
             for="mother_occupation"
             class="form-label">
             Your Signature
-            <small class="text-danger">*</small>
           </label>
           <canvas
             #canvas
             (touchstart)="startDrawing($event)"
             (touchmove)="moved($event)"
-            width="450"
+            width="500"
             height="300"></canvas>
-          <small
-            class="error-message text-danger"
-            *ngIf="signatureNeeded">
-            Signature is required
-          </small>
 
-          <div class="my-3 text-center">
-            <button
+          <div class="my-3">
+            <p-button
               (click)="clearPad()"
-              class="btn btn-outline-info btn-sm">
-              Clear
-            </button>
+              label="Clear Signature"
+              severity="info"></p-button>
           </div>
         </div>
       </div>
-    </div> -->
-    <div class="d-flex justify-content-end">
-      <!-- <p-button type="submit" label="Submit"></p-button> -->
+
+      <hr>
+
+      <div class="d-flex justify-content-end">
+        <p-button
+          (click)="updateInfos()"
+          label="Update Information"
+          severity="success"></p-button>
+        <!-- <p-button
+            (click)="savestudent()"
+            class="p-button-success">
+            Enroll Now!
+          </p-button> -->
+      </div>
+    </div>
+    <!-- <div class="d-flex justify-content-end">
       <p-button
         type="submit"
         (click)="updateInfos()">
         Submit
       </p-button>
-    </div>
+    </div> -->
   </form>
 </p-dialog>

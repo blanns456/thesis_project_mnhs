@@ -32,6 +32,8 @@ export class StudentInfoComponent implements OnInit {
   signaturePad!: SignaturePad;
   @ViewChild('canvas') canvasEl!: ElementRef;
   activeEnrollments: any[] = [];
+  profileImageURL: string = '';
+  form137ImageURL: string = '';
 
 
   constructor(
@@ -77,8 +79,6 @@ export class StudentInfoComponent implements OnInit {
     guardian_firstName: [''],
     guardian_middleName: [''],
     guardian_number: [''],
-    profile: [''],
-    signature: [''],
     semester: [''],
     track: [''],
     // strand: [''],
@@ -91,27 +91,39 @@ export class StudentInfoComponent implements OnInit {
     elementary_yr: [''],
     last_school: [''],
     last_schoolyr: [''],
+    profile: [''],
+    form_137: [''],
+    signature: [''],
   });
 
-  showPreview(event: Event) {
+  showPreview(event: Event, imageType: 'profileImageURL' | 'form137ImageURL') {
     const inputElement = event.target as HTMLInputElement;
     if (inputElement.files && inputElement.files.length > 0) {
       const file = inputElement.files[0];
 
       const reader = new FileReader();
       reader.onload = () => {
-        this.imageURL = reader.result as string;
+        if (imageType === 'profileImageURL') {
+          this.profileImageURL = reader.result as string;
+        } else if (imageType === 'form137ImageURL') {
+          this.form137ImageURL = reader.result as string;
+        }
       };
       reader.readAsDataURL(file);
-      this.enrollForm.patchValue({
-        profile: file,
-      });
+      if (imageType === 'profileImageURL') {
+        this.enrollForm.patchValue({
+          profile: file,
+        });
+      } else if (imageType === 'form137ImageURL') {
+        this.enrollForm.patchValue({
+          form_137: file,
+        });
+      }
     }
   }
-
-  // ngAfterViewInit() {
-  //   this.signaturePad = new SignaturePad(this.canvasEl.nativeElement);
-  // }
+  ngAfterViewInit() {
+    this.signaturePad = new SignaturePad(this.canvasEl.nativeElement);
+  }
 
   startDrawing(event: Event) {}
 
@@ -183,7 +195,6 @@ export class StudentInfoComponent implements OnInit {
           elementary_yr: this.loggedInUserData.data[0]?.elem_schoolyr,
           last_school: this.loggedInUserData.data[0]?.last_school,
           last_schoolyr: this.loggedInUserData.data[0]?.last_schoolyr,
-          profile: this.loggedInUserData.data[0]?.profile_image,
         });
       },
       error: (error: HttpErrorResponse) => {
@@ -221,6 +232,7 @@ export class StudentInfoComponent implements OnInit {
 
   updateInfos() {
     this.loading = true;
+
     if (!this.enrollForm) {
       console.error('Form group not initialized.');
       return;
@@ -229,151 +241,72 @@ export class StudentInfoComponent implements OnInit {
     const submitdata = new FormData();
 
     submitdata.append('studid', this.enrollForm.controls['studid'].value);
-    // submitdata.append('profile', this.enrollForm.controls['profile'].value);
-    submitdata.append(
-      'schoolID',
-      this.enrollForm.controls['schoolID'].value || ''
-    );
-    submitdata.append(
-      'lastgradecompl',
-      this.enrollForm.controls['lastgradecompl'].value || ''
-    );
-    submitdata.append(
-      'last_school',
-      this.enrollForm.controls['last_school'].value || ''
-    );
-    submitdata.append(
-      'last_schoolyr',
-      this.enrollForm.controls['last_schoolyr'].value || ''
-    );
-    // submitdata.append(
-    //   'semester',
-    //   this.enrollForm.controls['semester'].value || ''
-    // );
-    // submitdata.append('track', this.enrollForm.controls['track'].value || '');
-    // submitdata.append('strand', this.enrollForm.controls['strand'].value || '');
-    submitdata.append(
-      'gradelevel',
-      this.enrollForm.controls['gradelevel'].value || ''
-    );
-    // submitdata.append('major', this.enrollForm.controls['major'].value);
-    submitdata.append(
-      'special_program',
-      this.enrollForm.controls['special_program'].value || ''
-    );
+
+    // Append profile image
+    if (this.enrollForm.controls['profile'].value) {
+      submitdata.append('profile', this.enrollForm.controls['profile'].value);
+    }
+
+    // Append form_137 image
+    if (this.enrollForm.controls['form_137'].value) {
+      submitdata.append('form_137', this.enrollForm.controls['form_137'].value);
+    }
+
+    submitdata.append('schoolID', this.enrollForm.controls['schoolID'].value || '');
+    submitdata.append('lastgradecompl', this.enrollForm.controls['lastgradecompl'].value || '');
+    submitdata.append('last_school', this.enrollForm.controls['last_school'].value || '');
+    submitdata.append('last_schoolyr', this.enrollForm.controls['last_schoolyr'].value || '');
+    submitdata.append('gradelevel', this.enrollForm.controls['gradelevel'].value || '');
+    submitdata.append('special_program', this.enrollForm.controls['special_program'].value || '');
     submitdata.append('lrn', this.enrollForm.controls['lrn'].value);
-    submitdata.append(
-      'enrolling_for',
-      this.enrollForm.controls['enrolling_for'].value
-    );
-    submitdata.append(
-      'first_name',
-      this.enrollForm.controls['first_name'].value
-    );
+    submitdata.append('enrolling_for', this.enrollForm.controls['enrolling_for'].value);
+    submitdata.append('first_name', this.enrollForm.controls['first_name'].value);
     submitdata.append('last_name', this.enrollForm.controls['last_name'].value);
-    submitdata.append(
-      'middle_name',
-      this.enrollForm.controls['middle_name'].value || ''
-    );
+    submitdata.append('middle_name', this.enrollForm.controls['middle_name'].value || '');
     submitdata.append('suffix', this.enrollForm.controls['suffix'].value || '');
     submitdata.append('gender', this.enrollForm.controls['gender'].value);
-    // submitdata.append(
-    //   'civil_status',
-    //   this.enrollForm.controls['civil_status'].value
-    // );
+    submitdata.append('email', this.enrollForm.controls['email'].value);
     submitdata.append('age', this.enrollForm.controls['age'].value);
     submitdata.append('birthdate', this.enrollForm.controls['birthdate'].value);
-    submitdata.append(
-      'birth_place',
-      this.enrollForm.controls['birth_place'].value
-    );
-    // submitdata.append('email', this.enrollForm.controls['email'].value);
-    submitdata.append(
-      'mobile_number',
-      this.enrollForm.controls['mobile_number'].value
-    );
-    submitdata.append(
-      'm_tounge',
-      this.enrollForm.controls['m_tounge'].value || ''
-    );
+    submitdata.append('birth_place', this.enrollForm.controls['birth_place'].value);
+    submitdata.append('mobile_number', this.enrollForm.controls['mobile_number'].value);
+    submitdata.append('m_tounge', this.enrollForm.controls['m_tounge'].value || '');
     submitdata.append('ip', this.enrollForm.controls['ip'].value || '');
-    submitdata.append(
-      'pantawid',
-      this.enrollForm.controls['pantawid'].value || ''
-    );
-    submitdata.append(
-      'home_address',
-      this.enrollForm.controls['home_address'].value
-    );
-    submitdata.append(
-      'present_address',
-      this.enrollForm.controls['present_address'].value
-    );
-    submitdata.append(
-      'elementary',
-      this.enrollForm.controls['elementary'].value
-    );
-    submitdata.append(
-      'elementary_yr',
-      this.enrollForm.controls['elementary_yr'].value
-    );
+    submitdata.append('pantawid', this.enrollForm.controls['pantawid'].value || '');
+    submitdata.append('home_address', this.enrollForm.controls['home_address'].value);
+    submitdata.append('present_address', this.enrollForm.controls['present_address'].value);
+    submitdata.append('elementary', this.enrollForm.controls['elementary'].value);
+    submitdata.append('elementary_yr', this.enrollForm.controls['elementary_yr'].value);
     submitdata.append('jhs', this.enrollForm.controls['jhs'].value);
     submitdata.append('jhs_yr', this.enrollForm.controls['jhs_yr'].value);
-    submitdata.append(
-      'father_lastName',
-      this.enrollForm.controls['father_lastName'].value || ''
-    );
-    submitdata.append(
-      'father_firstName',
-      this.enrollForm.controls['father_firstName'].value || ''
-    );
-    submitdata.append(
-      'father_middleName',
-      this.enrollForm.controls['father_middleName'].value || ''
-    );
-    submitdata.append(
-      'father_number',
-      this.enrollForm.controls['father_number'].value || ''
-    );
-    submitdata.append(
-      'mother_lastName',
-      this.enrollForm.controls['mother_lastName'].value || ''
-    );
-    submitdata.append(
-      'mother_firstName',
-      this.enrollForm.controls['mother_firstName'].value || ''
-    );
-    submitdata.append(
-      'mother_middleName',
-      this.enrollForm.controls['mother_middleName'].value || ''
-    );
-    submitdata.append(
-      'mother_number',
-      this.enrollForm.controls['mother_number'].value || ''
-    );
-    submitdata.append(
-      'guardian_lastName',
-      this.enrollForm.controls['guardian_lastName'].value || ''
-    );
-    submitdata.append(
-      'guardian_firstName',
-      this.enrollForm.controls['guardian_firstName'].value || ''
-    );
-    submitdata.append(
-      'guardian_middleName',
-      this.enrollForm.controls['guardian_middleName'].value || ''
-    );
-    submitdata.append(
-      'guardian_number',
-      this.enrollForm.controls['guardian_number'].value || ''
-    );
-    // submitdata.append('signature', this.enrollForm.controls['signature'].value);
-    // console.log('Form Data:', submitdata.get('studid'));
-    const formDataEntries = submitdata as any;
-    for (let pair of formDataEntries.entries()) {
-      console.log(`${pair[0]}: ${pair[1]}`);
+    submitdata.append('father_lastName', this.enrollForm.controls['father_lastName'].value || '');
+    submitdata.append('father_firstName', this.enrollForm.controls['father_firstName'].value || '');
+    submitdata.append('father_middleName', this.enrollForm.controls['father_middleName'].value || '');
+    submitdata.append('father_number', this.enrollForm.controls['father_number'].value || '');
+    submitdata.append('mother_lastName', this.enrollForm.controls['mother_lastName'].value || '');
+    submitdata.append('mother_firstName', this.enrollForm.controls['mother_firstName'].value || '');
+    submitdata.append('mother_middleName', this.enrollForm.controls['mother_middleName'].value || '');
+    submitdata.append('mother_number', this.enrollForm.controls['mother_number'].value || '');
+    submitdata.append('guardian_lastName', this.enrollForm.controls['guardian_lastName'].value || '');
+    submitdata.append('guardian_firstName', this.enrollForm.controls['guardian_firstName'].value || '');
+    submitdata.append('guardian_middleName', this.enrollForm.controls['guardian_middleName'].value || '');
+    submitdata.append('guardian_number', this.enrollForm.controls['guardian_number'].value || '');
+
+    // Append signature
+    const base64Data = this.signaturePad.toDataURL();
+    this.signatureImg = base64Data;
+    this.signatureNeeded = this.signaturePad.isEmpty();
+
+    // Append signature
+    if (!this.signatureNeeded && this.signatureImg) {
+      submitdata.append('signature', this.signatureImg);
     }
-    console.log(submitdata);
+
+    // Log form data for debugging
+    // for (let pair of submitdata.entries()) {
+    //   console.log(`${pair[0]}: ${pair[1]}`);
+    // }
+
     this.EnrollmentSHSControllers.updatestudent(submitdata).subscribe({
       next: (res) => {
         console.log(res);
@@ -385,14 +318,13 @@ export class StudentInfoComponent implements OnInit {
         setTimeout(() => {
           window.location.reload();
         }, 1000);
-
-        // this.router.navigate(['/student/information']);
       },
       error: (error: HttpErrorResponse) => {
         console.log(error.message);
       },
     });
   }
+
 
   calculateAge() {
     const birthdate = this.enrollForm?.get('birthdate')?.value;
