@@ -42,7 +42,7 @@ label {
   user-select: none;
 }
 
-.img-holder{
+.img-holder {
   width: 100%;
   height: auto;
   aspect-ratio: 3 / 2;
@@ -53,7 +53,7 @@ label {
   display: block;
 }
 
-.img-holder-def{
+.img-holder-def {
   width: 100%;
   height: auto;
   aspect-ratio: 3 / 2;
@@ -62,4 +62,9 @@ label {
   // background-size: cover;
   border: 1px solid black;
   display: block;
+}
+
+input[type="text"],
+textarea {
+  text-transform: uppercase;
 }

@@ -33,7 +33,6 @@ export class StudentInfoComponent implements OnInit {
   @ViewChild('canvas') canvasEl!: ElementRef;
   activeEnrollments: any[] = [];
 
-
   constructor(
     private http: HttpClient,
     private messageService: MessageService,
@@ -59,6 +58,7 @@ export class StudentInfoComponent implements OnInit {
     home_address: [''],
     present_address: [''],
     m_tounge: [''],
+    civil_status: [''],
     email: [''],
     mobile_number: [''],
     ip: [''],
@@ -154,6 +154,7 @@ export class StudentInfoComponent implements OnInit {
           home_address: this.loggedInUserData.data[0]?.home_address,
           present_address: this.loggedInUserData.data[0]?.present_address,
           m_tounge: this.loggedInUserData.data[0]?.m_tounge,
+          civil_status: this.loggedInUserData.data[0]?.civil_status,
           email: this.loggedInUserData.data[0]?.email,
           mobile_number: this.loggedInUserData.data[0]?.mobile_number,
           ip: this.loggedInUserData.data[0]?.ip,
@@ -193,14 +194,17 @@ export class StudentInfoComponent implements OnInit {
   }
 
   getActiveEnrollments() {
-    this.http.get<any[]>('http://127.0.0.1:8000/api/active-enrollments').subscribe({
-      next: (response) => {
-        this.activeEnrollments = response;
-      },
-      error: (error) => {
-        console.error('Error fetching active enrollments:', error);
-      }
-    });
+    this.http
+      .get<any[]>('http://127.0.0.1:8000/api/active-enrollments')
+      .subscribe({
+        next: (response) => {
+          this.activeEnrollments = response;
+          console.log(this.activeEnrollments);
+        },
+        error: (error) => {
+          console.error('Error fetching active enrollments:', error);
+        },
+      });
   }
 
   getLoggedInUser(auth_token: string): Observable<any> {
@@ -277,10 +281,10 @@ export class StudentInfoComponent implements OnInit {
     );
     submitdata.append('suffix', this.enrollForm.controls['suffix'].value || '');
     submitdata.append('gender', this.enrollForm.controls['gender'].value);
-    // submitdata.append(
-    //   'civil_status',
-    //   this.enrollForm.controls['civil_status'].value
-    // );
+    submitdata.append(
+      'civil_status',
+      this.enrollForm.controls['civil_status'].value
+    );
     submitdata.append('age', this.enrollForm.controls['age'].value);
     submitdata.append('birthdate', this.enrollForm.controls['birthdate'].value);
     submitdata.append(

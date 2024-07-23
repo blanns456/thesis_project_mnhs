@@ -12,7 +12,7 @@ import Swal from 'sweetalert2';
 export class EnrolledStudentsComponent implements OnInit, AfterViewInit {
   private apiUrl = 'http://127.0.0.1:8000/api/enrollstudent';
 
-  students: any[] =[];
+  students: any[] = [];
   data: any;
 
   @ViewChild('dataTable', { static: false }) table: any;
@@ -70,11 +70,8 @@ export class EnrolledStudentsComponent implements OnInit, AfterViewInit {
     school_id: string,
     lastgrade_completed: string,
     last_school: string,
-    last_schoolyr: string,
-
+    last_schoolyr: string
   ): void {
-
-
     try {
       $('#studid').html(studentId);
       $('#fullname').html(firstname + ' ' + lastname);
@@ -105,11 +102,16 @@ export class EnrolledStudentsComponent implements OnInit, AfterViewInit {
       $('#lastgradecompl').val(lastgrade_completed);
       $('#lastschool').val(last_school);
       $('#lastschool_yr').val(last_schoolyr);
-      $('#imgprev').attr('src', 'http://127.0.0.1:8000/uploads/userimages/' + profile_image);
-      $('#form_137').attr('src', 'http://127.0.0.1:8000/uploads/form137/' + form_137);
+      $('#imgprev').attr(
+        'src',
+        'http://127.0.0.1:8000/uploads/userimages/' + profile_image
+      );
+      $('#form_137').attr(
+        'src',
+        'http://127.0.0.1:8000/uploads/form137/' + form_137
+      );
     } catch (error) {
-      console.error("Error updating modal:", error);
+      console.error('Error updating modal:', error);
     }
   }
-
 }

@@ -1,5 +1,5 @@
-.topper{
-    padding: 8% 2% 8% 2%;
+.topper {
+  padding: 8% 2% 8% 2%;
 }
 
 .profile-img {
@@ -11,7 +11,7 @@
   display: block;
 }
 
-.img-signature{
+.img-signature {
   width: 100%;
   height: auto;
   aspect-ratio: 3 / 2;
@@ -25,4 +25,9 @@
 canvas {
   border: 1px solid black;
   display: block;
+}
+
+input[type="text"],
+textarea {
+  text-transform: uppercase;
 }
