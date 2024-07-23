@@ -1,5 +1,5 @@
 .bgcontent {
-  background: #4A8515;
+  background: #4a8515;
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
@@ -23,7 +23,6 @@
   }
 
   .chartbg {
-
     min-height: 100%;
   }
 
@@ -32,7 +31,7 @@
   }
 }
 
-.img-holder-def{
+.img-holder-def {
   width: 100%;
   height: auto;
   aspect-ratio: 3 / 2;
@@ -41,4 +40,9 @@
   // background-size: cover;
   border: 1px solid black;
   display: block;
+}
+
+input[type="text"],
+textarea {
+  text-transform: uppercase;
 }
