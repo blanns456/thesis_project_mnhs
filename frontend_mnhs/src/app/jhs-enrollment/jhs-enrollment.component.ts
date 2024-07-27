@@ -4,6 +4,7 @@ import SignaturePad from 'signature_pad';
 import { ApiControllers } from '../controllers/controller.component';
 import { Router } from '@angular/router';
 import Swal from 'sweetalert2';
+import { HttpClient } from '@angular/common/http';
 declare var swal: any;
 
 @Component({
@@ -23,12 +24,14 @@ export class JhsEnrollmentComponent implements OnInit {
   signaturePad!: SignaturePad;
   @ViewChild('canvas') canvasEl!: ElementRef;
   signatureImg!: string;
+  hasActiveEnrollment = false;
+  responseMessage = '';
 
   constructor(
     private formBuilder: FormBuilder,
     private apiController: ApiControllers,
-    private router: Router
-  ) {}
+    private router: Router,
+    private http: HttpClient  ) {}
 
 
   enrollForm: FormGroup = this.formBuilder.group({
@@ -68,11 +71,28 @@ export class JhsEnrollmentComponent implements OnInit {
     form_137: ['', [Validators.required]],
     signature: ['', [Validators.required]],
   });
-  ngOnInit() {}
+  ngOnInit() {
+    this.checkActiveEnrollment();
+   }
 
-  ngAfterViewInit() {
-    this.signaturePad = new SignaturePad(this.canvasEl.nativeElement);
-  }
+  checkActiveEnrollment(): void {
+  this.http.get('http://127.0.0.1:8000/api/active-enrollments')
+    .subscribe({
+      next: (response: any) => {
+        if (response.length > 0) {
+          this.hasActiveEnrollment = true;
+          this.responseMessage = 'Active enrollment available.';
+        } else {
+          this.hasActiveEnrollment = false;
+          this.responseMessage = 'No active enrollment available.';
+        }
+      },
+      error: (error) => {
+        Swal.fire('Error', `Error fetching enrollment status: ${error.error.message}`, 'error');
+      }
+    });
+}
+
 
   calculateAge() {
     const birthdate = this.enrollForm?.get('birthdate')?.value;
@@ -96,6 +116,11 @@ export class JhsEnrollmentComponent implements OnInit {
 
   moved(event: Event) {
   }
+
+  ngAfterViewInit() {
+    this.signaturePad = new SignaturePad(this.canvasEl.nativeElement);
+  }
+
 
   clearPad() {
     this.signaturePad.clear();

@@ -1,6 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, Validators, FormBuilder } from '@angular/forms';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-school-year-settings',
@@ -41,6 +42,14 @@ export class SchoolYearSettingsComponent implements OnInit {
     return localStorage.getItem('token') || '';
   }
 
+  createHeaders(): HttpHeaders {
+    const token = this.getToken();
+    return new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${token}`
+    });
+  }
+
   submit_school_year(): void {
     this.submitted = true;
 
@@ -55,43 +64,47 @@ export class SchoolYearSettingsComponent implements OnInit {
         school_end: formData.school_year_duration[1]
       };
 
-      const token = this.getToken();
-      const headers = new HttpHeaders({
-        'Content-Type': 'application/json',
-        'Authorization': `Bearer ${token}`
-      });
+      const headers = this.createHeaders();
 
       if (this.currentSchoolYearId) {
-        this.http.put(`http://127.0.0.1:8000/api/update-school-year/${this.currentSchoolYearId}`, payload, { headers: headers })
-          .subscribe(
-            response => {
-              console.log('School year updated successfully', response);
-              this.submitted = false;
-              this.school_year_form.reset();
-              this.currentSchoolYearId = null;
-              this.loadSchoolYears(); // Reload the school years after successful update
-            },
-            error => {
-              console.error('Error updating school year', error);
-            }
-          );
+        this.updateSchoolYear(this.currentSchoolYearId, payload, headers);
       } else {
-        this.http.post('http://127.0.0.1:8000/api/create-school-year', payload, { headers: headers })
-          .subscribe(
-            response => {
-              console.log('School year created successfully', response);
-              this.submitted = false;
-              this.school_year_form.reset();
-              this.loadSchoolYears(); // Reload the school years after successful creation
-            },
-            error => {
-              console.error('Error creating school year', error);
-            }
-          );
+        this.createSchoolYear(payload, headers);
       }
     } else {
-      console.log('Form is invalid');
+      Swal.fire('Error', 'Form is invalid. Please check the fields.', 'error');
     }
+  }
+
+  createSchoolYear(payload: any, headers: HttpHeaders): void {
+    this.http.post('http://127.0.0.1:8000/api/create-school-year', payload, { headers })
+      .subscribe(
+        response => {
+          Swal.fire('Success', 'School year created successfully!', 'success');
+          this.submitted = false;
+          this.school_year_form.reset();
+          this.loadSchoolYears(); // Reload the school years after successful creation
+        },
+        error => {
+          Swal.fire('Error', `Error creating school year: ${error.error.message}`, 'error');
+        }
+      );
+  }
+
+  updateSchoolYear(id: number, payload: any, headers: HttpHeaders): void {
+    this.http.put(`http://127.0.0.1:8000/api/update-school-year/${id}`, payload, { headers })
+      .subscribe(
+        response => {
+          Swal.fire('Success', 'School year updated successfully!', 'success');
+          this.submitted = false;
+          this.school_year_form.reset();
+          this.currentSchoolYearId = null;
+          this.loadSchoolYears(); // Reload the school years after successful update
+        },
+        error => {
+          Swal.fire('Error', `Error updating school year: ${error.error.message}`, 'error');
+        }
+      );
   }
 
   loadSchoolYears(): void {
@@ -106,12 +119,9 @@ export class SchoolYearSettingsComponent implements OnInit {
       url += `&school_end=${this.formatDate(this.searchSchoolEnd)}`;
     }
 
-    const token = this.getToken();
-    const headers = new HttpHeaders({
-      'Authorization': `Bearer ${token}`
-    });
+    const headers = this.createHeaders();
 
-    this.http.get(url, { headers: headers }).subscribe((response: any) => {
+    this.http.get(url, { headers }).subscribe((response: any) => {
       this.schoolYears = response.data;
       this.currentPage = response.current_page;
       this.totalPages = response.last_page;
@@ -169,20 +179,29 @@ export class SchoolYearSettingsComponent implements OnInit {
   }
 
   deleteSchoolYear(id: number): void {
-    const token = this.getToken();
-    const headers = new HttpHeaders({
-      'Authorization': `Bearer ${token}`
-    });
+    Swal.fire({
+      title: 'Are you sure?',
+      text: "You won't be able to revert this!",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Yes, delete it!'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        const headers = this.createHeaders();
 
-    this.http.delete(`http://127.0.0.1:8000/api/delete-school-year/${id}`, { headers: headers })
-      .subscribe(
-        response => {
-          console.log('School year deleted successfully', response);
-          this.loadSchoolYears(); // Reload the school years after successful deletion
-        },
-        error => {
-          console.error('Error deleting school year', error);
-        }
-      );
+        this.http.delete(`http://127.0.0.1:8000/api/delete-school-year/${id}`, { headers })
+          .subscribe(
+            response => {
+              Swal.fire('Deleted!', 'School year has been deleted.', 'success');
+              this.loadSchoolYears(); // Reload the school years after successful deletion
+            },
+            error => {
+              Swal.fire('Error', `Error deleting school year: ${error.error.message}`, 'error');
+            }
+          );
+      }
+    });
   }
 }
