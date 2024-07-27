@@ -82,11 +82,13 @@ export class EnrolledStudentsComponent implements OnInit, AfterViewInit {
     guardian_lastName: string,
     guardian_firstName: string,
     guardian_middleName: string,
-    guardian_number: string
+    guardian_number: string,
+    status: string,
   ): void {
     try {
       $('#studid').html(studentId);
       $('#fullname').html(firstname + ' ' + lastname);
+      $('#status').html(status);
       $('#semester').val(semester);
       $('#lrn').val(LRN);
       $('#track').val(track);
