@@ -1,14 +1,13 @@
-.container-holder {
-  height: 100vh;
-}
 canvas {
   background: white;
+  width: 100%;
 }
 
 .background {
   background-image: url("../../../src/assets/images/239653396_108487398220398_4498152433778202849_n 1.jpg");
   background-size: cover;
-  background-position: center center;
+  background-repeat: no-repeat;
+  background-position: center;
   background-attachment: fixed;
   position: fixed;
   width: 100%;
@@ -49,7 +48,7 @@ label {
   margin-left: -15rem !important;
 }
 
-.img-holder{
+.img-holder {
   width: 100%;
   height: auto;
   aspect-ratio: 3 / 2;
@@ -60,7 +59,7 @@ label {
   display: block;
 }
 
-.img-holder-def{
+.img-holder-def {
   width: 100%;
   height: auto;
   aspect-ratio: 3 / 2;

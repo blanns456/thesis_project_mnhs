@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, Input } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { catchError } from 'rxjs/operators';
 import { Router } from '@angular/router';
@@ -38,9 +38,10 @@ export class SidebarComponent implements OnInit, OnDestroy {
 
     const apiUrl = 'http://127.0.0.1:8000/api/user';
 
-    this.httpSubscription = this.http.get(apiUrl, { headers: headers })
+    this.httpSubscription = this.http
+      .get(apiUrl, { headers: headers })
       .pipe(
-        catchError(error => {
+        catchError((error) => {
           console.error('Error fetching user data:', error);
           throw error;
         })
@@ -50,7 +51,9 @@ export class SidebarComponent implements OnInit, OnDestroy {
           this.studname = res.data[0].lastname + ', ' + res.data[0].firstname;
           this.status = res.data[0].account_status;
           this.grade_level = res.data[0].grade_level;
-          this.profile = 'http://127.0.0.1:8000/uploads/userimages/'+res.data[0].profile_image;
+          this.profile =
+            'http://127.0.0.1:8000/uploads/userimages/' +
+            res.data[0].profile_image;
         }
       });
   }

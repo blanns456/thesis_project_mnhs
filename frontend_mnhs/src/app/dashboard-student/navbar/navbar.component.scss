@@ -9,6 +9,57 @@
   background-color: #293334;
 }
 
+.logout {
+  width: 110%;
+  height: 10rem;
+  background-image: url("../../../assets/images/profile-sidebars.png");
+  background-size: cover;
+  background-position: center;
+}
+
+#profile {
+  border-radius: 50%;
+}
+
+.active {
+  background: rgba(191, 166, 92, 79%) 50% !important;
+  color: whitesmoke;
+}
+
+.togglenav1 {
+  display: block;
+}
+
+.togglenav2 {
+  display: none;
+}
+
+.offcanvas {
+  width: 250px;
+}
+
+.offcanvas-body {
+  padding: 0%;
+}
+
+.list-group a {
+  display: inline-block;
+  background: linear-gradient(to left, #293334 50%, rgba(191, 166, 92, 79%) 50%)
+    right;
+  background-size: 200%;
+  transition: 0.3s ease-out;
+  border-radius: 0 !important;
+  color: whitesmoke;
+  border: none;
+  user-select: none;
+  width: 109%;
+}
+
+.list-group a:hover {
+  background-position: left;
+  color: whitesmoke;
+}
+
 .noti-icon .noti-dot {
   position: absolute;
   display: inline-block;
@@ -30,4 +81,49 @@
 
 .noti-icon {
   border: none;
+}
+
+/* // responsive */
+
+@media (min-width: 480px) and (max-width: 767px) {
+  .nav-student {
+    width: 100%;
+    margin-left: 0;
+  }
+
+  .togglenav1 {
+    display: none;
+  }
+
+  .togglenav2 {
+    display: block;
+  }
+}
+
+/* For tablets (768px to 1023px) */
+@media (min-width: 768px) and (max-width: 1022px) {
+  .nav-student {
+    width: 100%;
+    margin-left: 0;
+  }
+
+  .togglenav1 {
+    display: none;
+  }
+
+  .togglenav2 {
+    display: block;
+  }
+
+  .offcanvas {
+    width: 300px;
+  }
+
+  .list-group a {
+    width: 100%;
+  }
+
+  .logout {
+    width: 300px;
+  }
 }

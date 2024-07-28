@@ -36,13 +36,76 @@
     padding-inline: 10px;
     border: 1px solid white;
   }
-  .t-link {
-    padding: 10px;
-    padding-inline: 15px;
-  }
 }
 
 .logo {
   margin-top: 6rem;
   width: 200px;
 }
+
+/* // responsive */
+
+@media (min-width: 480px) and (max-width: 767px) {
+  .banner-side {
+    width: 100%;
+  }
+
+  .row {
+    display: flex;
+    justify-content: center;
+  }
+
+  .enroll-links {
+    position: relative;
+    bottom: 22rem;
+    left: 0rem;
+
+    div {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    div a {
+      width: 300px;
+    }
+  }
+}
+
+/* For tablets (768px to 1023px) */
+@media (min-width: 768px) and (max-width: 1022px) {
+  .banner-side {
+    width: 40%;
+  }
+
+  .enroll-links {
+    position: relative;
+    bottom: 36rem;
+    left: 20rem;
+
+    div {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    div a {
+      width: 300px;
+    }
+  }
+}
+
+/* For small desktops and large tablets (1024px to 1199px) */
+/* @media (min-width: 1024px) and (max-width: 1199px) {
+    body {
+        font-size: 22px;
+        background-color: lightgreen;
+    }
+} */
+
+/* For large desktops (1200px and wider) */
+/* @media (min-width: 1200px) {
+    body {
+        font-size: 24px;
+        background-color: lightyellow;
+    }
+} */

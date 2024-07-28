@@ -12,7 +12,7 @@
       <a routerLink>Home</a>
     </div>
     <div class="mx-5 fs-5">
-      <a href>Login</a>
+      <a routerLink="/login">Login</a>
     </div>
   </div>
 </nav>
@@ -34,7 +34,7 @@
         For Returning Learner (Balik-Aral) and Those Who will Transfer/Move In
       </h5>
       <div class="row">
-        <div class="col-4">
+        <div class="col-12 col-sm-6 col-md-4 col-lg-3 col-xl-4">
           <div class="mb-3">
             <label for="schoolID" class="form-label">
               School ID
@@ -50,7 +50,7 @@
             />
           </div>
         </div>
-        <div class="col-4">
+        <div class="col-12 col-sm-6 col-md-4 col-lg-3 col-xl-4">
           <div class="mb-3">
             <label for="lastgradecompl" class="form-label">
               Last Grade Level Completed
@@ -66,7 +66,7 @@
             />
           </div>
         </div>
-        <div class="col-6">
+        <div class="col-12 col-sm-6 col-md-4 col-lg-3 col-xl-4">
           <div class="mb-3">
             <label for="lastschool" class="form-label">
               Last School Attended
@@ -82,7 +82,7 @@
             />
           </div>
         </div>
-        <div class="col-6">
+        <div class="col-12 col-sm-6 col-md-4 col-lg-3 col-xl-4">
           <div class="mb-3">
             <label for="lastschool_yr" class="form-label">
               Last School Year Attended
@@ -102,7 +102,7 @@
       <hr />
       <h2 class="h4">Learner Information</h2>
       <div class="row">
-        <div class="col-4">
+        <div class="col-12 col-sm-6 col-md-4 col-lg-3 col-xl-4">
           <div class="mb-3">
             <label for="enrolling_for" class="form-label">
               Grade Level to Enroll
@@ -123,7 +123,7 @@
             </select>
           </div>
         </div>
-        <div class="col-4">
+        <div class="col-12 col-sm-6 col-md-4 col-lg-3 col-xl-4">
           <div class="mb-3">
             <label for="major" class="form-label">
               JHS Special Program Offered:
@@ -155,7 +155,7 @@
             </select>
           </div>
         </div>
-        <div class="col-4">
+        <div class="col-12 col-sm-6 col-md-4 col-lg-3 col-xl-4">
           <div class="mb-3">
             <label for="lrn" class="form-label">
               LRN Number
@@ -175,7 +175,7 @@
         </div>
       </div>
       <div class="row">
-        <div class="col-4">
+        <div class="col-12 col-sm-6 col-md-4 col-lg-3 col-xl-4">
           <div class="mb-3">
             <label for="first_name" class="form-label">
               First Name
@@ -191,7 +191,7 @@
             />
           </div>
         </div>
-        <div class="col-4">
+        <div class="col-12 col-sm-6 col-md-4 col-lg-3 col-xl-4">
           <div class="mb-3">
             <label for="last_name" class="form-label">
               Last Name
@@ -207,7 +207,7 @@
             />
           </div>
         </div>
-        <div class="col-4">
+        <div class="col-12 col-sm-6 col-md-4 col-lg-3 col-xl-4">
           <div class="mb-3">
             <label for="middle_name" class="form-label">
               Middle Name (Optional)
@@ -223,52 +223,46 @@
         </div>
       </div>
       <div class="row">
-        <div class="col-4 container">
-          <div class="row">
-            <div class="col-6">
-              <div class="mb-3">
-                <label for="suffix" class="form-label">
-                  Suffix (Optional)
-                </label>
-                <input
-                  type="text"
-                  class="form-control"
-                  name="suffix"
-                  id="suffix"
-                  formControlName="suffix"
-                />
-              </div>
-            </div>
-            <div class="col-6">
-              <div class="mb-3">
-                <label for="gender" class="form-label">
-                  Sex
-                  <small class="text-danger">*</small>
-                </label>
-                <br />
-                <input
-                  type="radio"
-                  name="gender"
-                  id="male"
-                  value="male"
-                  formControlName="gender"
-                  required
-                />
-                <label for="male" class="mx-2"> Male </label>
-                <input
-                  type="radio"
-                  name="gender"
-                  id="female"
-                  value="female"
-                  formControlName="gender"
-                  required
-                />
-                <label for="female" class="mx-2"> Female </label>
-              </div>
-            </div>
+        <div class="col-12 col-sm-6 col-md-4 col-lg-3 col-xl-4">
+          <div class="mb-3">
+            <label for="suffix" class="form-label"> Suffix (Optional) </label>
+            <input
+              type="text"
+              class="form-control"
+              name="suffix"
+              id="suffix"
+              formControlName="suffix"
+            />
           </div>
         </div>
-        <div class="col-3">
+        <div class="col-12 col-sm-6 col-md-4 col-lg-3 col-xl-4">
+          <div class="mb-3">
+            <label for="gender" class="form-label">
+              Sex
+              <small class="text-danger">*</small>
+            </label>
+            <br />
+            <input
+              type="radio"
+              name="gender"
+              id="male"
+              value="male"
+              formControlName="gender"
+              required
+            />
+            <label for="male" class="mx-2"> Male </label>
+            <input
+              type="radio"
+              name="gender"
+              id="female"
+              value="female"
+              formControlName="gender"
+              required
+            />
+            <label for="female" class="mx-2"> Female </label>
+          </div>
+        </div>
+        <div class="col-12 col-sm-6 col-md-4 col-lg-3 col-xl-4">
           <div class="mb-3">
             <label for="b_date" class="form-label">
               Birth Date
@@ -283,7 +277,7 @@
             />
           </div>
         </div>
-        <div class="col-1">
+        <div class="col-12 col-sm-6 col-md-4 col-lg-3 col-xl-4">
           <div class="mb-3">
             <label for="age" class="form-label">
               Age
@@ -298,7 +292,7 @@
             />
           </div>
         </div>
-        <div class="col-4">
+        <div class="col-12 col-sm-6 col-md-4 col-lg-3 col-xl-4">
           <div class="mb-3">
             <label for="b_place" class="form-label">
               Place of Birth (Municipality/City)
@@ -316,7 +310,7 @@
         </div>
       </div>
       <div class="row">
-        <div class="col-6">
+        <div class="col-12 col-sm-6 col-md-4 col-lg-3 col-xl-4">
           <div class="mb-3">
             <label for="present_address" class="form-label">
               Current Address
@@ -334,7 +328,7 @@
             ></textarea>
           </div>
         </div>
-        <div class="col-6">
+        <div class="col-12 col-sm-6 col-md-4 col-lg-3 col-xl-4">
           <div class="mb-3">
             <label for="home_address" class="form-label">
               Permanent Address
@@ -354,7 +348,7 @@
         </div>
       </div>
       <div class="row">
-        <div class="col-4">
+        <div class="col-12 col-sm-6 col-md-4 col-lg-3 col-xl-4">
           <div class="mb-3">
             <label for="m_tounge" class="form-label">
               Mother Tounge (Optional)
@@ -368,7 +362,7 @@
             />
           </div>
         </div>
-        <div class="col-4">
+        <div class="col-12 col-sm-6 col-md-4 col-lg-3 col-xl-4">
           <div class="mb-3">
             <label for="email" class="form-label">
               Email
@@ -384,7 +378,7 @@
             />
           </div>
         </div>
-        <div class="col-4">
+        <div class="col-12 col-sm-6 col-md-4 col-lg-3 col-xl-4">
           <div class="mb-3">
             <label for="mobile_number" class="form-label">
               Mobile Number
@@ -406,7 +400,7 @@
       </div>
 
       <div class="row">
-        <div class="col-6">
+        <div class="col-12 col-sm-6 col-md-4 col-lg-3 col-xl-4">
           <div class="mb-3">
             <label for="ip" class="form-label">
               Belonging to any Indigenous People (IP) Community/Indigenous
@@ -429,7 +423,7 @@
           </div>
         </div>
 
-        <div class="col-6">
+        <div class="col-12 col-sm-6 col-md-4 col-lg-3 col-xl-4">
           <div class="mb-3">
             <label for="major" class="form-label">
               Is your family a beneficiary of 4Ps?
@@ -457,7 +451,7 @@
       <hr />
       <div class="row">
         <h2 class="h4">Educational Record</h2>
-        <div class="col-6">
+        <div class="col-12 col-sm-6 col-md-4 col-lg-3 col-xl-4">
           <div class="mb-3">
             <label for="elementary" class="form-label">
               Elementary School Name
@@ -473,7 +467,7 @@
             />
           </div>
         </div>
-        <div class="col-6">
+        <div class="col-12 col-sm-6 col-md-4 col-lg-3 col-xl-4">
           <div class="mb-3">
             <label for="elementary_yr" class="form-label">
               Elementary School Year
@@ -496,7 +490,7 @@
         <caption class="fw-bold">
           Father's Name
         </caption>
-        <div class="col-3">
+        <div class="col-12 col-sm-6 col-md-4 col-lg-3 col-xl-4">
           <div class="mb-3">
             <label for="father_lastName" class="form-label"> Last Name </label>
             <input
@@ -508,7 +502,7 @@
             />
           </div>
         </div>
-        <div class="col-3">
+        <div class="col-12 col-sm-6 col-md-4 col-lg-3 col-xl-4">
           <div class="mb-3">
             <label for="father_firstName" class="form-label">
               First Name
@@ -522,7 +516,7 @@
             />
           </div>
         </div>
-        <div class="col-3">
+        <div class="col-12 col-sm-6 col-md-4 col-lg-3 col-xl-4">
           <div class="mb-3">
             <label for="father_middleName" class="form-label">
               Middle Name
@@ -536,7 +530,7 @@
             />
           </div>
         </div>
-        <div class="col-3">
+        <div class="col-12 col-sm-6 col-md-4 col-lg-3 col-xl-4">
           <div class="mb-3">
             <label for="father_number" class="form-label">
               Contact Number
@@ -556,7 +550,7 @@
         <caption class="fw-bold">
           Mother's Name
         </caption>
-        <div class="col-3">
+        <div class="col-12 col-sm-6 col-md-4 col-lg-3 col-xl-4">
           <div class="mb-3">
             <label for="mother_lastName" class="form-label"> Last Name </label>
             <input
@@ -568,7 +562,7 @@
             />
           </div>
         </div>
-        <div class="col-3">
+        <div class="col-12 col-sm-6 col-md-4 col-lg-3 col-xl-4">
           <div class="mb-3">
             <label for="mother_firstName" class="form-label">
               First Name
@@ -582,7 +576,7 @@
             />
           </div>
         </div>
-        <div class="col-3">
+        <div class="col-12 col-sm-6 col-md-4 col-lg-3 col-xl-4">
           <div class="mb-3">
             <label for="mother_middleName" class="form-label">
               Middle Name
@@ -596,7 +590,7 @@
             />
           </div>
         </div>
-        <div class="col-3">
+        <div class="col-12 col-sm-6 col-md-4 col-lg-3 col-xl-4">
           <div class="mb-3">
             <label for="mother_number" class="form-label">
               Contact Number
@@ -616,7 +610,7 @@
         <caption class="fw-bold">
           Guardian's Name
         </caption>
-        <div class="col-3">
+        <div class="col-12 col-sm-6 col-md-4 col-lg-3 col-xl-4">
           <div class="mb-3">
             <label for="guardian_lastName" class="form-label">
               Last Name
@@ -630,7 +624,7 @@
             />
           </div>
         </div>
-        <div class="col-3">
+        <div class="col-12 col-sm-6 col-md-4 col-lg-3 col-xl-4">
           <div class="mb-3">
             <label for="guardian_firstName" class="form-label">
               First Name
@@ -644,7 +638,7 @@
             />
           </div>
         </div>
-        <div class="col-3">
+        <div class="col-12 col-sm-6 col-md-4 col-lg-3 col-xl-4">
           <div class="mb-3">
             <label for="guardian_middleName" class="form-label">
               Middle Name
@@ -658,7 +652,7 @@
             />
           </div>
         </div>
-        <div class="col-3">
+        <div class="col-12 col-sm-6 col-md-4 col-lg-3 col-xl-4">
           <div class="mb-3">
             <label for="guardian_number" class="form-label">
               Contact Number

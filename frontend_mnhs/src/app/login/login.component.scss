@@ -3,9 +3,10 @@
   background-repeat: no-repeat;
   background-position: bottom;
   background-size: cover;
+  background-attachment: fixed;
 }
 
-#mainPage{
+#mainPage {
   width: 304px;
   background: rgba(216, 226, 216, 0.89);
 }
@@ -27,3 +28,27 @@ a {
   border-radius: 10px;
 }
 
+/* // responsive */
+
+@media (min-width: 480px) and (max-width: 767px) {
+}
+
+/* For tablets (768px to 1023px) */
+@media (min-width: 768px) and (max-width: 1022px) {
+}
+
+/* For small desktops and large tablets (1024px to 1199px) */
+/* @media (min-width: 1024px) and (max-width: 1199px) {
+    body {
+        font-size: 22px;
+        background-color: lightgreen;
+    }
+} */
+
+/* For large desktops (1200px and wider) */
+/* @media (min-width: 1200px) {
+    body {
+        font-size: 24px;
+        background-color: lightyellow;
+    }
+} */

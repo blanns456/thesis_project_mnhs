@@ -27,7 +27,7 @@ canvas {
   display: block;
 }
 
-.img-holder{
+.img-holder {
   width: 100%;
   height: auto;
   aspect-ratio: 3 / 2;
@@ -38,7 +38,7 @@ canvas {
   display: block;
 }
 
-.img-holder-def{
+.img-holder-def {
   width: 100%;
   height: auto;
   aspect-ratio: 3 / 2;
@@ -51,5 +51,17 @@ canvas {
 input[type="text"],
 textarea {
   text-transform: uppercase;
+}
 
+/* // responsive */
+
+@media (min-width: 480px) and (max-width: 767px) {
+}
+
+/* For tablets (768px to 1023px) */
+@media (min-width: 768px) and (max-width: 1023px) {
+}
+
+/* For small desktops and large tablets (1024px to 1199px) */
+@media (min-width: 1024px) and (max-width: 1199px) {
 }

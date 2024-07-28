@@ -27,7 +27,7 @@
           For Returning Learner (Balik-Aral) and Those Who willTransfer/Move In
         </h5>
         <div class="row">
-          <div class="col-4">
+          <div class="col-12 col-sm-6 col-md-4 col-lg-3 col-xl-4">
             <div class="mb-3">
               <label for="schoolID" class="form-label">
                 School ID
@@ -43,7 +43,7 @@
               />
             </div>
           </div>
-          <div class="col-4">
+          <div class="col-12 col-sm-6 col-md-4 col-lg-3 col-xl-4">
             <div class="mb-3">
               <label for="lastgradecompl" class="form-label">
                 Last Grade Level Completed
@@ -59,7 +59,7 @@
               />
             </div>
           </div>
-          <div class="col-6">
+          <div class="col-12 col-sm-6 col-md-4 col-lg-3 col-xl-4">
             <div class="mb-3">
               <label for="lastschool" class="form-label">
                 Last School Attended
@@ -75,7 +75,7 @@
               />
             </div>
           </div>
-          <div class="col-6">
+          <div class="col-12 col-sm-6 col-md-4 col-lg-3 col-xl-4">
             <div class="mb-3">
               <label for="lastschool_yr" class="form-label">
                 Last School Year Attended
@@ -104,7 +104,7 @@
       >
         <h5>For Learners in Senior High School</h5>
         <div class="row p-3">
-          <div class="col-4">
+          <div class="col-12 col-sm-6 col-md-4 col-lg-3 col-xl-4">
             <label for="semester" class="form-label">
               Semester:
               <small class="text-danger">*</small>
@@ -118,7 +118,7 @@
               readonly
             />
           </div>
-          <div class="col-4">
+          <div class="col-12 col-sm-6 col-md-4 col-lg-3 col-xl-4">
             <div class="mb-3">
               <label for="track" class="form-label"> Track </label>
               <input
@@ -154,7 +154,7 @@
       </div>
       <h5 class="my-3">Learner Information</h5>
       <div class="row">
-        <div class="col-4">
+        <div class="col-12 col-sm-6 col-md-4 col-lg-3 col-xl-4">
           <div class="mb-3">
             <label for="enrolling_for" class="form-label">
               Grade Level to Enroll
@@ -169,7 +169,7 @@
           </div>
         </div>
         <div
-          class="col-4"
+          class="col-12 col-sm-6 col-md-4 col-lg-3 col-xl-4"
           *ngIf="
             loggedInUserData?.data &&
             loggedInUserData.data.length > 0 &&
@@ -190,7 +190,7 @@
             />
           </div>
         </div>
-        <div class="col-4">
+        <div class="col-12 col-sm-6 col-md-4 col-lg-3 col-xl-4">
           <div class="mb-3">
             <label for="lrn" class="form-label"> LRN Number </label>
             <input
@@ -205,7 +205,7 @@
         </div>
       </div>
       <div class="row">
-        <div class="col-4">
+        <div class="col-12 col-sm-6 col-md-4 col-lg-3 col-xl-4">
           <div class="mb-3">
             <label for="first_name" class="form-label"> First Name </label>
             <input
@@ -219,7 +219,7 @@
             />
           </div>
         </div>
-        <div class="col-4">
+        <div class="col-12 col-sm-6 col-md-4 col-lg-3 col-xl-4">
           <div class="mb-3">
             <label for="last_name" class="form-label"> Last Name </label>
             <input
@@ -233,7 +233,7 @@
             />
           </div>
         </div>
-        <div class="col-4">
+        <div class="col-12 col-sm-6 col-md-4 col-lg-3 col-xl-4">
           <div class="mb-3">
             <label for="middle_name" class="form-label">
               Middle Name (Optional)
@@ -251,37 +251,33 @@
         </div>
       </div>
       <div class="row">
-        <div class="col-4 container">
-          <div class="row">
-            <div class="col-6">
-              <div class="mb-3">
-                <label for="suffix" class="form-label">
-                  Suffix (Optional)
-                </label>
-                <input
-                  [value]="loggedInUserData?.data[0]?.suffix"
-                  type="text"
-                  class="form-control"
-                  name="suffix"
-                  id="suffix"
-                  required
-                  readonly
-                />
-              </div>
-            </div>
-            <div class="col-6">
-              <div class="mb-3">
-                <label for="gender" class="form-label"> Gender </label>
-                <input
-                  [value]="loggedInUserData?.data[0]?.gender"
-                  type="text"
-                  class="form-control"
-                  name="gender"
-                  id="gender"
-                  required
-                  readonly
-                />
-                <!-- <select
+        <div class="col-12 col-sm-6 col-md-4 col-lg-3 col-xl-4">
+          <div class="mb-3">
+            <label for="suffix" class="form-label"> Suffix (Optional) </label>
+            <input
+              [value]="loggedInUserData?.data[0]?.suffix"
+              type="text"
+              class="form-control"
+              name="suffix"
+              id="suffix"
+              required
+              readonly
+            />
+          </div>
+        </div>
+        <div class="col-12 col-sm-6 col-md-4 col-lg-3 col-xl-4">
+          <div class="mb-3">
+            <label for="gender" class="form-label"> Gender </label>
+            <input
+              [value]="loggedInUserData?.data[0]?.gender"
+              type="text"
+              class="form-control"
+              name="gender"
+              id="gender"
+              required
+              readonly
+            />
+            <!-- <select
                   [value]="loggedInUserData?.data[0]?.gender"
                   name="gender"
                   id="gender"
@@ -292,11 +288,9 @@
                   <option value="male">Male</option>
                   <option value="female">Female</option>
                 </select> -->
-              </div>
-            </div>
           </div>
         </div>
-        <div class="col-4">
+        <div class="col-12 col-sm-6 col-md-4 col-lg-3 col-xl-4">
           <div class="mb-3">
             <label for="b_place" class="form-label">
               Place of Birth (Municipality/City)
@@ -313,10 +307,10 @@
           </div>
         </div>
 
-        <div class="col-4">
+        <div class="col-12 col-sm-6 col-md-4 col-lg-3 col-xl-4">
           <div class="mb-3">
             <div class="row">
-              <div class="col-6">
+              <div class="col-12 col-sm-6 col-md-4 col-lg-3 col-xl-4">
                 <label for="age" class="form-label"> Birth Date </label>
                 <input
                   [value]="loggedInUserData?.data[0]?.birthdate"
@@ -328,7 +322,7 @@
                   readonly
                 />
               </div>
-              <div class="col-6">
+              <div class="col-12 col-sm-6 col-md-4 col-lg-3 col-xl-4">
                 <label for="b_date" class="form-label"> Age </label>
                 <input
                   [value]="loggedInUserData?.data[0]?.age"
@@ -342,12 +336,15 @@
             </div>
           </div>
         </div>
-        <div *ngIf="
-        loggedInUserData?.data &&
-        loggedInUserData.data.length > 0 &&
-        (loggedInUserData.data[0].status === 'shs' ||
-          loggedInUserData.data[0].status === 'shs_transferee')
-      " class="col-4">
+        <div
+          *ngIf="
+            loggedInUserData?.data &&
+            loggedInUserData.data.length > 0 &&
+            (loggedInUserData.data[0].status === 'shs' ||
+              loggedInUserData.data[0].status === 'shs_transferee')
+          "
+          class="col-12 col-sm-6 col-md-4 col-lg-3 col-xl-4"
+        >
           <div class="mb-3">
             <label for="civil_status" class="form-label"> Civil Status </label>
             <input
@@ -361,7 +358,7 @@
         </div>
       </div>
       <div class="row">
-        <div class="col-4">
+        <div class="col-12 col-sm-6 col-md-4 col-lg-3 col-xl-4">
           <div class="mb-3">
             <label for="email" class="form-label"> Email </label>
             <input
@@ -375,7 +372,7 @@
             />
           </div>
         </div>
-        <div class="col-4">
+        <div class="col-12 col-sm-6 col-md-4 col-lg-3 col-xl-4">
           <div class="mb-3">
             <label for="number" class="form-label"> Mobile Number </label>
             <input
@@ -389,7 +386,7 @@
             />
           </div>
         </div>
-        <div class="col-4">
+        <div class="col-12 col-sm-6 col-md-4 col-lg-3 col-xl-4">
           <div class="mb-3">
             <label for="m_tounge" class="form-label">
               Mother Tounge (Optional)
@@ -406,7 +403,7 @@
         </div>
       </div>
       <div class="row">
-        <div class="col-6">
+        <div class="col-12 col-sm-6 col-md-4 col-lg-3 col-xl-4">
           <div class="mb-3">
             <label for="ip" class="form-label">
               Belonging to any Indigenous People (IP) Community/Indigenous
@@ -426,7 +423,7 @@
           </div>
         </div>
 
-        <div class="col-6">
+        <div class="col-12 col-sm-6 col-md-4 col-lg-3 col-xl-4">
           <div class="mb-3">
             <label for="major" class="form-label">
               Is your family a beneficiary of 4Ps?
@@ -448,7 +445,7 @@
         </div>
       </div>
       <div class="row">
-        <div class="col-6">
+        <div class="col-12 col-sm-6 col-md-4 col-lg-3 col-xl-4">
           <div class="mb-3">
             <label for="home_address" class="form-label">
               Permanent Address
@@ -464,7 +461,7 @@
             />
           </div>
         </div>
-        <div class="col-6">
+        <div class="col-12 col-sm-6 col-md-4 col-lg-3 col-xl-4">
           <div class="mb-3">
             <label for="present_address" class="form-label">
               Current Address
@@ -484,7 +481,7 @@
       <hr />
       <div class="row">
         <h5>Educational Record</h5>
-        <div class="col-6">
+        <div class="col-12 col-sm-6 col-md-4 col-lg-3 col-xl-4">
           <div class="mb-3">
             <label for="elementary" class="form-label">
               Elementary School Name
@@ -500,7 +497,7 @@
             />
           </div>
         </div>
-        <div class="col-6">
+        <div class="col-12 col-sm-6 col-md-4 col-lg-3 col-xl-4">
           <div class="mb-3">
             <label for="elementary_yr" class="form-label">
               Elementary School Year
@@ -526,7 +523,7 @@
         "
       >
         <div class="row">
-          <div class="col-6">
+          <div class="col-12 col-sm-6 col-md-4 col-lg-3 col-xl-4">
             <div class="mb-3">
               <label for="jhs" class="form-label">
                 Junior High School Name
@@ -542,7 +539,7 @@
               />
             </div>
           </div>
-          <div class="col-6">
+          <div class="col-12 col-sm-6 col-md-4 col-lg-3 col-xl-4">
             <div class="mb-3">
               <label for="jhs_yr" class="form-label">
                 Juinor High School Year
@@ -566,7 +563,7 @@
         <caption class="fw-bold">
           Father's Name
         </caption>
-        <div class="col-3">
+        <div class="col-12 col-sm-6 col-md-4 col-lg-3 col-xl-4">
           <div class="mb-3">
             <label for="father_lastName" class="form-label"> Last Name </label>
             <input
@@ -579,7 +576,7 @@
             />
           </div>
         </div>
-        <div class="col-3">
+        <div class="col-12 col-sm-6 col-md-4 col-lg-3 col-xl-4">
           <div class="mb-3">
             <label for="father_firstName" class="form-label">
               First Name
@@ -594,7 +591,7 @@
             />
           </div>
         </div>
-        <div class="col-3">
+        <div class="col-12 col-sm-6 col-md-4 col-lg-3 col-xl-4">
           <div class="mb-3">
             <label for="father_middleName" class="form-label">
               Middle Name
@@ -609,7 +606,7 @@
             />
           </div>
         </div>
-        <div class="col-3">
+        <div class="col-12 col-sm-6 col-md-4 col-lg-3 col-xl-4">
           <div class="mb-3">
             <label for="father_number" class="form-label">
               Contact Number
@@ -630,7 +627,7 @@
         <caption class="fw-bold">
           Mother's Name
         </caption>
-        <div class="col-3">
+        <div class="col-12 col-sm-6 col-md-4 col-lg-3 col-xl-4">
           <div class="mb-3">
             <label for="mother_lastName" class="form-label"> Last Name </label>
             <input
@@ -643,7 +640,7 @@
             />
           </div>
         </div>
-        <div class="col-3">
+        <div class="col-12 col-sm-6 col-md-4 col-lg-3 col-xl-4">
           <div class="mb-3">
             <label for="mother_firstName" class="form-label">
               First Name
@@ -658,7 +655,7 @@
             />
           </div>
         </div>
-        <div class="col-3">
+        <div class="col-12 col-sm-6 col-md-4 col-lg-3 col-xl-4">
           <div class="mb-3">
             <label for="mother_middleName" class="form-label">
               Middle Name
@@ -673,7 +670,7 @@
             />
           </div>
         </div>
-        <div class="col-3">
+        <div class="col-12 col-sm-6 col-md-4 col-lg-3 col-xl-4">
           <div class="mb-3">
             <label for="mother_number" class="form-label">
               Contact Number
@@ -694,7 +691,7 @@
         <caption class="fw-bold">
           Guardian's Name
         </caption>
-        <div class="col-3">
+        <div class="col-12 col-sm-6 col-md-4 col-lg-3 col-xl-4">
           <div class="mb-3">
             <label for="guardian_lastName" class="form-label">
               Last Name
@@ -709,7 +706,7 @@
             />
           </div>
         </div>
-        <div class="col-3">
+        <div class="col-12 col-sm-6 col-md-4 col-lg-3 col-xl-4">
           <div class="mb-3">
             <label for="guardian_firstName" class="form-label">
               First Name
@@ -724,7 +721,7 @@
             />
           </div>
         </div>
-        <div class="col-3">
+        <div class="col-12 col-sm-6 col-md-4 col-lg-3 col-xl-4">
           <div class="mb-3">
             <label for="guardian_middleName" class="form-label">
               Middle Name
@@ -739,7 +736,7 @@
             />
           </div>
         </div>
-        <div class="col-3">
+        <div class="col-12 col-sm-6 col-md-4 col-lg-3 col-xl-4">
           <div class="mb-3">
             <label for="guardian_number" class="form-label">
               Contact Number
@@ -850,7 +847,7 @@
         For Returning Learner (Balik-Aral) and Those Who will Transfer/Move In
       </h5>
       <div class="row">
-        <div class="col-4">
+        <div class="col-12 col-sm-6 col-md-4 col-lg-3 col-xl-4">
           <div class="mb-3">
             <label for="schoolID" class="form-label">
               School ID
@@ -867,7 +864,7 @@
             />
           </div>
         </div>
-        <div class="col-4">
+        <div class="col-12 col-sm-6 col-md-4 col-lg-3 col-xl-4">
           <div class="mb-3">
             <label for="lastgradecompl" class="form-label">
               Last Grade Level Completed
@@ -885,7 +882,7 @@
           </div>
         </div>
         <div class="row">
-          <div class="col-6">
+          <div class="col-12 col-sm-6 col-md-4 col-lg-3 col-xl-4">
             <div class="mb-3">
               <label for="last_school" class="form-label">
                 Last School Name
@@ -901,7 +898,7 @@
               />
             </div>
           </div>
-          <div class="col-6">
+          <div class="col-12 col-sm-6 col-md-4 col-lg-3 col-xl-4">
             <div class="mb-3">
               <label for="last_schoolyr" class="form-label">
                 Last School Year
@@ -931,7 +928,7 @@
     >
       <h5>For Learners in Senior High School</h5>
       <div class="row p-3">
-        <div class="col-4">
+        <div class="col-12 col-sm-6 col-md-4 col-lg-3 col-xl-4">
           <label for="semester" class="form-label">
             Semester:
             <small class="text-danger">*</small>
@@ -944,7 +941,7 @@
             id="semester"
           />
         </div>
-        <div class="col-4">
+        <div class="col-12 col-sm-6 col-md-4 col-lg-3 col-xl-4">
           <div class="mb-3">
             <label for="track" class="form-label"> Track </label>
             <input
@@ -979,7 +976,7 @@
     </div>
     <h5 class="my-3">Learner Information</h5>
     <div class="row">
-      <div class="col-4">
+      <div class="col-12 col-sm-6 col-md-4 col-lg-3 col-xl-4">
         <div class="mb-3">
           <label for="enrolling_for" class="form-label">
             Grade Level to Enroll
@@ -993,7 +990,7 @@
         </div>
       </div>
       <div
-        class="col-4"
+        class="col-12 col-sm-6 col-md-4 col-lg-3 col-xl-4"
         *ngIf="
           loggedInUserData?.data &&
           loggedInUserData.data.length > 0 &&
@@ -1013,7 +1010,7 @@
           />
         </div>
       </div>
-      <div class="col-4">
+      <div class="col-12 col-sm-6 col-md-4 col-lg-3 col-xl-4">
         <div class="mb-3">
           <label for="lrn" class="form-label"> LRN Number </label>
           <input
@@ -1027,7 +1024,7 @@
       </div>
     </div>
     <div class="row">
-      <div class="col-4">
+      <div class="col-12 col-sm-6 col-md-4 col-lg-3 col-xl-4">
         <div class="mb-3">
           <label for="first_name" class="form-label"> First Name </label>
           <input
@@ -1040,7 +1037,7 @@
           />
         </div>
       </div>
-      <div class="col-4">
+      <div class="col-12 col-sm-6 col-md-4 col-lg-3 col-xl-4">
         <div class="mb-3">
           <label for="last_name" class="form-label"> Last Name </label>
           <input
@@ -1053,7 +1050,7 @@
           />
         </div>
       </div>
-      <div class="col-4">
+      <div class="col-12 col-sm-6 col-md-4 col-lg-3 col-xl-4">
         <div class="mb-3">
           <label for="middle_name" class="form-label">
             Middle Name (Optional)
@@ -1070,40 +1067,36 @@
       </div>
     </div>
     <div class="row">
-      <div class="col-4 container">
-        <div class="row">
-          <div class="col-6">
-            <div class="mb-3">
-              <label for="suffix" class="form-label"> Suffix (Optional) </label>
-              <input
-                type="text"
-                class="form-control"
-                name="suffix"
-                formControlName="suffix"
-                id="suffix"
-                required
-              />
-            </div>
-          </div>
-          <div class="col-6">
-            <div class="mb-3">
-              <label for="gender" class="form-label"> Gender </label>
-              <select
-                name="gender"
-                id="gender"
-                formControlName="gender"
-                class="form-select"
-                required
-              >
-                <option value>Please Select Gender</option>
-                <option value="male">Male</option>
-                <option value="female">Female</option>
-              </select>
-            </div>
-          </div>
+      <div class="col-12 col-sm-6 col-md-4 col-lg-3 col-xl-4">
+        <div class="mb-3">
+          <label for="suffix" class="form-label"> Suffix (Optional) </label>
+          <input
+            type="text"
+            class="form-control"
+            name="suffix"
+            formControlName="suffix"
+            id="suffix"
+            required
+          />
         </div>
       </div>
-      <div class="col-4">
+      <div class="col-12 col-sm-6 col-md-4 col-lg-3 col-xl-4">
+        <div class="mb-3">
+          <label for="gender" class="form-label"> Gender </label>
+          <select
+            name="gender"
+            id="gender"
+            formControlName="gender"
+            class="form-select"
+            required
+          >
+            <option value>Please Select Gender</option>
+            <option value="male">Male</option>
+            <option value="female">Female</option>
+          </select>
+        </div>
+      </div>
+      <div class="col-12 col-sm-6 col-md-4 col-lg-3 col-xl-4">
         <div class="mb-3">
           <label for="birth_place" class="form-label">
             Place of Birth (Municipality/City)
@@ -1118,10 +1111,10 @@
           />
         </div>
       </div>
-      <div class="col-4">
+      <div class="col-12 col-sm-6 col-md-4 col-lg-3 col-xl-4">
         <div class="mb-3">
           <div class="row">
-            <div class="col-6">
+            <div class="col-12 col-sm-6 col-md-4 col-lg-3 col-xl-4">
               <label for="birthdate" class="form-label"> Birth Date </label>
               <input
                 type="date"
@@ -1133,7 +1126,7 @@
                 required
               />
             </div>
-            <div class="col-6">
+            <div class="col-12 col-sm-6 col-md-4 col-lg-3 col-xl-4">
               <label for="age" class="form-label"> Age </label>
               <input
                 type="text"
@@ -1153,7 +1146,7 @@
           (loggedInUserData.data[0].status === 'shs' ||
             loggedInUserData.data[0].status === 'shs_transferee')
         "
-        class="col-4"
+        class="col-12 col-sm-6 col-md-4 col-lg-3 col-xl-4"
       >
         <div class="mb-3">
           <label for="civil_status" class="form-label"> Civil Status </label>
@@ -1168,7 +1161,7 @@
       </div>
     </div>
     <div class="row">
-      <div class="col-4">
+      <div class="col-12 col-sm-6 col-md-4 col-lg-3 col-xl-4">
         <div class="mb-3">
           <label for="email" class="form-label"> Email </label>
           <input
@@ -1177,11 +1170,11 @@
             name="email"
             formControlName="email"
             id="email"
-            required>
-
+            required
+          />
         </div>
       </div>
-      <div class="col-4">
+      <div class="col-12 col-sm-6 col-md-4 col-lg-3 col-xl-4">
         <div class="mb-3">
           <label for="mobile_number" class="form-label"> Mobile Number </label>
           <input
@@ -1194,7 +1187,7 @@
           />
         </div>
       </div>
-      <div class="col-4">
+      <div class="col-12 col-sm-6 col-md-4 col-lg-3 col-xl-4">
         <div class="mb-3">
           <label for="m_tounge" class="form-label">
             Mother Tounge (Optional)
@@ -1210,7 +1203,7 @@
       </div>
     </div>
     <div class="row">
-      <div class="col-6">
+      <div class="col-12 col-sm-6 col-md-4 col-lg-3 col-xl-4">
         <div class="mb-3">
           <label for="ip" class="form-label">
             Belonging to any Indigenous People (IP) Community/Indigenous
@@ -1229,7 +1222,7 @@
         </div>
       </div>
 
-      <div class="col-6">
+      <div class="col-12 col-sm-6 col-md-4 col-lg-3 col-xl-4">
         <div class="mb-3">
           <label for="pantawid" class="form-label">
             Is your family a beneficiary of 4Ps?
@@ -1250,7 +1243,7 @@
       </div>
     </div>
     <div class="row">
-      <div class="col-6">
+      <div class="col-12 col-sm-6 col-md-4 col-lg-3 col-xl-4">
         <div class="mb-3">
           <label for="home_address" class="form-label">
             Permanent Address
@@ -1265,7 +1258,7 @@
           />
         </div>
       </div>
-      <div class="col-6">
+      <div class="col-12 col-sm-6 col-md-4 col-lg-3 col-xl-4">
         <div class="mb-3">
           <label for="present_address" class="form-label">
             Current Address
@@ -1284,7 +1277,7 @@
     <hr />
     <h5>Educational Record</h5>
     <div class="row">
-      <div class="col-6">
+      <div class="col-12 col-sm-6 col-md-4 col-lg-3 col-xl-4">
         <div class="mb-3">
           <label for="elementary" class="form-label">
             Elementary School Name
@@ -1299,7 +1292,7 @@
           />
         </div>
       </div>
-      <div class="col-6">
+      <div class="col-12 col-sm-6 col-md-4 col-lg-3 col-xl-4">
         <div class="mb-3">
           <label for="elementary_yr" class="form-label">
             Elementary School Year
@@ -1324,7 +1317,7 @@
       "
     >
       <div class="row">
-        <div class="col-6">
+        <div class="col-12 col-sm-6 col-md-4 col-lg-3 col-xl-4">
           <div class="mb-3">
             <label for="jhs" class="form-label">
               Junior High School Name
@@ -1339,7 +1332,7 @@
             />
           </div>
         </div>
-        <div class="col-6">
+        <div class="col-12 col-sm-6 col-md-4 col-lg-3 col-xl-4">
           <div class="mb-3">
             <label for="jhs_yr" class="form-label">
               Juinor High School Year
@@ -1362,7 +1355,7 @@
       <caption class="fw-bold">
         Father's Name
       </caption>
-      <div class="col-3">
+      <div class="col-12 col-sm-6 col-md-4 col-lg-3 col-xl-4">
         <div class="mb-3">
           <label for="father_lastName" class="form-label"> Last Name </label>
           <input
@@ -1374,7 +1367,7 @@
           />
         </div>
       </div>
-      <div class="col-3">
+      <div class="col-12 col-sm-6 col-md-4 col-lg-3 col-xl-4">
         <div class="mb-3">
           <label for="father_firstName" class="form-label"> First Name </label>
           <input
@@ -1386,7 +1379,7 @@
           />
         </div>
       </div>
-      <div class="col-3">
+      <div class="col-12 col-sm-6 col-md-4 col-lg-3 col-xl-4">
         <div class="mb-3">
           <label for="father_middleName" class="form-label">
             Middle Name
@@ -1400,7 +1393,7 @@
           />
         </div>
       </div>
-      <div class="col-3">
+      <div class="col-12 col-sm-6 col-md-4 col-lg-3 col-xl-4">
         <div class="mb-3">
           <label for="father_number" class="form-label"> Contact Number </label>
           <input
@@ -1418,7 +1411,7 @@
       <caption class="fw-bold">
         Mother's Name
       </caption>
-      <div class="col-3">
+      <div class="col-12 col-sm-6 col-md-4 col-lg-3 col-xl-4">
         <div class="mb-3">
           <label for="mother_lastName" class="form-label"> Last Name </label>
           <input
@@ -1430,7 +1423,7 @@
           />
         </div>
       </div>
-      <div class="col-3">
+      <div class="col-12 col-sm-6 col-md-4 col-lg-3 col-xl-4">
         <div class="mb-3">
           <label for="mother_firstName" class="form-label"> First Name </label>
           <input
@@ -1442,7 +1435,7 @@
           />
         </div>
       </div>
-      <div class="col-3">
+      <div class="col-12 col-sm-6 col-md-4 col-lg-3 col-xl-4">
         <div class="mb-3">
           <label for="mother_middleName" class="form-label">
             Middle Name
@@ -1456,7 +1449,7 @@
           />
         </div>
       </div>
-      <div class="col-3">
+      <div class="col-12 col-sm-6 col-md-4 col-lg-3 col-xl-4">
         <div class="mb-3">
           <label for="mother_number" class="form-label"> Contact Number </label>
           <input
@@ -1474,7 +1467,7 @@
       <caption class="fw-bold">
         Guardian's Name
       </caption>
-      <div class="col-3">
+      <div class="col-12 col-sm-6 col-md-4 col-lg-3 col-xl-4">
         <div class="mb-3">
           <label for="guardian_lastName" class="form-label"> Last Name </label>
           <input
@@ -1486,7 +1479,7 @@
           />
         </div>
       </div>
-      <div class="col-3">
+      <div class="col-12 col-sm-6 col-md-4 col-lg-3 col-xl-4">
         <div class="mb-3">
           <label for="guardian_firstName" class="form-label">
             First Name
@@ -1500,7 +1493,7 @@
           />
         </div>
       </div>
-      <div class="col-3">
+      <div class="col-12 col-sm-6 col-md-4 col-lg-3 col-xl-4">
         <div class="mb-3">
           <label for="guardian_middleName" class="form-label">
             Middle Name
@@ -1514,7 +1507,7 @@
           />
         </div>
       </div>
-      <div class="col-3">
+      <div class="col-12 col-sm-6 col-md-4 col-lg-3 col-xl-4">
         <div class="mb-3">
           <label for="guardian_number" class="form-label">
             Contact Number
@@ -1529,13 +1522,11 @@
         </div>
       </div>
     </div>
-    <hr>
+    <hr />
     <div class="row">
       <div class="col-6">
         <div class="mb-3">
-          <label
-            for="profile"
-            class="form-label">
+          <label for="profile" class="form-label">
             Profile Image
             <small class="text-danger">*</small>
           </label>
@@ -1545,28 +1536,29 @@
             class="form-control mb-3"
             name="profile"
             id="profile"
-            (change)="showPreview($event, 'profileImageURL')">
+            (change)="showPreview($event, 'profileImageURL')"
+          />
           <div class="imagePreview text-center">
             <img
               *ngIf="!profileImageURL || profileImageURL === ''"
               src="../../assets/images/default_Profile.png"
               alt="Default Image"
               class="img-holder-def"
-              width="300">
+              width="300"
+            />
             <img
               *ngIf="profileImageURL && profileImageURL !== ''"
               [src]="profileImageURL"
               [alt]="enrollForm.value.name"
               class="img-holder"
-              width="300">
+              width="300"
+            />
           </div>
         </div>
       </div>
       <div class="col-6 mx-auto">
         <div class="mb-3">
-          <label
-            for="form_137"
-            class="form-label">
+          <label for="form_137" class="form-label">
             Form 137
             <small class="text-danger">*</small>
           </label>
@@ -1576,27 +1568,30 @@
             class="form-control mb-3"
             name="form_137"
             id="form_137"
-            (change)="showPreview($event, 'form137ImageURL')">
+            (change)="showPreview($event, 'form137ImageURL')"
+          />
           <div class="imagePreview text-center">
             <img
               *ngIf="!form137ImageURL || form137ImageURL === ''"
               src="../../assets/images/default.jpg"
               alt="Default Image"
               class="img-holder-def"
-              width="400">
+              width="400"
+            />
             <img
               *ngIf="form137ImageURL && form137ImageURL !== ''"
               [src]="form137ImageURL"
               [alt]="enrollForm.value.name"
-              class="img-holder">
+              class="img-holder"
+            />
           </div>
         </div>
       </div>
       <div class="col-12">
-        <div class="mb-3 d-flex justify-content-center align-items-center flex-column">
-          <label
-            for="mother_occupation"
-            class="form-label">
+        <div
+          class="mb-3 d-flex justify-content-center align-items-center flex-column"
+        >
+          <label for="mother_occupation" class="form-label">
             Your Signature
           </label>
           <canvas
@@ -1604,23 +1599,26 @@
             (touchstart)="startDrawing($event)"
             (touchmove)="moved($event)"
             width="500"
-            height="300"></canvas>
+            height="300"
+          ></canvas>
 
           <div class="my-3">
             <p-button
               (click)="clearPad()"
               label="Clear Signature"
-              severity="info"></p-button>
+              severity="info"
+            ></p-button>
           </div>
         </div>
       </div>
-      <hr>
+      <hr />
 
       <div class="d-flex justify-content-end">
         <p-button
           (click)="updateInfos()"
           label="Update Information"
-          severity="success"></p-button>
+          severity="success"
+        ></p-button>
         <!-- <p-button
             (click)="savestudent()"
             class="p-button-success">
@@ -1635,6 +1633,5 @@
         Submit
       </p-button>
     </div> -->
-
   </form>
 </p-dialog>

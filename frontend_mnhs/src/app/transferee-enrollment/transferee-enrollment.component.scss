@@ -3,12 +3,14 @@
 }
 canvas {
   background: white;
+  width: 100%;
 }
 
 .background {
   background-image: url("../../../src/assets/images/239653396_108487398220398_4498152433778202849_n 1.jpg");
   background-size: cover;
-  background-position: center center;
+  background-position: center;
+  background-repeat: no-repeat;
   background-attachment: fixed;
   position: fixed;
   width: 100%;

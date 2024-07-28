@@ -1,5 +1,5 @@
 .background {
-  background: #4A8515;
+  background: #4a8515;
   background-size: cover;
   background-position: center center;
   background-attachment: fixed;
@@ -10,7 +10,7 @@
 }
 
 .q-link {
-//  ? margin-left: 33%;
+  //  ? margin-left: 33%;
   width: 50%;
   padding-top: 10%;
 }
@@ -21,3 +21,36 @@
   margin: auto;
   background-color: whitesmoke;
 }
+
+/* // responsive */
+
+@media (min-width: 480px) and (max-width: 767px) {
+  .q-link {
+    width: 480px;
+    padding-top: 90px;
+  }
+}
+
+/* For tablets (768px to 1023px) */
+@media (min-width: 768px) and (max-width: 1023px) {
+  .q-link {
+    width: 500px;
+    padding-top: 100px;
+  }
+}
+
+/* For small desktops and large tablets (1024px to 1199px) */
+@media (min-width: 1024px) and (max-width: 1199px) {
+  .q-link {
+    width: 700px;
+    padding-top: 100px;
+  }
+}
+
+/* For large desktops (1200px and wider) */
+/* @media (min-width: 1200px) {
+    body {
+        font-size: 24px;
+        background-color: lightyellow;
+    }
+} */

@@ -1,42 +1,99 @@
 <nav class="navbar position-fixed z-3 nav-student">
   <div class="container-fluid d-flex justify-content-between flex-row">
-    <div class="mw-100 text-center">
-      <a routerLink="/student-dashboard-home">
-        <img
-          src="../../../assets/images/logo.png"
-          class="img-responsive mw-100"
-          width="50"
-          height="50"
-          alt="ascb_logo"
-        />
-      </a>
+    <div class="mw-100 text-center d-flex align-items-center">
+      <div class="ms-2">
+        <a class="togglenav1" routerLink="/student-dashboard-home">
+          <img
+            src="../../../assets/images/logo.png"
+            class="img-responsive mw-100"
+            width="50"
+            height="50"
+            alt="ascb_logo"
+          />
+        </a>
+        <a
+          class="togglenav2"
+          data-bs-toggle="offcanvas"
+          href="#offcanvasExample"
+          role="button"
+          aria-controls="offcanvasExample"
+        >
+          <img
+            src="../../../assets/images/logo.png"
+            class="img-responsive mw-100"
+            width="50"
+            height="50"
+            alt="ascb_logo"
+          />
+        </a>
+      </div>
       <span class="navbar-brand mb-0 h2 mx-4 nav-text"
         >Mangagoy National High School</span
       >
     </div>
-    <!-- <div class="d-flex align-items-center">
-      <div class="dropdown">
-        <button
-          type="button"
-          class="btn header-item noti-icon waves-effect"
-          id="page-header-notifications-dropdown"
-          data-bs-toggle="dropdown"
-          aria-expanded="false"
-        >
-          <i class="fa-solid fa-bell fs-4"></i>
-          <span class="noti-dot"></span>
-        </button>
+  </div>
 
-        <div class="dropdown-menu noti-list">
-          <div class="w-50 d-flex justify-content-between">
-            <h3 class="fs-6">Notifications</h3>
-            <a href>View More...</a>
+  <div
+    class="offcanvas offcanvas-start text-bg-dark"
+    tabindex="-1"
+    id="offcanvasExample"
+    aria-labelledby="offcanvasExampleLabel"
+  >
+    <div class="offcanvas-body">
+      <div class="sidebar position-fixed">
+        <div class="logout position-relative">
+          <div class="text-end"></div>
+          <div class="text-start text-capitalize">
+            <img
+              [src]="this.profile"
+              alt="avatar"
+              id="profile"
+              width="60"
+              height="60"
+              class="img-responsive mt-4 mx-3"
+            />
+            <h2 class="h6 fw-bold text-white mx-3 mt-2">{{ this.studname }}</h2>
+            <p class="text-light fs-6 mx-3 fw-light">
+              Grade {{ this.grade_level }} ({{ this.status }})
+            </p>
+          </div>
+        </div>
+        <div>
+          <div id="listPros" class="list-group">
+            <a
+              class="py-3 mb-1 list-group-item list-group-item-action home"
+              routerLink="/student/home"
+              routerLinkActive="active"
+            >
+              <i class="mx-2 fa-solid fa-house"></i>
+              Home
+            </a>
+            <a
+              class="my-2 py-3 list-group-item list-group-item-action"
+              routerLink="/student/information"
+              routerLinkActive="active"
+            >
+              <i class="mx-2 fa-solid fa-book-open-reader"></i>
+              Student Information
+            </a>
+            <a
+              class="my-2 py-3 list-group-item list-group-item-action"
+              routerLink="/student/settings"
+              routerLinkActive="active"
+            >
+              <i class="mx-2 fa-solid fa-gear"></i>
+              Account Settings
+            </a>
+            <a
+              class="my-2 py-3 list-group-item list-group-item-action"
+              (click)="logout()"
+            >
+              <i class="fa-solid fa-right-from-bracket mx-2"></i>
+              Logout
+            </a>
           </div>
         </div>
       </div>
-      <div>
-        <i class="fa-solid fa-message fs-4 mx-3"></i>
-      </div>
-    </div> -->
+    </div>
   </div>
 </nav>
